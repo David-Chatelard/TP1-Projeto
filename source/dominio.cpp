@@ -336,4 +336,27 @@ void Idioma::setValor(string valor){
     this->valor = valor;
 }
 
+//PRECISA IMPLEMENTAR (PREGUIÇA)
+void Nome::validar(string valor){
+    
 
+
+
+}
+
+
+
+void Nome::setValor(string valor){
+    validar(valor);
+    this->valor = valor;
+}
+
+void Nota::validar(string valor){
+    if(stoi(valor) > 5 || stoi(valor) < 0)
+        throw invalid_argument("Argumento invalido.");
+}
+
+void Nota::setValor(string valor){
+    validar(valor);
+    this->valor = valor;
+}
