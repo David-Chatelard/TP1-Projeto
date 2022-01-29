@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <iterator> // ver se precisa, pode ser útil
+#include <iterator> // ver se precisa, pode ser util
 #include <cctype>
 
 using namespace std;
@@ -50,16 +50,19 @@ void Cidade::setValor(string valor) {
 }
 
 void Codigo::validar(string valor){
-    // O algoritmo de verificação utilizado será o UPS(https://stringfixer.com/pt/Check_digit)
-    int soma_impar = 3 * (int(valor[0]) + int(valor[2]) + int(valor[4]));
-    int soma_par = int(valor[1]) + int(valor[3]) + int(valor[5]);
+    // O algoritmo de verificação utilizado será o UPC(https://stringfixer.com/pt/Check_digit)
+    string aux = valor;
+    aux.resize(aux.size() - 1);
+    int soma_impar = 3 * ((valor[0]-'0') + (valor[2]-'0') + (valor[4]-'0'));
+    int soma_par = (valor[1]-'0') + (valor[3]-'0') + (valor[5]-'0');
     int digito_verificacao = (soma_impar + soma_par) % 10;
 
     if (digito_verificacao != 0){
         digito_verificacao = 10 - digito_verificacao;
     }
 
-    if (int(valor[6]) != digito_verificacao)
+    // Verificar se a condição do str.compare() está funcionando, pois ela retorna 0, tem que ver se c++ aceita 0 e 1 como booleano
+    if (((valor[6]-'0') != digito_verificacao) || (valor.length() > 7) || (!(aux.compare("000000"))))
         throw invalid_argument("Argumento invalido.");
 }
 
@@ -211,6 +214,7 @@ void Email::validar(string valor){
     string separa_email[2] = {"",""};
     string buffer;
     int i = 0;
+
     // Divide o email em 2 strings (parte-local e dominio)
     for (auto letra:valor){
         if(letra != '@'){
@@ -223,16 +227,51 @@ void Email::validar(string valor){
         }
     }
     
-    for (auto letra:valor) {
-        if (!isalnum(letra) || !(caracteres_parte_local.find(letra) != caracteres_parte_local.end())){ //nao eh letra, nem numero e nem caractere especial permitido. Ainda pode ser '.' ou '@'
-            if (letra == '.'){
-                num_pontos++; //PAREI AQUI MEU CEREBRO DESLIGOU
+    // Verifica a parte-local
+    for (auto letra:separa_email[0]) {
+        if (!isalnum(letra) && !(caracteres_parte_local.find(letra) != caracteres_parte_local.end())){ //nao eh letra e nem numero e nem caractere especial permitido. Ainda pode ser '.' ou '@'
+            if (letra == '@'){
+                letra_invalida_local = true;
+                break;
             }
+            else if (letra == '.'){
+                num_pontos++;
+                if (num_pontos >= 2){
+                    letra_invalida_local = true;
+                    break;
+                }
+            }
+        }
+        else{
+            num_pontos = 0;
         }
     }
 
-    
-    if ((separa_email[0].length() > 64) || (separa_email[0][0] == '.') || (separa_email[0][separa_email[0].length()-1] == '.') || (letra_invalida_local) || (letra_invalida_dominio))
+    // Verifica o dominio
+    num_pontos = 0;
+    for (auto letra:separa_email[1]) {
+        if (letra_invalida_local){  // A parte-local ja eh invalida
+            break;
+        }
+        if (!isalnum(letra) && !(letra == '-')){ // Nao eh letra e nem '-'. Ainda pode ser '.' ou caracter invalido
+            if (letra == '.'){
+                num_pontos++;
+                if (num_pontos >= 2){
+                    letra_invalida_dominio = true;
+                    break;
+                }
+            }
+            else {
+                letra_invalida_dominio = true;
+                break;
+            }
+        }
+        else{
+            num_pontos = 0;
+        }
+    }
+
+    if ((separa_email[0].length() > 64) || (separa_email[0][0] == '.') || (separa_email[0][separa_email[0].length()-1] == '.') || (letra_invalida_local) || (separa_email[1].length() > 253) || (separa_email[1][0] == '.') || (letra_invalida_dominio))
         throw invalid_argument("Argumento invalido.");
 }
 
@@ -242,47 +281,47 @@ void Email::setValor(string valor) {
 }
 
 void Endereco::validar(string valor){
-string buffer = "";
-bool is_dot, erro_dot= false;
-bool is_space, erro_space = false; 
+    string buffer = "";
+    bool is_dot, erro_dot= false;
+    bool is_space, erro_space = false; 
 
-for(auto eachchar:valor)
-    {
-        if(eachchar == ' ')
+    for(auto eachchar:valor)
         {
-            if(is_space == true)
+            if(eachchar == ' ')
             {
-                erro_space = true;
+                if(is_space == true)
+                {
+                    erro_space = true;
+                }
+                else
+                {
+                    is_space = true; 
+                    buffer+=eachchar;
+                }
+            }
+            else if(eachchar == '.')
+            {
+                if(is_dot == true)
+                {
+                    erro_dot = true;
+                }
+                else
+                {
+                    is_dot = true; 
+                    buffer+=eachchar;
+                }
             }
             else
             {
-                is_space = true; 
+                is_dot = false;
+                is_space = false;
                 buffer+=eachchar;
             }
         }
-        else if(eachchar == '.')
+        if(erro_dot == true || erro_space == true || buffer.size() > 20)
         {
-            if(is_dot == true)
-            {
-                erro_dot = true;
-            }
-            else
-            {
-                is_dot = true; 
-                buffer+=eachchar;
-            }
+            throw invalid_argument("Argumento invalido.");
         }
-        else
-        {
-            is_dot = false;
-            is_space = false;
-            buffer+=eachchar;
-        }
-    }
-    if(erro_dot == true || erro_space == true || buffer.size() > 20)
-    {
-        throw invalid_argument("Argumento invalido.");
-    }
 }
 
 void Endereco::setValor(string valor){
@@ -337,27 +376,54 @@ void Idioma::setValor(string valor){
     this->valor = valor;
 }
 
-//PRECISA IMPLEMENTAR (PREGUIÇA)
 void Nome::validar(string valor){
-    
+    for (int i = 0; i < valor.length(); i++){
 
+        if (!isalpha(valor[i]) || !isblank(valor[i]) || valor[i] != '.')
+            throw invalid_argument("Argumento invalido.");
+            
+        if (valor[i] == '.' && i == 0){
+            throw invalid_argument("Argumento invalido.");
+        }
+        else if (valor[i] == '.' && i < (valor.length() - 1)){  
+            if (!isalpha(valor[i-1]) || !isblank(valor[i + 1]))
+                throw invalid_argument("Argumento invalido.");
+        }
+        else if (valor[i] == '.' && i == (valor.length() - 1)){
+            if (!isalpha(valor[i-1]))
+                throw invalid_argument("Argumento invalido.");
+        }
+        
 
+        if (valor[i] == ' ' && i == 0){
+            if (!isupper(valor[i + 1]))
+                throw invalid_argument("Argumento invalido.");
+        }
+        else if (valor[i] == ' ' && i < (valor.length() - 1)){  
+            if (isblank(valor[i-1]) || isblank(valor[i + 1]) || !isupper(valor[i + 1]))
+                throw invalid_argument("Argumento invalido.");       
+        }
+        else if (valor[i] == ' ' && i == (valor.length() - 1)){
+            if (isblank(valor[i-1]))
+                throw invalid_argument("Argumento invalido.");
+        }
+    }
 
+    if (valor.length() < 5 || valor.length() > 20)
+        throw invalid_argument("Argumento invalido.");
 }
-
-
 
 void Nome::setValor(string valor){
     validar(valor);
     this->valor = valor;
 }
 
-void Nota::validar(string valor){
-    if(stoi(valor) > 5 || stoi(valor) < 0)
+void Nota::validar(int valor){
+    if(valor > 5 || valor < 0)
         throw invalid_argument("Argumento invalido.");
 }
 
-void Nota::setValor(string valor){
+void Nota::setValor(int valor){
     validar(valor);
     this->valor = valor;
 }
@@ -365,28 +431,73 @@ void Nota::setValor(string valor){
 void Senha::validar(string valor){
     //size da string é de 6
     string senha = "";
-    bool has_lowercase, has_uppercase, has_digit, has_repeated_char = false;
+    bool has_lowercase, has_uppercase, has_digit, has_repeated_char, has_invalid_char= false;
     for(auto eachchar:valor)
     {
+        //checa se tem char repetido
+        if(senha.find(eachchar) != string::npos)
+        {
+            has_repeated_char = true;
+        }
+        if(!isalnum(eachchar))
+        {
+            has_invalid_char= true;
+            senha+=eachchar;
+        }
+        //checa se tem pelo menos um digito
         if(isdigit(eachchar))
         {
             has_digit = true;
             senha+=eachchar;
         }
+        //checa se tem pelo menos uma letra maiuscula
         else if (isupper(eachchar))
         {
             has_uppercase = true;
             senha+=eachchar;
         }
+        //checa se tem pelo menos uma letra minuscula
         else if (islower(eachchar))
         {
             has_lowercase = true;
             senha+=eachchar;
         }
     }
+    if (!has_lowercase || !has_uppercase || !has_digit || has_repeated_char || has_invalid_char)
+    {
+        throw invalid_argument("Argumento invalido.");
+    }
 }
 
 void Senha::setValor(string valor){
+    validar(valor);
+    this->valor = valor;
+}
+
+void Titulo::validar(string valor){
+    int num_letras = 0;
+
+    for (int i = 0; i < valor.length(); i++){
+        if (isalpha(valor[i]))
+            num_letras++;
+
+        if (valor[i] == '.' && i != 0){  
+            if (valor[i-1] == '.')
+                throw invalid_argument("Argumento invalido.");       
+        }
+    
+        if (valor[i] == ' ' && i != 0){  
+            if (isblank(valor[i-1]))
+                throw invalid_argument("Argumento invalido.");       
+        }
+    }
+
+    if (num_letras < 5 || num_letras > 20)
+        throw invalid_argument("Argumento invalido.");
+
+}
+
+void Titulo::setValor(string valor) {
     validar(valor);
     this->valor = valor;
 }
