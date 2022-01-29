@@ -165,6 +165,7 @@ void Data::setValor(string valor) {
 void Descricao::validar(string valor){
     int num_pontos = 0;
     int num_espacos = 0;
+    int tam_descricao = int(valor.length());
 
     for (auto letra:valor){
         if (num_pontos >= 2){
@@ -188,7 +189,7 @@ void Descricao::validar(string valor){
         }
     }
     
-    if ((valor.length() > 30) || (valor.length() < 0) || (num_pontos >= 2) || (num_espacos >= 2))
+    if ((tam_descricao > 30) || (tam_descricao < 0) || (num_pontos >= 2) || (num_espacos >= 2))
         throw invalid_argument("Argumento invalido.");
 }
 
@@ -198,7 +199,7 @@ void Descricao::setValor(string valor) {
 }
 
 void Duracao::validar(int valor){
-    if ((valor != 30) || (valor != 60) || (valor != 90) || (valor != 120) || (valor != 180))
+    if ((valor != 30) && (valor != 60) && (valor != 90) && (valor != 120) && (valor != 180))
         throw invalid_argument("Argumento invalido.");
 }
 
@@ -226,7 +227,8 @@ void Email::validar(string valor){
             i++;
         }
     }
-    
+    separa_email[i] = buffer;
+
     // Verifica a parte-local
     for (auto letra:separa_email[0]) {
         if (!isalnum(letra) && !(caracteres_parte_local.find(letra) != caracteres_parte_local.end())){ //nao eh letra e nem numero e nem caractere especial permitido. Ainda pode ser '.' ou '@'
@@ -377,39 +379,43 @@ void Idioma::setValor(string valor){
 }
 
 void Nome::validar(string valor){
-    for (int i = 0; i < valor.length(); i++){
+    int tam_nome = int(valor.length());
 
-        if (!isalpha(valor[i]) || !isblank(valor[i]) || valor[i] != '.')
+    for (int i = 0; i < tam_nome; i++){
+
+        //Verifica se é letra, espaço em branco ou ponto
+        if (!isalpha(valor[i]) && !isblank(valor[i]) && valor[i] != '.')
             throw invalid_argument("Argumento invalido.");
             
+        //Verifica se o ponto é precedido por letra e seguido por um espaço em branco caso não seja o último caractere
         if (valor[i] == '.' && i == 0){
             throw invalid_argument("Argumento invalido.");
         }
-        else if (valor[i] == '.' && i < (valor.length() - 1)){  
-            if (!isalpha(valor[i-1]) || !isblank(valor[i + 1]))
+        else if (valor[i] == '.' && i < (tam_nome - 1)){  
+            if (!isalpha(valor[i-1]) || !isblank(valor[i+1]))
                 throw invalid_argument("Argumento invalido.");
         }
-        else if (valor[i] == '.' && i == (valor.length() - 1)){
+        else if (valor[i] == '.' && i == (tam_nome - 1)){
             if (!isalpha(valor[i-1]))
                 throw invalid_argument("Argumento invalido.");
         }
         
-
+        //Verifica se não há espaços em branco em sequência e se a primeira letra de cada termo é letra maiúscula
         if (valor[i] == ' ' && i == 0){
             if (!isupper(valor[i + 1]))
                 throw invalid_argument("Argumento invalido.");
         }
-        else if (valor[i] == ' ' && i < (valor.length() - 1)){  
-            if (isblank(valor[i-1]) || isblank(valor[i + 1]) || !isupper(valor[i + 1]))
+        else if (valor[i] == ' ' && i < (tam_nome - 1)){  
+            if (isblank(valor[i-1]) || isblank(valor[i+1]) || !isupper(valor[i+1]))
                 throw invalid_argument("Argumento invalido.");       
         }
-        else if (valor[i] == ' ' && i == (valor.length() - 1)){
+        else if (valor[i] == ' ' && i == (tam_nome - 1)){
             if (isblank(valor[i-1]))
                 throw invalid_argument("Argumento invalido.");
         }
     }
-
-    if (valor.length() < 5 || valor.length() > 20)
+    //Verifica se o nome possui entre 5 e 20 caracteres
+    if (tam_nome < 5 || tam_nome > 20)
         throw invalid_argument("Argumento invalido.");
 }
 
@@ -431,7 +437,7 @@ void Nota::setValor(int valor){
 void Senha::validar(string valor){
     //size da string é de 6
     string senha = "";
-    bool has_lowercase, has_uppercase, has_digit, has_repeated_char, has_invalid_char= false;
+    bool has_lowercase, has_uppercase, has_digit, has_repeated_char, has_invalid_char = false;
     for(auto eachchar:valor)
     {
         //checa se tem char repetido
@@ -475,23 +481,28 @@ void Senha::setValor(string valor){
 }
 
 void Titulo::validar(string valor){
-    int num_letras = 0;
+    int num_letras = 0, tam_titulo = int(valor.length());
 
-    for (int i = 0; i < valor.length(); i++){
+    for (int i = 0; i < tam_titulo; i++){
+
+        //Conta o número de letras, já que pode haver outros caracteres
         if (isalpha(valor[i]))
             num_letras++;
 
+        //Verifica se não há pontos em sequência
         if (valor[i] == '.' && i != 0){  
             if (valor[i-1] == '.')
                 throw invalid_argument("Argumento invalido.");       
         }
     
+        //Verifica se não há espaços em branco em sequência
         if (valor[i] == ' ' && i != 0){  
             if (isblank(valor[i-1]))
                 throw invalid_argument("Argumento invalido.");       
         }
     }
 
+    //Verifica se o título possui entre 5 e 20 letras
     if (num_letras < 5 || num_letras > 20)
         throw invalid_argument("Argumento invalido.");
 
