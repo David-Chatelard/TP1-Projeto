@@ -5,6 +5,7 @@
 #include <fstream>
 #include <string>
 #include <iterator> // ver se precisa, pode ser útil
+#include <cctype>
 
 using namespace std;
 
@@ -357,6 +358,35 @@ void Nota::validar(string valor){
 }
 
 void Nota::setValor(string valor){
+    validar(valor);
+    this->valor = valor;
+}
+
+void Senha::validar(string valor){
+    //size da string é de 6
+    string senha = "";
+    bool has_lowercase, has_uppercase, has_digit, has_repeated_char = false;
+    for(auto eachchar:valor)
+    {
+        if(isdigit(eachchar))
+        {
+            has_digit = true;
+            senha+=eachchar;
+        }
+        else if (isupper(eachchar))
+        {
+            has_uppercase = true;
+            senha+=eachchar;
+        }
+        else if (islower(eachchar))
+        {
+            has_lowercase = true;
+            senha+=eachchar;
+        }
+    }
+}
+
+void Senha::setValor(string valor){
     validar(valor);
     this->valor = valor;
 }
