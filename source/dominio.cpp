@@ -36,6 +36,7 @@ set<string> mes_31 {"Jan", "Mar", "Mai", "Jul", "Ago", "Out", "Dez"};
 // set<string> caracteres_parte_local {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '#', '$', '%', '&', '\''};
 set<char> caracteres_parte_local {'!', '#', '$', '%', '&', '\'', '*', '+', '-', '/', '=', '?', '^', '_', '`', '{', '}', '|', '~'};
 
+set<string> idiomas {"Ingles", "Chines", "Mandarim", "Hindi", "Espanhol", "Frances", "Arabe", "Bengali", "Russo", "Portugues", "Indonesio"};
 
 void Cidade::validar(string valor){
     if(!(cidades.find(valor) != cidades.end()))
@@ -324,3 +325,15 @@ void Horario::setValor(string valor){
     validar(valor);
     this->valor = valor;
 }
+
+void Idioma::validar(string valor){
+    if(!(idiomas.find(valor) != idiomas.end()))
+        throw invalid_argument("Argumento invalido.");
+}
+
+void Idioma::setValor(string valor){
+    validar(valor);
+    this->valor = valor;
+}
+
+
