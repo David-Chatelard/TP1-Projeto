@@ -238,3 +238,89 @@ void Email::setValor(string valor) {
     validar(valor);
     this->valor = valor;
 }
+
+void Endereco::validar(string valor){
+string buffer = "";
+bool is_dot, erro_dot= false;
+bool is_space, erro_space = false; 
+
+for(auto eachchar:valor)
+    {
+        if(eachchar == ' ')
+        {
+            if(is_space == true)
+            {
+                erro_space = true;
+            }
+            else
+            {
+                is_space = true; 
+                buffer+=eachchar;
+            }
+        }
+        else if(eachchar == '.')
+        {
+            if(is_dot == true)
+            {
+                erro_dot = true;
+            }
+            else
+            {
+                is_dot = true; 
+                buffer+=eachchar;
+            }
+        }
+        else
+        {
+            is_dot = false;
+            is_space = false;
+            buffer+=eachchar;
+        }
+    }
+    if(erro_dot == true || erro_space == true || buffer.size() > 20)
+    {
+        throw invalid_argument("Argumento invalido.");
+    }
+}
+
+void Endereco::setValor(string valor){
+    validar(valor);
+    this->valor = valor;
+}
+
+//VERIFICAR A NECESSIDADE DE CONFERIR  SE A ENTRADA É DE FATO DADA POR NÚMEROS (VAI DAR PAU POR CONTA DO STOI)
+void Horario::validar(string valor){
+    string separa_hora[2] = {"",""};
+    string buffer = "";
+    int i = 0;
+
+    // Divide a hora em 2 strings (hora e minutos)
+    for(auto eachchar:valor)
+    {
+        if(eachchar != ':')
+        {
+            buffer+=eachchar;
+        }
+        else if (eachchar == ':')
+        {
+            separa_hora[i] = buffer;
+            buffer = "";
+            i++;
+        }
+    }
+    separa_hora[i] = buffer;
+
+    if(stoi(separa_hora[0]) < 0 || stoi(separa_hora[0]) > 23)
+    {
+        throw invalid_argument("Argumento invalido.");
+    }
+    else if(stoi(separa_hora[1]) < 0 || stoi(separa_hora[1]) > 59)
+    {
+        throw invalid_argument("Argumento invalido.");
+    }
+}
+
+void Horario::setValor(string valor){
+    validar(valor);
+    this->valor = valor;
+}
