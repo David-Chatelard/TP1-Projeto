@@ -4,6 +4,7 @@
         "initializer_list": "cpp",
         "xutility": "cpp",
         "string": "cpp",
-        "stdexcept": "cpp"
+        "stdexcept": "cpp",
+        "iostream": "cpp"
     }
 }

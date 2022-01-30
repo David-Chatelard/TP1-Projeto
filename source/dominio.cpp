@@ -440,6 +440,7 @@ void Senha::validar(string valor){
     bool has_lowercase, has_uppercase, has_digit, has_repeated_char, has_invalid_char = false;
     for(auto eachchar:valor)
     {
+        cout << "neymar" << endl;
         //checa se tem char repetido
         if(senha.find(eachchar) != string::npos)
         {
@@ -469,6 +470,12 @@ void Senha::validar(string valor){
             senha+=eachchar;
         }
     }
+    cout << senha << endl;
+    cout << has_digit << endl;
+    cout << has_uppercase << endl;
+    cout << has_lowercase << endl;
+    cout << has_repeated_char << endl;
+    cout << has_invalid_char << endl;
     if (!has_lowercase || !has_uppercase || !has_digit || has_repeated_char || has_invalid_char)
     {
         throw invalid_argument("Argumento invalido.");

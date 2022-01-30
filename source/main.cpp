@@ -15,5 +15,15 @@ int main(int argc, char const *argv[]){
 
     cout << cidade1.getValor() << endl;
 
+    Senha senha1;
+
+    string senhao;
+
+    cin >> senhao;
+
+    senha1.setValor(senhao);
+
+    cout << senha1.getValor() << endl;
+
     return 0;
 }
