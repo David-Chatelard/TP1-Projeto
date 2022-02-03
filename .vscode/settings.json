@@ -5,6 +5,7 @@
         "xutility": "cpp",
         "string": "cpp",
         "stdexcept": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "ostream": "cpp"
     }
 }

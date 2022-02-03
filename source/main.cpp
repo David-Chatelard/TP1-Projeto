@@ -9,19 +9,15 @@ using namespace std;
 
 int main(int argc, char const *argv[]){
     
-    Cidade cidade1;
+    // Cidade cidade1;
 
-    cidade1.setValor("Hong Kong");
+    // cidade1.setValor("Hong Kong");
 
-    cout << cidade1.getValor() << endl;
+    // cout << cidade1.getValor() << endl;
 
     Senha senha1;
 
-    string senhao;
-
-    cin >> senhao;
-
-    senha1.setValor(senhao);
+    senha1.setValor("AbC123");
 
     cout << senha1.getValor() << endl;
 
