@@ -45,6 +45,7 @@ int main(int argc, char const *argv[]){
                                 break;
     }
 
+
     TUCodigo codigo_teste;
 
     switch(codigo_teste.run()){
@@ -53,6 +54,7 @@ int main(int argc, char const *argv[]){
         case TUCodigo::FALHA  : cout << "FALHA   - CODIGO" << endl;
                                 break;
     }
+
 
     TUData data_teste;
 
@@ -63,6 +65,7 @@ int main(int argc, char const *argv[]){
                                 break;
     }
 
+
     TUDescricao descricao_teste;
 
     switch(descricao_teste.run()){
@@ -71,6 +74,7 @@ int main(int argc, char const *argv[]){
         case TUDescricao::FALHA  : cout << "FALHA   - DESCRICAO" << endl;
                                 break;
     }
+
 
     TUDuracao duracao_teste;
 
@@ -81,6 +85,7 @@ int main(int argc, char const *argv[]){
                                 break;
     }
 
+
     TUEmail email_teste;
 
     switch(email_teste.run()){
@@ -89,6 +94,7 @@ int main(int argc, char const *argv[]){
         case TUEmail::FALHA  : cout << "FALHA   - EMAIL" << endl;
                                 break;
     }
+
 
     TUEndereco endereco_teste;
 
@@ -99,6 +105,7 @@ int main(int argc, char const *argv[]){
                                 break;
     }
 
+
     TUHorario horario_teste;
 
     switch(horario_teste.run()){
@@ -107,6 +114,7 @@ int main(int argc, char const *argv[]){
         case TUHorario::FALHA  : cout << "FALHA   - HORARIO" << endl;
                                 break;
     }
+
 
     TUIdioma idioma_teste;
 
@@ -117,6 +125,7 @@ int main(int argc, char const *argv[]){
                                 break;
     }
 
+
     TUNome nome_teste;
 
     switch(nome_teste.run()){
@@ -125,6 +134,7 @@ int main(int argc, char const *argv[]){
         case TUNome::FALHA  : cout << "FALHA   - NOME" << endl;
                                 break;
     }
+
 
     TUNota nota_teste;
 
@@ -135,6 +145,7 @@ int main(int argc, char const *argv[]){
                                 break;
     }
 
+
     TUSenha senha_teste;
 
     switch(senha_teste.run()){
@@ -143,6 +154,7 @@ int main(int argc, char const *argv[]){
         case TUSenha::FALHA  : cout << "FALHA   - SENHA" << endl;
                                 break;
     }
+
 
     TUTitulo titulo_teste;
 
