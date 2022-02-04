@@ -34,7 +34,6 @@ inline Dominio Entidade::getnomeAtributo() const{
  * @brief Padrão para representação de um usuário
  * 
  */
-
 class Usuario {
     private:
             Nome nome;
@@ -272,6 +271,10 @@ inline Idioma Sessao::getIdioma() const{
 }
 
 
+/**
+ * @brief Padrão para a representação de uma excursão
+ * 
+ */
 class Excursao {
     private:
             Codigo codigo;
