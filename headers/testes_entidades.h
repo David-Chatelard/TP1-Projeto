@@ -9,6 +9,7 @@ using namespace std;
 
 // --------------------------------------------------------------------------
 // Exemplo de declara��o de classe para teste de unidade de classe entidade.
+// Tem que adicionar as linhas 16 e 17 para cada atributo da entidade a ser testada(por exemplo, no caso do usuario teria que ter pro nome, email e senha)
 
 class TUProjeto {
 private:
