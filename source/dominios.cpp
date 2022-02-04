@@ -1,4 +1,4 @@
-#include "../headers/dominio.h"
+#include "../headers/dominios.h"
 #include <algorithm>
 #include <set> 
 #include <iostream>

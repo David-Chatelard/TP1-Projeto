@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "../headers/dominio.h"
-#include "dominio.cpp"
+#include "../headers/dominios.h"
+#include "dominios.cpp"
 // #include "entidades.h"
 // #include "testes.h"
 
