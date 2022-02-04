@@ -1,4 +1,5 @@
 #include "../headers/dominios.h"
+
 #include <algorithm>
 #include <set> 
 #include <iostream>
@@ -31,24 +32,25 @@ void Dominio::setValor(Tipo valor) {
 set<string> cidades {"Hong Kong", "Bangkok", "Macau", "Singapura", "Londres", "Paris", "Dubai", "Delhi", "Istambul", "Kuala Lumpur", "Nova Iorque", "Antalya", "Mumbai", "Shenzhen", "Phuket"};
 
 set<string> meses {"Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"};
-//set<string> mes_30 {"Abr", "Jun", "Set", "Nov"};
 set<string> mes_31 {"Jan", "Mar", "Mai", "Jul", "Ago", "Out", "Dez"};
 
-// set<string> caracteres_parte_local {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '#', '$', '%', '&', '\''};
 set<char> caracteres_parte_local {'!', '#', '$', '%', '&', '\'', '*', '+', '-', '/', '=', '?', '^', '_', '`', '{', '}', '|', '~'};
 
 set<string> idiomas {"Ingles", "Chines", "Mandarim", "Hindi", "Espanhol", "Frances", "Arabe", "Bengali", "Russo", "Portugues", "Indonesio"};
 
+// Método implementado pelo aluno David Fanchic Chatelard, matrícula 180138863
 void Cidade::validar(string valor){
-    if(!(cidades.find(valor) != cidades.end()))
+    if (!(cidades.find(valor) != cidades.end()))
       throw invalid_argument("Argumento invalido.");
 }
 
+// Método implementado pelo aluno David Fanchic Chatelard, matrícula 180138863
 void Cidade::setValor(string valor) {
     validar(valor);
     this->valor = valor;
 }
 
+// Método implementado pelo aluno David Fanchic Chatelard, matrícula 180138863
 void Codigo::validar(string valor){
     // O algoritmo de verificação utilizado será o UPC(https://stringfixer.com/pt/Check_digit)
     string aux = valor;
@@ -57,7 +59,7 @@ void Codigo::validar(string valor){
     int soma_par = (valor[1]-'0') + (valor[3]-'0') + (valor[5]-'0');
     int digito_verificacao = (soma_impar + soma_par) % 10;
 
-    if (digito_verificacao != 0){
+    if (digito_verificacao != 0) {
         digito_verificacao = 10 - digito_verificacao;
     }
 
@@ -66,11 +68,13 @@ void Codigo::validar(string valor){
         throw invalid_argument("Argumento invalido.");
 }
 
+// Método implementado pelo aluno David Fanchic Chatelard, matrícula 180138863
 void Codigo::setValor(string valor) {
     validar(valor);
     this->valor = valor;
 }
 
+// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
 void Data::validar(string valor){
     string separa_data[3] = {"","",""};
     string buffer = "";
@@ -78,14 +82,11 @@ void Data::validar(string valor){
     bool is_bissexto; 
 
     // Divide a data em 3 strings (dia, mês e ano)
-    for(auto eachchar:valor)
-    {
-        if(eachchar != '-')
-        {
+    for (auto eachchar:valor) {
+        if (eachchar != '-') {
             buffer+=eachchar;
         }
-        else if (eachchar == '-')
-        {
+        else if (eachchar == '-') {
             separa_data[i] = buffer;
             buffer = "";
             i++;
@@ -94,41 +95,31 @@ void Data::validar(string valor){
     separa_data[i] = buffer;
 
     //Checa se o ano é bissexto
-    //VERIFICAR A POSSIBILIDADE DE CRIAR UM MÉTODO PARA ISSO DENTRO DA CLASSE DATA
-    if(stoi(separa_data[2]) % 4 == 0)
-    {
-        if(stoi(separa_data[2]) % 100 == 0)
-        {
-            if(stoi(separa_data[2]) % 400 == 0)
-            {
+    if (stoi(separa_data[2]) % 4 == 0) {
+        if (stoi(separa_data[2]) % 100 == 0) {
+            if (stoi(separa_data[2]) % 400 == 0) {
                 is_bissexto = true;
             }
-            else
-            {
+            else {
                 is_bissexto = false;
             }
         }
-        else
-        {
+        else {
             is_bissexto = true;
         }
     }
-    else
-    {
+    else {
         is_bissexto = false;
     }
 
     //Testa DD
-    if (stoi(separa_data[0]) < 1 || stoi(separa_data[0]) > 31)
-    {
+    if (stoi(separa_data[0]) < 1 || stoi(separa_data[0]) > 31) {
         throw invalid_argument("Argumento invalido.");
     }
 
     //Testa Mes 30 ou 31
-    else if (stoi(separa_data[0]) == 31)
-    {
-        if(!(mes_31.find(separa_data[1]) != mes_31.end()))
-        {
+    else if (stoi(separa_data[0]) == 31) {
+        if(!(mes_31.find(separa_data[1]) != mes_31.end())) {
             throw invalid_argument("Argumento invalido.");
         }
     }
@@ -142,48 +133,47 @@ void Data::validar(string valor){
         throw invalid_argument("Argumento invalido.");   
         
     //Testa Fevereiro e BISSEXTO
-    else if (separa_data[1] == "Fev" && stoi(separa_data[0]) > 28)
-    {
-        if(stoi(separa_data[0]) > 29)
-        {
+    else if (separa_data[1] == "Fev" && stoi(separa_data[0]) > 28) {
+        if(stoi(separa_data[0]) > 29) {
             throw invalid_argument("Argumento invalido.");   
         }
         //TESTA BISSEXTO
         //Se dia for 29 e não for bissexto, aponta erro 
-        else if(stoi(separa_data[0]) == 29 && !is_bissexto)
-        {
+        else if(stoi(separa_data[0]) == 29 && !is_bissexto) {
             throw invalid_argument("Argumento invalido.");   
         }
     }
 }
 
+// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
 void Data::setValor(string valor) {
     validar(valor);
     this->valor = valor;
 }
 
+// Método implementado pelo aluno David Fanchic Chatelard, matrícula 180138863
 void Descricao::validar(string valor){
     int num_pontos = 0;
     int num_espacos = 0;
     int tam_descricao = int(valor.length());
 
-    for (auto letra:valor){
-        if (num_pontos >= 2){
+    for (auto letra:valor) {
+        if (num_pontos >= 2) {
             break;
         }
-        else if (num_espacos >= 2){
+        else if (num_espacos >= 2) {
             break;
         }
         
-        if (letra == '.'){
+        if (letra == '.') {
             num_pontos++;
             num_espacos = 0;
         }
-        else if (letra == ' '){
+        else if (letra == ' ') {
             num_espacos++;
             num_pontos = 0;
         }
-        else{
+        else {
             num_pontos = 0;
             num_espacos = 0;
         }
@@ -193,21 +183,25 @@ void Descricao::validar(string valor){
         throw invalid_argument("Argumento invalido.");
 }
 
+// Método implementado pelo aluno David Fanchic Chatelard, matrícula 180138863
 void Descricao::setValor(string valor) {
     validar(valor);
     this->valor = valor;
 }
 
+// Método implementado pelo aluno David Fanchic Chatelard, matrícula 180138863
 void Duracao::validar(int valor){
     if ((valor != 30) && (valor != 60) && (valor != 90) && (valor != 120) && (valor != 180))
         throw invalid_argument("Argumento invalido.");
 }
 
+// Método implementado pelo aluno David Fanchic Chatelard, matrícula 180138863
 void Duracao::setValor(int valor) {
     validar(valor);
     this->valor = valor;
 }
 
+// Método implementado pelo aluno David Fanchic Chatelard, matrícula 180138863
 void Email::validar(string valor){
     bool letra_invalida_local = false;
     bool letra_invalida_dominio = false;
@@ -217,11 +211,11 @@ void Email::validar(string valor){
     int i = 0;
 
     // Divide o email em 2 strings (parte-local e dominio)
-    for (auto letra:valor){
-        if(letra != '@'){
+    for (auto letra:valor) {
+        if(letra != '@') {
             buffer+=letra;
         }
-        else if (letra == '@'){
+        else if (letra == '@') {
             separa_email[i] = buffer;
             buffer = "";
             i++;
@@ -231,20 +225,20 @@ void Email::validar(string valor){
 
     // Verifica a parte-local
     for (auto letra:separa_email[0]) {
-        if (!isalnum(letra) && !(caracteres_parte_local.find(letra) != caracteres_parte_local.end())){ //nao eh letra e nem numero e nem caractere especial permitido. Ainda pode ser '.' ou '@'
-            if (letra == '@'){
+        if (!isalnum(letra) && !(caracteres_parte_local.find(letra) != caracteres_parte_local.end())) { //Não é letra e nem número e nem caractere especial permitido. Ainda pode ser '.' ou '@'
+            if (letra == '@') {
                 letra_invalida_local = true;
                 break;
             }
-            else if (letra == '.'){
+            else if (letra == '.') {
                 num_pontos++;
-                if (num_pontos >= 2){
+                if (num_pontos >= 2) {
                     letra_invalida_local = true;
                     break;
                 }
             }
         }
-        else{
+        else {
             num_pontos = 0;
         }
     }
@@ -252,13 +246,13 @@ void Email::validar(string valor){
     // Verifica o dominio
     num_pontos = 0;
     for (auto letra:separa_email[1]) {
-        if (letra_invalida_local){  // A parte-local ja eh invalida
+        if (letra_invalida_local) {  // A parte-local ja eh invalida
             break;
         }
-        if (!isalnum(letra) && !(letra == '-')){ // Nao eh letra e nem '-'. Ainda pode ser '.' ou caracter invalido
-            if (letra == '.'){
+        if (!isalnum(letra) && !(letra == '-')) { // Nao eh letra e nem '-'. Ainda pode ser '.' ou caracter invalido
+            if (letra == '.') {
                 num_pontos++;
-                if (num_pontos >= 2){
+                if (num_pontos >= 2) {
                     letra_invalida_dominio = true;
                     break;
                 }
@@ -268,7 +262,7 @@ void Email::validar(string valor){
                 break;
             }
         }
-        else{
+        else {
             num_pontos = 0;
         }
     }
@@ -277,75 +271,66 @@ void Email::validar(string valor){
         throw invalid_argument("Argumento invalido.");
 }
 
+// Método implementado pelo aluno David Fanchic Chatelard, matrícula 180138863
 void Email::setValor(string valor) {
     validar(valor);
     this->valor = valor;
 }
 
+// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
 void Endereco::validar(string valor){
     string buffer = "";
     bool is_dot, erro_dot= false;
     bool is_space, erro_space = false; 
 
-    for(auto eachchar:valor)
-        {
-            if(eachchar == ' ')
-            {
-                if(is_space == true)
-                {
+    for (auto eachchar:valor) {
+            if (eachchar == ' ') {
+                if(is_space == true) {
                     erro_space = true;
                 }
-                else
-                {
+                else {
                     is_space = true; 
                     buffer+=eachchar;
                 }
             }
-            else if(eachchar == '.')
-            {
-                if(is_dot == true)
-                {
+            else if (eachchar == '.') {
+                if (is_dot == true) {
                     erro_dot = true;
                 }
-                else
-                {
+                else {
                     is_dot = true; 
                     buffer+=eachchar;
                 }
             }
-            else
-            {
+            else {
                 is_dot = false;
                 is_space = false;
-                buffer+=eachchar;
+                buffer += eachchar;
             }
         }
         if(erro_dot == true || erro_space == true || buffer.size() > 20)
-        {
             throw invalid_argument("Argumento invalido.");
-        }
 }
 
+// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
 void Endereco::setValor(string valor){
     validar(valor);
     this->valor = valor;
 }
 
-//VERIFICAR A NECESSIDADE DE CONFERIR  SE A ENTRADA É DE FATO DADA POR NÚMEROS (VAI DAR PAU POR CONTA DO STOI)
+//VERIFICAR A NECESSIDADE DE CONFERIR  SE A ENTRADA É DE FATO DADA POR NÚMEROS (PODE DAR PROBLEMA POR CAUSA DO STOI)
+// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
 void Horario::validar(string valor){
     string separa_hora[2] = {"",""};
     string buffer = "";
     int i = 0;
 
     // Divide a hora em 2 strings (hora e minutos)
-    for(auto eachchar:valor)
-    {
-        if(eachchar != ':')
-        {
+    for (auto eachchar:valor) {
+        if (eachchar != ':') {
             buffer+=eachchar;
         }
-        else if (eachchar == ':')
-        {
+        else if (eachchar == ':') {
             separa_hora[i] = buffer;
             buffer = "";
             i++;
@@ -353,63 +338,65 @@ void Horario::validar(string valor){
     }
     separa_hora[i] = buffer;
 
-    if(stoi(separa_hora[0]) < 0 || stoi(separa_hora[0]) > 23)
-    {
+    if (stoi(separa_hora[0]) < 0 || stoi(separa_hora[0]) > 23) {
         throw invalid_argument("Argumento invalido.");
     }
-    else if(stoi(separa_hora[1]) < 0 || stoi(separa_hora[1]) > 59)
-    {
+    else if (stoi(separa_hora[1]) < 0 || stoi(separa_hora[1]) > 59) {
         throw invalid_argument("Argumento invalido.");
     }
 }
 
+// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
 void Horario::setValor(string valor){
     validar(valor);
     this->valor = valor;
 }
 
+// Método implementado pelo aluno David Fanchic Chatelard, matrícula 180138863
 void Idioma::validar(string valor){
     if(!(idiomas.find(valor) != idiomas.end()))
         throw invalid_argument("Argumento invalido.");
 }
 
+// Método implementado pelo aluno David Fanchic Chatelard, matrícula 180138863
 void Idioma::setValor(string valor){
     validar(valor);
     this->valor = valor;
 }
 
+// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 1800
 void Nome::validar(string valor){
     int tam_nome = int(valor.length());
 
-    for (int i = 0; i < tam_nome; i++){
+    for (int i = 0; i < tam_nome; i++) {
 
         //Verifica se é letra, espaço em branco ou ponto
         if (!isalpha(valor[i]) && !isblank(valor[i]) && valor[i] != '.')
             throw invalid_argument("Argumento invalido.");
             
         //Verifica se o ponto é precedido por letra e seguido por um espaço em branco caso não seja o último caractere
-        if (valor[i] == '.' && i == 0){
+        if (valor[i] == '.' && i == 0) {
             throw invalid_argument("Argumento invalido.");
         }
-        else if (valor[i] == '.' && i < (tam_nome - 1)){  
+        else if (valor[i] == '.' && i < (tam_nome - 1)) {  
             if (!isalpha(valor[i-1]) || !isblank(valor[i+1]))
                 throw invalid_argument("Argumento invalido.");
         }
-        else if (valor[i] == '.' && i == (tam_nome - 1)){
+        else if (valor[i] == '.' && i == (tam_nome - 1)) {
             if (!isalpha(valor[i-1]))
                 throw invalid_argument("Argumento invalido.");
         }
         
         //Verifica se não há espaços em branco em sequência e se a primeira letra de cada termo é letra maiúscula
-        if (valor[i] == ' ' && i == 0){
+        if (valor[i] == ' ' && i == 0) {
             if (!isupper(valor[i + 1]))
                 throw invalid_argument("Argumento invalido.");
         }
-        else if (valor[i] == ' ' && i < (tam_nome - 1)){  
+        else if (valor[i] == ' ' && i < (tam_nome - 1)) {  
             if (isblank(valor[i-1]) || isblank(valor[i+1]) || !isupper(valor[i+1]))
                 throw invalid_argument("Argumento invalido.");       
         }
-        else if (valor[i] == ' ' && i == (tam_nome - 1)){
+        else if (valor[i] == ' ' && i == (tam_nome - 1)) {
             if (isblank(valor[i-1]))
                 throw invalid_argument("Argumento invalido.");
         }
@@ -419,83 +406,83 @@ void Nome::validar(string valor){
         throw invalid_argument("Argumento invalido.");
 }
 
+// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 1800
 void Nome::setValor(string valor){
     validar(valor);
     this->valor = valor;
 }
 
+// Método implementado pelo aluno David Fanchic Chatelard, matrícula 180138863
 void Nota::validar(int valor){
     if(valor > 5 || valor < 0)
         throw invalid_argument("Argumento invalido.");
 }
 
+// Método implementado pelo aluno David Fanchic Chatelard, matrícula 180138863
 void Nota::setValor(int valor){
     validar(valor);
     this->valor = valor;
 }
 
+// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
 void Senha::validar(string valor){
-    //size da string é de 6
+    //Lenght da string é de 6
+    const int tam_string = 6;
     string senha = "";
     bool has_lowercase = false, has_uppercase = false, has_digit = false, has_repeated_char = false, has_invalid_char = false;
-    for(auto eachchar:valor)
-    {
-        if(senha.find(eachchar) != string::npos)
-        {
+    for(auto eachchar:valor) {
+        if (senha.find(eachchar) != string::npos) {
             has_repeated_char = true;
         }
-        if(!isalnum(eachchar))
-        {
+        if (!isalnum(eachchar)) {
             has_invalid_char= true;
             senha+=eachchar;
         }
-        //checa se tem pelo menos um digito
-        if(isdigit(eachchar))
-        {
+        //Checa se tem pelo menos um digito
+        if (isdigit(eachchar)) {
             has_digit = true;
             senha+=eachchar;
         }
-        //checa se tem pelo menos uma letra maiuscula
-        else if (isupper(eachchar))
-        {
+        //Checa se tem pelo menos uma letra maiuscula
+        else if (isupper(eachchar)) {
             has_uppercase = true;
             senha+=eachchar;
         }
-        //checa se tem pelo menos uma letra minuscula
-        else if (islower(eachchar))
-        {
+        //Checa se tem pelo menos uma letra minuscula
+        else if (islower(eachchar)) {
             has_lowercase = true;
             senha+=eachchar;
         }
     }
-    if (valor.length() != 6 || !has_lowercase || !has_uppercase || !has_digit || has_repeated_char || has_invalid_char)
-    {
+    if (valor.length() != tam_string || !has_lowercase || !has_uppercase || !has_digit || has_repeated_char || has_invalid_char) {
         throw invalid_argument("Argumento invalido.");
     }
 }
 
+// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
 void Senha::setValor(string valor){
     validar(valor);
     this->valor = valor;
 }
 
+// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 1800
 void Titulo::validar(string valor){
     int num_letras = 0, tam_titulo = int(valor.length());
 
-    for (int i = 0; i < tam_titulo; i++){
+    for (int i = 0; i < tam_titulo; i++) {
 
         //Conta o número de letras, já que pode haver outros caracteres
         if (isalpha(valor[i]))
             num_letras++;
 
         //Verifica se não há pontos em sequência
-        if (valor[i] == '.' && i != 0){  
+        if (valor[i] == '.' && i != 0) {  
             if (valor[i-1] == '.')
                 throw invalid_argument("Argumento invalido.");       
         }
     
         //Verifica se não há espaços em branco em sequência
-        if (valor[i] == ' ' && i != 0){  
+        if (valor[i] == ' ' && i != 0) {  
             if (isblank(valor[i-1]))
                 throw invalid_argument("Argumento invalido.");       
         }
@@ -507,6 +494,7 @@ void Titulo::validar(string valor){
 
 }
 
+// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 1800
 void Titulo::setValor(string valor) {
     validar(valor);
     this->valor = valor;

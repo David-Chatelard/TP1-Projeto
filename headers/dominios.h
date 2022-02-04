@@ -26,6 +26,7 @@ inline Tipo Dominio::getValor() const{
 
 ----------------------------------------------------------------------- */
 
+// Classe implementada pelo aluno David Fanchic Chatelard, matrícula 180138863
 class Cidade {
     private:
         string valor;                      // Atributo para armazenar valor.
@@ -39,6 +40,7 @@ inline string Cidade::getValor() const{
     return valor;
 }
 
+// Classe implementada pelo aluno David Fanchic Chatelard, matrícula 180138863
 class Codigo {
     private:
         string valor;                      // Atributo para armazenar valor.
@@ -52,6 +54,7 @@ inline string Codigo::getValor() const{
     return valor;
 }
 
+// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
 class Data {
     private:
         string valor;                      // Atributo para armazenar valor.
@@ -65,6 +68,7 @@ inline string Data::getValor() const{
     return valor;
 }
 
+// Classe implementada pelo aluno David Fanchic Chatelard, matrícula 180138863
 class Descricao {
     private:
         string valor;                      // Atributo para armazenar valor.
@@ -78,6 +82,7 @@ inline string Descricao::getValor() const{
     return valor;
 }
 
+// Classe implementada pelo aluno David Fanchic Chatelard, matrícula 180138863
 class Duracao {
     private:
         int valor;                      // Atributo para armazenar valor.
@@ -91,6 +96,7 @@ inline int Duracao::getValor() const{
     return valor;
 }
 
+// Classe implementada pelo aluno David Fanchic Chatelard, matrícula 180138863
 class Email {
     private:
         string valor;                      // Atributo para armazenar valor.
@@ -104,6 +110,7 @@ inline string Email::getValor() const{
     return valor;
 }
 
+// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
 class Endereco {
     private:
         string valor;                      // Atributo para armazenar valor.
@@ -117,6 +124,7 @@ inline string Endereco::getValor() const{
     return valor;
 }
 
+// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
 class Horario {
     private:
         string valor;                      // Atributo para armazenar valor.
@@ -130,6 +138,7 @@ inline string Horario::getValor() const{
     return valor;
 }
 
+// Classe implementada pelo aluno David Fanchic Chatelard, matrícula 180138863
 class Idioma {
     private:
         string valor;                      // Atributo para armazenar valor.
@@ -143,6 +152,7 @@ inline string Idioma::getValor() const{
     return valor;
 }
 
+// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 1800
 class Nome {
     private:
         string valor;                      // Atributo para armazenar valor.
@@ -156,6 +166,7 @@ inline string Nome::getValor() const{
     return valor;
 }
 
+// Classe implementada pelo aluno David Fanchic Chatelard, matrícula 180138863
 class Nota {
     private:
         int valor;                      // Atributo para armazenar valor.
@@ -169,6 +180,7 @@ inline int Nota::getValor() const{
     return valor;
 }
 
+// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
 class Senha {
     private:
         string valor;                      // Atributo para armazenar valor.
@@ -182,6 +194,7 @@ inline string Senha::getValor() const{
     return valor;
 }
 
+// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 1800
 class Titulo {
     private:
         string valor;                      // Atributo para armazenar valor.
