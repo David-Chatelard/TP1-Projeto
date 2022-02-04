@@ -53,7 +53,12 @@ void Cidade::setValor(string valor) {
 // Método implementado pelo aluno David Fanchic Chatelard, matrícula 180138863
 void Codigo::validar(string valor){
     // O algoritmo de verificação utilizado será o UPC(https://stringfixer.com/pt/Check_digit)
+    const int tam_codigo = 7;
     string aux = valor;
+
+    if (valor.length() != tam_codigo) {
+        throw invalid_argument("Argumento invalido.");
+    }
     aux.resize(aux.size() - 1);
     int soma_impar = 3 * ((valor[0]-'0') + (valor[2]-'0') + (valor[4]-'0'));
     int soma_par = (valor[1]-'0') + (valor[3]-'0') + (valor[5]-'0');
@@ -64,7 +69,7 @@ void Codigo::validar(string valor){
     }
 
     // Verificar se a condição do str.compare() está funcionando, pois ela retorna 0, tem que ver se c++ aceita 0 e 1 como booleano
-    if (((valor[6]-'0') != digito_verificacao) || (valor.length() > 7) || (!(aux.compare("000000"))))
+    if (((valor[6]-'0') != digito_verificacao) || (!(aux.compare("000000"))))
         throw invalid_argument("Argumento invalido.");
 }
 
