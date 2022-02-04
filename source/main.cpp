@@ -20,21 +20,25 @@ int main(int argc, char const *argv[]){
     // cout << endereco1.getValor() << endl;
 
 
+    /*----------------------------------------------------------------------------------------------
+
     //-----------------------------------------------------------------------
     // Exemplo de teste de classe dom�nio.
 
     // Instanciar classe de teste de dom�nio.
 
-    // TUCodigo testeA;
+    TUCodigo testeA;
 
     // Invocar m�todo e apresentar mensagem acerca do resultado do teste.
 
-    // switch(testeA.run()){
-    //     case TUCodigo::SUCESSO: cout << "SUCESSO - CODIGO" << endl;
-    //                             break;
-    //     case TUCodigo::FALHA  : cout << "FALHA   - CODIGO" << endl;
-    //                             break;
-    // }
+    switch(testeA.run()){
+        case TUCodigo::SUCESSO: cout << "SUCESSO - CODIGO" << endl;
+                                break;
+        case TUCodigo::FALHA  : cout << "FALHA   - CODIGO" << endl;
+                                break;
+    }
+
+    ----------------------------------------------------------------------------------------------*/
 
     TUCidade cidade_teste;
 
@@ -164,6 +168,29 @@ int main(int argc, char const *argv[]){
         case TUTitulo::FALHA  : cout << "FALHA   - TITULO" << endl;
                                 break;
     }
+
+
+
+    /*----------------------------------------------------------------------------------------------
+
+    //-----------------------------------------------------------------------
+    // Exemplo de teste de classe entidade.
+
+    // Instanciar classe de teste de entidade.
+
+    TUProjeto testeB;
+
+    // Invocar m�todo e apresentar mensagem acerca do resultado do teste.
+
+    switch(testeB.run()){
+        case TUProjeto::SUCESSO: cout << "SUCESSO - PROJETO" << endl;
+                                break;
+        case TUProjeto::FALHA  : cout << "FALHA   - PROJETO" << endl;
+                                break;
+    }
+
+    ----------------------------------------------------------------------------------------------*/
+
 
     return 0;
 }
