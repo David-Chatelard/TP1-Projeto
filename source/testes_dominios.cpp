@@ -1,46 +1,51 @@
 #include "../headers/testes_dominios.h"
 
+
+/*----------------------------------------------------------------------------------------------
+
 // --------------------------------------------------------------------------
 // Implementa��es de m�todos de classe de teste de unidade.
 
-// void TUCodigo::setUp(){
-//     codigo = new Codigo();
-//     estado = SUCESSO;
-// }
+void TUCodigo::setUp(){
+    codigo = new Codigo();
+    estado = SUCESSO;
+}
 
-// void TUCodigo::tearDown(){
-//     delete codigo;
-// }
+void TUCodigo::tearDown(){
+    delete codigo;
+}
 
-// void TUCodigo::testarCenarioSucesso(){
-//     try{
-//         codigo->setValor(VALOR_VALIDO);
-//         if (codigo->getValor() != VALOR_VALIDO)
-//             estado = FALHA;
-//     }
-//     catch(invalid_argument &excecao){
-//         estado = FALHA;
-//     }
-// }
+void TUCodigo::testarCenarioSucesso(){
+    try{
+        codigo->setValor(VALOR_VALIDO);
+        if (codigo->getValor() != VALOR_VALIDO)
+            estado = FALHA;
+    }
+    catch(invalid_argument &excecao){
+        estado = FALHA;
+    }
+}
 
-// void TUCodigo::testarCenarioFalha(){
-//     try{
-//         codigo->setValor(VALOR_INVALIDO);
-//         estado = FALHA;
-//     }
-//     catch(invalid_argument &excecao){
-//         if (codigo->getValor() == VALOR_INVALIDO)
-//             estado = FALHA;
-//     }
-// }
+void TUCodigo::testarCenarioFalha(){
+    try{
+        codigo->setValor(VALOR_INVALIDO);
+        estado = FALHA;
+    }
+    catch(invalid_argument &excecao){
+        if (codigo->getValor() == VALOR_INVALIDO)
+            estado = FALHA;
+    }
+}
 
-// int TUCodigo::run(){
-//     setUp();
-//     testarCenarioSucesso();
-//     testarCenarioFalha();
-//     tearDown();
-//     return estado;
-// }
+int TUCodigo::run(){
+    setUp();
+    testarCenarioSucesso();
+    testarCenarioFalha();
+    tearDown();
+    return estado;
+}
+
+----------------------------------------------------------------------------------------------*/
 
 
 void TUCidade::setUp(){
