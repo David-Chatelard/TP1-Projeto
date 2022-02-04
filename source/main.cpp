@@ -2,7 +2,8 @@
 
 #include "../headers/dominios.h"
 #include "dominios.cpp"
-// #include "entidades.h"
+#include "../headers/entidades.h"
+#include "entidades.cpp"
 // #include "testes.h"
 
 using namespace std;
