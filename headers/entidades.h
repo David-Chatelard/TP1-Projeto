@@ -176,4 +176,123 @@ inline Descricao Avaliacao::getDescricao() const{
     return descricao;
 }
 
+
+/* -----------------------------------------------------------------------
+
+class Entidade {
+    private:
+            Dominio nomeAtributo;
+    public:
+            void setnomeAtributo(const Dominio&);
+            Dominio getnomeAtributo() const;
+};
+
+inline void Entidade::setnomeAtributo(const Dominio &nomeAtributo){
+    this->nomeAtributo = nomeAtributo;
+}
+
+inline Dominio Entidade::getnomeAtributo() const{
+    return nomeAtributo;
+}
+
+----------------------------------------------------------------------- */
+
+/**
+ * @brief Padrão para a representação de uma sessão de uma excursão
+ * 
+ */
+class Sessao {
+    private:
+            Codigo codigo;
+            Data data;
+            Horario horario;
+            Idioma idioma;
+    public:
+            void setCodigo(const Codigo&);
+            Codigo getCodigo() const;
+            void setData(const Data&);
+            Data getData() const;
+            void setHorario(const Horario&);
+            Horario getHorario() const;
+            void setIdioma(const Idioma&);
+            Idioma getIdioma() const;
+            
+};
+
+/**
+ * @brief Armazena o código da sessão
+ * 
+ * @param codigo Código da sessão
+ */
+inline void Sessao::setCodigo(const Codigo &codigo){
+    this->codigo = codigo;
+}
+
+/**
+ * @brief Armazena a data da sessão
+ * 
+ * @param data Data da sessão
+ */
+inline void Sessao::setData(const Data &data){
+    this->data = data;
+}
+
+/**
+ * @brief Armazena o horário da sessão
+ * 
+ * @param horario Horário da sessão
+ */
+inline void Sessao::setHorario(const Horario &horario){
+    this->horario = horario;
+}
+
+/**
+ * @brief Armazena o idioma da sessão
+ * 
+ * @param idioma Idioma da sessão
+ */
+inline void Sessao::setIdioma(const Idioma &idioma){
+    this->idioma = idioma;
+}
+
+
+/**
+ * @brief Retorna o código da sessão
+ * 
+ * @return Codigo Código da sessão
+ */
+inline Codigo Sessao::getCodigo() const{
+    return codigo;
+}
+
+/**
+ * @brief Retorna a data da sessão
+ * 
+ * @return Data Data da sessão
+ */
+inline Data Sessao::getData() const{
+    return data;
+}
+
+/**
+ * @brief Retorna o horário da sessão
+ * 
+ * @return Horario Horário da sessão
+ */
+inline Horario Sessao::getHorario() const{
+    return horario;
+}
+
+/**
+ * @brief Retorna o idioma da sessão
+ * 
+ * @return Idioma Idioma da sessão
+ */
+inline Idioma Sessao::getIdioma() const{
+    return idioma;
+}
+
+
+
+
 #endif // ENTIDADES_H_INCLUDED
