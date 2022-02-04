@@ -177,26 +177,6 @@ inline Descricao Avaliacao::getDescricao() const{
 }
 
 
-/* -----------------------------------------------------------------------
-
-class Entidade {
-    private:
-            Dominio nomeAtributo;
-    public:
-            void setnomeAtributo(const Dominio&);
-            Dominio getnomeAtributo() const;
-};
-
-inline void Entidade::setnomeAtributo(const Dominio &nomeAtributo){
-    this->nomeAtributo = nomeAtributo;
-}
-
-inline Dominio Entidade::getnomeAtributo() const{
-    return nomeAtributo;
-}
-
------------------------------------------------------------------------ */
-
 /**
  * @brief Padrão para a representação de uma sessão de uma excursão
  * 
@@ -255,7 +235,6 @@ inline void Sessao::setIdioma(const Idioma &idioma){
     this->idioma = idioma;
 }
 
-
 /**
  * @brief Retorna o código da sessão
  * 
@@ -293,6 +272,157 @@ inline Idioma Sessao::getIdioma() const{
 }
 
 
+class Excursao {
+    private:
+            Codigo codigo;
+            Titulo titulo;
+            Nota nota;
+            Cidade cidade;
+            Duracao duracao;
+            Descricao descricao;
+            Endereco endereco;
+    public:
+            void setCodigo(const Codigo&);
+            Codigo getCodigo() const;
+            void setTitulo(const Titulo&);
+            Titulo getTitulo() const;
+            void setNota(const Nota&);
+            Nota getNota() const;
+            void setCidade(const Cidade&);
+            Cidade getCidade() const;
+            void setDuracao(const Duracao&);
+            Duracao getDuracao() const;
+            void setDescricao(const Descricao&);
+            Descricao getDescricao() const;
+            void setEndereco(const Endereco&);
+            Endereco getEndereco() const;
+};
+
+/**
+ * @brief Armazena o código da excursão
+ * 
+ * @param codigo Código a ser armazenado na excursão
+ */
+inline void Excursao::setCodigo(const Codigo &codigo){
+    this->codigo = codigo;
+}
+
+/**
+ * @brief Armazena o título da excursão
+ * 
+ * @param titulo Título a ser armazenado na excursão
+ */
+inline void Excursao::setTitulo(const Titulo &titulo){
+    this->titulo = titulo;
+}
+
+/**
+ * @brief Armazena a nota da excursão
+ * 
+ * @param nota Nota a ser armazenada na excursão
+ */
+inline void Excursao::setNota(const Nota &nota){
+    this->nota = nota;
+}
+
+/**
+ * @brief Armazena a cidade da excursão
+ * 
+ * @param cidade Cidade a ser armazenada na excursão
+ */
+inline void Excursao::setCidade(const Cidade &cidade){
+    this->cidade = cidade;
+}
+
+/**
+ * @brief Armazena a duração da excursão
+ * 
+ * @param duracao Duração a ser armazenada na excursão
+ */
+inline void Excursao::setDuracao(const Duracao &duracao){
+    this->duracao = duracao;
+}
+
+/**
+ * @brief Armazena a descrição da excursão
+ * 
+ * @param descricao Descrição a ser armazenada na excursão
+ */
+inline void Excursao::setDescricao(const Descricao &descricao){
+    this->descricao = descricao;
+}
+
+/**
+ * @brief Armazena o endereço da excursão
+ * 
+ * @param endereco Endereço a ser armazenado na excursão
+ */
+inline void Excursao::setEndereco(const Endereco &endereco){
+    this->endereco = endereco;
+}
+
+/**
+ * @brief Retorna o código da excursão
+ * 
+ * @return Codigo Código da excursão
+ */
+inline Codigo Excursao::getCodigo() const{
+    return codigo;
+}
+
+/**
+ * @brief Retorna o título da excursão
+ * 
+ * @return Titulo Título da excursão
+ */
+inline Titulo Excursao::getTitulo() const{
+    return titulo;
+}
+
+/**
+ * @brief Retorna a nota da excursão
+ * 
+ * @return Nota Nota da excursão
+ */
+inline Nota Excursao::getNota() const{
+    return nota;
+}
+
+/**
+ * @brief Retorna a cidade da excursão
+ * 
+ * @return Cidade Cidade da excursão
+ */
+inline Cidade Excursao::getCidade() const{
+    return cidade;
+}
+
+/**
+ * @brief Retorna a duração da excursão
+ * 
+ * @return Duracao Duração da excursão
+ */
+inline Duracao Excursao::getDuracao() const{
+    return duracao;
+}
+
+/**
+ * @brief Retorna a descrição da excursão
+ * 
+ * @return Descricao Descrição da excursão
+ */
+inline Descricao Excursao::getDescricao() const{
+    return descricao;
+}
+
+/**
+ * @brief Retorna o endereço da excursão
+ * 
+ * @return Endereco Endereço da excursão
+ */
+inline Endereco Excursao::getEndereco() const{
+    return endereco;
+}
 
 
 #endif // ENTIDADES_H_INCLUDED
