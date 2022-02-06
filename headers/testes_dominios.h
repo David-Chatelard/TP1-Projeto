@@ -28,8 +28,8 @@ using namespace std;
 
 class TUCidade {
 private:
-    inline const static string VALOR_VALIDO = "Paris";
-    inline const static string VALOR_INVALIDO = "Brasilia";
+    const string VALOR_VALIDO = "Paris";
+    const string VALOR_INVALIDO = "Brasilia";
     Cidade *cidade;
     int estado;
     void setUp();
@@ -45,8 +45,8 @@ public:
 
 class TUCodigo {
 private:
-    inline const static string VALOR_VALIDO = "5347164";
-    inline const static string VALOR_INVALIDO = "5347162";
+    const string VALOR_VALIDO = "5347164";
+    const string VALOR_INVALIDO = "5347162";
     Codigo *codigo;
     int estado;
     void setUp();
@@ -62,8 +62,8 @@ public:
 
 class TUData {
 private:
-    inline const static string VALOR_VALIDO = "04-Fev-2022";
-    inline const static string VALOR_INVALIDO = "30-Fev-2022";
+    const string VALOR_VALIDO = "04-Fev-2022";
+    const string VALOR_INVALIDO = "30-Fev-2022";
     Data *data;
     int estado;
     void setUp();
@@ -79,8 +79,8 @@ public:
 
 class TUDescricao {
 private:
-    inline const static string VALOR_VALIDO = "Esta é uma descrição de teste válida.";
-    inline const static string VALOR_INVALIDO = "Esta  é uma descrição de teste inválida..";
+    const string VALOR_VALIDO = "Esta e uma descricao valida.";
+    const string VALOR_INVALIDO = "Esta  e uma descricao invalida..";
     Descricao *descricao;
     int estado;
     void setUp();
@@ -113,8 +113,8 @@ public:
 
 class TUEmail {
 private:
-    inline const static string VALOR_VALIDO = "dAvid.2!#$%&'*+-/=?^_`{|}~@gMail-3.com";
-    inline const static string VALOR_INVALIDO = ".dAvid..2!#$%&'*+-/=?^_`{|}~.@.gMail-3..com";
+    const string VALOR_VALIDO = "dAvid.2!#$%&'*+-/=?^_`{|}~@gMail-3.com";
+    const string VALOR_INVALIDO = ".dAvid..2!#$%&'*+-/=?^_`{|}~.@.gMail-3..com";
     Email *email;
     int estado;
     void setUp();
@@ -130,8 +130,8 @@ public:
 
 class TUEndereco {
 private:
-    inline const static string VALOR_VALIDO = "Asa Norte.";
-    inline const static string VALOR_INVALIDO = "Asa  Norte..";
+    const string VALOR_VALIDO = "Asa Norte.";
+    const string VALOR_INVALIDO = "Asa  Norte..";
     Endereco *endereco;
     int estado;
     void setUp();
@@ -147,8 +147,8 @@ public:
 
 class TUHorario {
 private:
-    inline const static string VALOR_VALIDO = "18:16";
-    inline const static string VALOR_INVALIDO = "24:60";
+    const string VALOR_VALIDO = "18:16";
+    const string VALOR_INVALIDO = "24:60";
     Horario *horario;
     int estado;
     void setUp();
@@ -164,8 +164,8 @@ public:
 
 class TUIdioma {
 private:
-    inline const static string VALOR_VALIDO = "Frances";
-    inline const static string VALOR_INVALIDO = "Hebraico";
+    const string VALOR_VALIDO = "Frances";
+    const string VALOR_INVALIDO = "Hebraico";
     Idioma *idioma;
     int estado;
     void setUp();
@@ -181,8 +181,8 @@ public:
 
 class TUNome {
 private:
-    inline const static string VALOR_VALIDO = "David. Chatelard.";
-    inline const static string VALOR_INVALIDO = "David..  chatelard.";
+    const string VALOR_VALIDO = "David. Chatelard.";
+    const string VALOR_INVALIDO = "David..  chatelard.";
     Nome *nome;
     int estado;
     void setUp();
@@ -215,8 +215,8 @@ public:
 
 class TUSenha {
 private:
-    inline const static string VALOR_VALIDO = "Abc123";
-    inline const static string VALOR_INVALIDO = "aaa111";
+    const string VALOR_VALIDO = "Abc123";
+    const string VALOR_INVALIDO = "aaa111";
     Senha *senha;
     int estado;
     void setUp();
@@ -232,8 +232,8 @@ public:
 
 class TUTitulo {
 private:
-    inline const static string VALOR_VALIDO = "Teste de Unidade.";
-    inline const static string VALOR_INVALIDO = "Teste de  Unidade..";
+    const string VALOR_VALIDO = "Teste de Unidade.";
+    const string VALOR_INVALIDO = "Teste de  Unidade..";
     Titulo *titulo;
     int estado;
     void setUp();
