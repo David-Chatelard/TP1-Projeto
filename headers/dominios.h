@@ -83,7 +83,7 @@ inline string Codigo::getValor() const{
  * - A data considera a ocorrência de anos bissextos 
  */
 
-// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
+// Classe implementada pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 class Data {
     private:
         string valor;                      // Atributo para armazenar valor.
@@ -187,7 +187,7 @@ inline string Email::getValor() const{
  * - Não há pontos em sequência
  */
 
-// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
+// Classe implementada pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 class Endereco {
     private:
         string valor;                      // Atributo para armazenar valor.
@@ -211,7 +211,7 @@ inline string Endereco::getValor() const{
  * - MM é o minuto com faixa de valores entre 00 e 59
  */
 
-// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
+// Classe implementada pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 class Horario {
     private:
         string valor;                      // Atributo para armazenar valor.
@@ -259,7 +259,7 @@ inline string Idioma::getValor() const{
  * - A primeira letra de cada termo é maiúscula 
  */
 
-// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 1800
+// Classe implementada pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 class Nome {
     private:
         string valor;                      // Atributo para armazenar valor.
@@ -306,7 +306,7 @@ inline int Nota::getValor() const{
  * - Existe pelo menos uma letra maiúscula, uma letra minúscula e um dígito
  */
 
-// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
+// Classe implementada pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 class Senha {
     private:
         string valor;                      // Atributo para armazenar valor.
