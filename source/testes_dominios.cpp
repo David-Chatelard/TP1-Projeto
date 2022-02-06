@@ -328,6 +328,46 @@ int TUEndereco::run(){
 }
 
 
+void TUHorario::setUp(){
+    horario = new Horario();
+    estado = SUCESSO;
+}
+
+void TUHorario::tearDown(){
+    delete horario;
+}
+
+void TUHorario::testarCenarioSucesso(){
+    try{
+        horario->setValor(VALOR_VALIDO);
+        if (horario->getValor() != VALOR_VALIDO)
+            estado = FALHA;
+    }
+    catch(invalid_argument &excecao){
+        estado = FALHA;
+    }
+}
+
+void TUHorario::testarCenarioFalha(){
+    try{
+        horario->setValor(VALOR_INVALIDO);
+        estado = FALHA;
+    }
+    catch(invalid_argument &excecao){
+        if (horario->getValor() == VALOR_INVALIDO)
+            estado = FALHA;
+    }
+}
+
+int TUHorario::run(){
+    setUp();
+    testarCenarioSucesso();
+    testarCenarioFalha();
+    tearDown();
+    return estado;
+}
+
+
 void TUIdioma::setUp(){
     idioma = new Idioma();
     estado = SUCESSO;
