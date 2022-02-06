@@ -369,7 +369,7 @@ void Idioma::setValor(string valor){
     this->valor = valor;
 }
 
-// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 1800
+// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 void Nome::validar(string valor){
     int tam_nome = int(valor.length());
 
@@ -411,7 +411,7 @@ void Nome::validar(string valor){
         throw invalid_argument("Argumento invalido.");
 }
 
-// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 1800
+// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 void Nome::setValor(string valor){
     validar(valor);
     this->valor = valor;
@@ -470,7 +470,7 @@ void Senha::setValor(string valor){
     this->valor = valor;
 }
 
-// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 1800
+// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 void Titulo::validar(string valor){
     int num_letras = 0, tam_titulo = int(valor.length());
 
@@ -499,7 +499,7 @@ void Titulo::validar(string valor){
 
 }
 
-// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 1800
+// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 void Titulo::setValor(string valor) {
     validar(valor);
     this->valor = valor;

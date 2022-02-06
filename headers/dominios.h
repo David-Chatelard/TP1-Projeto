@@ -26,6 +26,14 @@ inline Tipo Dominio::getValor() const{
 
 ----------------------------------------------------------------------- */
 
+/**
+ * @brief Padrão para a representação de uma cidade
+ * 
+ * Regras de formato:
+ * 
+ * - Os valores válidos de cidade são: Hong Kong, Bangkok, Macau, Singapura, Londres, Paris, Dubai, Delhi, Istambul, Kuala Lumpur, Nova Iorque, Antalya, Mumbai, Shenzhen e Phuket.
+ */
+
 // Classe implementada pelo aluno David Fanchic Chatelard, matrícula 180138863
 class Cidade {
     private:
@@ -39,6 +47,15 @@ class Cidade {
 inline string Cidade::getValor() const{
     return valor;
 }
+
+/**
+ * @brief Padrão para a representação de um código
+ * 
+ * Regras de formato:
+ * 
+ * - O código é representado por DDDDDDX, onde D é dígito (0-9) e X é dígito verificador
+ * - Não existe código 000000
+ */
 
 // Classe implementada pelo aluno David Fanchic Chatelard, matrícula 180138863
 class Codigo {

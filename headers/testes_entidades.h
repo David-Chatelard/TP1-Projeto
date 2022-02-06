@@ -27,6 +27,73 @@ public:
 
 ----------------------------------------------------------------------------------------------*/
 
+class TUUsuario {
+private:
+    inline const static string VALOR_VALIDO_NOME    = "Alexandre Cunha.";   
+    inline const static string VALOR_VALIDO_EMAIL   = "Email_Teste.123@gmail.com";   
+    inline const static string VALOR_VALIDO_SENHA   = "BfA843";
+    Usuario *usuario;                       
+    int estado;                             
+    void setUp();                          
+    void tearDown();                        
+    void testarCenarioSucesso();            
+public:
+    const static int SUCESSO =  0;          
+    const static int FALHA   = -1;          
+    int run();                              
+};
 
+class TUAvaliacao {
+private:
+    inline const static string VALOR_VALIDO_CODIGO    = "45670123";   
+    const static int VALOR_VALIDO_NOTA   = 0;   
+    inline const static string VALOR_VALIDO_DESCRICAO = "O aluno foi péssimo e infelizmente vai reprovar.";
+    Avaliacao *avaliacao;                       
+    int estado;                             
+    void setUp();                          
+    void tearDown();                        
+    void testarCenarioSucesso();            
+public:
+    const static int SUCESSO =  0;          
+    const static int FALHA   = -1;          
+    int run();                              
+};
+
+class TUSessao {
+private:
+    inline const static string VALOR_VALIDO_CODIGO    = "52894220";   
+    inline const static string VALOR_VALIDO_DATA      = "12-Out-2027";   
+    inline const static string VALOR_VALIDO_HORARIO   = "00:00";
+    inline const static string VALOR_VALIDO_IDIOMA    = "Chines Mandarim";
+    Sessao *sessao;                       
+    int estado;                             
+    void setUp();                          
+    void tearDown();                        
+    void testarCenarioSucesso();            
+public:
+    const static int SUCESSO =  0;          
+    const static int FALHA   = -1;          
+    int run();                              
+};
+
+class TUExcursao {
+private:
+    inline const static string VALOR_VALIDO_CODIGO      = "12344321";   
+    inline const static string VALOR_VALIDO_TITULO      = "Trilha Chinesa Mística";   
+    const static int VALOR_VALIDO_NOTA     = 3;
+    inline const static string VALOR_VALIDO_CIDADE      = "Bangkok";
+    const static int VALOR_VALIDO_DURACAO  = 180;
+    inline const static string VALOR_VALIDO_DESCRICAO   = "Venha descobrir os mistérios chineses!";
+    inline const static string VALOR_VALIDO_ENDERECO    = "A ser definido";
+    Excursao *excursao;                       
+    int estado;                             
+    void setUp();                          
+    void tearDown();                        
+    void testarCenarioSucesso();            
+public:
+    const static int SUCESSO =  0;          
+    const static int FALHA   = -1;          
+    int run();                              
+};
 
 #endif // TESTES_ENTIDADES_H_INCLUDED
