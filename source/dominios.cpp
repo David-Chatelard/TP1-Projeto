@@ -79,7 +79,7 @@ void Codigo::setValor(string valor) {
     this->valor = valor;
 }
 
-// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
+// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 void Data::validar(string valor){
     string separa_data[3] = {"","",""};
     string buffer = "";
@@ -150,7 +150,7 @@ void Data::validar(string valor){
     }
 }
 
-// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
+// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 void Data::setValor(string valor) {
     validar(valor);
     this->valor = valor;
@@ -282,7 +282,7 @@ void Email::setValor(string valor) {
     this->valor = valor;
 }
 
-// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
+// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 void Endereco::validar(string valor){
     string buffer = "";
     bool is_dot, erro_dot= false;
@@ -317,14 +317,14 @@ void Endereco::validar(string valor){
             throw invalid_argument("Argumento invalido.");
 }
 
-// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
+// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 void Endereco::setValor(string valor){
     validar(valor);
     this->valor = valor;
 }
 
 //VERIFICAR A NECESSIDADE DE CONFERIR  SE A ENTRADA É DE FATO DADA POR NÚMEROS (PODE DAR PROBLEMA POR CAUSA DO STOI)
-// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
+// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 void Horario::validar(string valor){
     string separa_hora[2] = {"",""};
     string buffer = "";
@@ -351,7 +351,7 @@ void Horario::validar(string valor){
     }
 }
 
-// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
+// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 void Horario::setValor(string valor){
     validar(valor);
     this->valor = valor;
@@ -429,7 +429,7 @@ void Nota::setValor(int valor){
     this->valor = valor;
 }
 
-// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
+// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 void Senha::validar(string valor){
     //Lenght da string é de 6
     const int tam_string = 6;
@@ -464,7 +464,7 @@ void Senha::validar(string valor){
     }
 }
 
-// Método implementado pelo aluno Emanuel Couto Brenag, matrícula 190057131, o aluno trancou a disciplina
+// Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 void Senha::setValor(string valor){
     validar(valor);
     this->valor = valor;
