@@ -47,9 +47,9 @@ public:
 
 class TUAvaliacao {
 private:
-    const string VALOR_VALIDO_CODIGO    = "45670123";   
+    const string VALOR_VALIDO_CODIGO    = "5347164";   
     const static int VALOR_VALIDO_NOTA   = 0;   
-    const string VALOR_VALIDO_DESCRICAO = "O aluno foi pessimo e infelizmente vai reprovar.";
+    const string VALOR_VALIDO_DESCRICAO = "O aluno foi pessimo";
     Avaliacao *avaliacao;                       
     int estado;                             
     void setUp();                          
@@ -63,10 +63,10 @@ public:
 
 class TUSessao {
 private:
-    const string VALOR_VALIDO_CODIGO    = "52894220";   
+    const string VALOR_VALIDO_CODIGO    = "5347164";   
     const string VALOR_VALIDO_DATA      = "12-Out-2027";   
     const string VALOR_VALIDO_HORARIO   = "00:00";
-    const string VALOR_VALIDO_IDIOMA    = "Chines Mandarim";
+    const string VALOR_VALIDO_IDIOMA    = "Mandarim";
     Sessao *sessao;                       
     int estado;                             
     void setUp();                          
@@ -80,12 +80,12 @@ public:
 
 class TUExcursao {
 private:
-    const string VALOR_VALIDO_CODIGO      = "12344321";   
-    const string VALOR_VALIDO_TITULO      = "Trilha Chinesa Mistica";   
+    const string VALOR_VALIDO_CODIGO      = "5347164";   
+    const string VALOR_VALIDO_TITULO      = "Trilha Chinesa";   
     const static int VALOR_VALIDO_NOTA     = 3;
     const string VALOR_VALIDO_CIDADE      = "Bangkok";
     const static int VALOR_VALIDO_DURACAO  = 180;
-    const string VALOR_VALIDO_DESCRICAO   = "Venha descobrir os misterios chineses!";
+    const string VALOR_VALIDO_DESCRICAO   = "Venha descobrir a China";
     const string VALOR_VALIDO_ENDERECO    = "A ser definido";
     Excursao *excursao;                       
     int estado;                             

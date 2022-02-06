@@ -9,6 +9,9 @@
 #include "../headers/testes_dominios.h"
 #include "testes_dominios.cpp"
 
+#include "../headers/testes_entidades.h"
+#include "testes_entidades.cpp"
+
 using namespace std;
 
 int main(int argc, char const *argv[]){
@@ -191,6 +194,41 @@ int main(int argc, char const *argv[]){
 
     ----------------------------------------------------------------------------------------------*/
 
+    TUUsuario usuario_teste;
+
+    switch(usuario_teste.run()){
+        case TUUsuario::SUCESSO: cout << "SUCESSO - USUARIO" << endl;
+                                break;
+        case TUUsuario::FALHA  : cout << "FALHA   - USUARIO" << endl;
+                                break;
+    }
+
+    TUAvaliacao avaliacao_teste;
+
+    switch(avaliacao_teste.run()){
+        case TUAvaliacao::SUCESSO: cout << "SUCESSO - AVALIACAO" << endl;
+                                break;
+        case TUAvaliacao::FALHA  : cout << "FALHA   - AVALIACAO" << endl;
+                                break;
+    }
+
+    TUSessao sessao_teste;
+
+    switch(sessao_teste.run()){
+        case TUSessao::SUCESSO: cout << "SUCESSO - SESSAO" << endl;
+                                break;
+        case TUSessao::FALHA  : cout << "FALHA   - SESSAO" << endl;
+                                break;
+    }
+
+    TUExcursao excursao_teste;
+
+    switch(excursao_teste.run()){
+        case TUExcursao::SUCESSO: cout << "SUCESSO - EXCURSAO" << endl;
+                                break;
+        case TUExcursao::FALHA  : cout << "FALHA   - EXCURSAO" << endl;
+                                break;
+    }
 
     return 0;
 }

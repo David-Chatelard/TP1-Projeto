@@ -37,11 +37,23 @@ inline Tipo Dominio::getValor() const{
 // Classe implementada pelo aluno David Fanchic Chatelard, matrícula 180138863
 class Cidade {
     private:
-        string valor;                      // Atributo para armazenar valor.
-        void validar(string);              // M�todo para validar valor.
+        string valor;                      
+        void validar(string);              
     public:
-        void setValor(string);             // M�todo para atribuir valor.
-        string getValor() const;           // M�todo para recuperar valor.
+
+        /**
+         * @brief Armazena a cidade
+         * 
+         * @param valor Cidade a ser armazenada
+         */
+        void setValor(string);
+
+        /**
+         * @brief Retorna a cidade
+         * 
+         * @return Cidade Cidade a ser retornada
+         */            
+        string getValor() const;           
 };
 
 inline string Cidade::getValor() const{
@@ -60,11 +72,23 @@ inline string Cidade::getValor() const{
 // Classe implementada pelo aluno David Fanchic Chatelard, matrícula 180138863
 class Codigo {
     private:
-        string valor;                      // Atributo para armazenar valor.
-        void validar(string);              // M�todo para validar valor.
+        string valor;           
+        void validar(string);             
     public:
-        void setValor(string);             // M�todo para atribuir valor.
-        string getValor() const;           // M�todo para recuperar valor.
+
+        /**
+         * @brief Armazena o código
+         * 
+         * @param valor Código a ser armazenado
+         */
+        void setValor(string);
+
+        /**
+         * @brief Retorna a código
+         * 
+         * @return Código Código a ser retornado
+         */ 
+        string getValor() const;  
 };
 
 inline string Codigo::getValor() const{
@@ -86,11 +110,23 @@ inline string Codigo::getValor() const{
 // Classe implementada pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 class Data {
     private:
-        string valor;                      // Atributo para armazenar valor.
-        void validar(string);              // M�todo para validar valor.
+        string valor;         
+        void validar(string);  
     public:
-        void setValor(string);             // M�todo para atribuir valor.
-        string getValor() const;           // M�todo para recuperar valor.
+
+        /**
+         * @brief Armazena a data
+         * 
+         * @param valor Data a ser armazenada
+         */
+        void setValor(string);
+
+        /**
+         * @brief Retorna a data
+         * 
+         * @return Data Data a ser retornada
+         */  
+        string getValor() const; 
 };
 
 inline string Data::getValor() const{
@@ -110,11 +146,23 @@ inline string Data::getValor() const{
 // Classe implementada pelo aluno David Fanchic Chatelard, matrícula 180138863
 class Descricao {
     private:
-        string valor;                      // Atributo para armazenar valor.
-        void validar(string);              // M�todo para validar valor.
+        string valor;
+        void validar(string);
     public:
-        void setValor(string);             // M�todo para atribuir valor.
-        string getValor() const;           // M�todo para recuperar valor.
+
+        /**
+         * @brief Armazena a descrição
+         * 
+         * @param valor Descrição a ser armazenada
+         */
+        void setValor(string);
+
+        /**
+         * @brief Retorna a descrição
+         * 
+         * @return Descrição Descrição a ser retornada
+         */ 
+        string getValor() const; 
 };
 
 inline string Descricao::getValor() const{
@@ -132,11 +180,23 @@ inline string Descricao::getValor() const{
 // Classe implementada pelo aluno David Fanchic Chatelard, matrícula 180138863
 class Duracao {
     private:
-        int valor;                      // Atributo para armazenar valor.
-        void validar(int);              // M�todo para validar valor.
+        int valor;
+        void validar(int);
     public:
-        void setValor(int);             // M�todo para atribuir valor.
-        int getValor() const;           // M�todo para recuperar valor.
+
+        /**
+         * @brief Armazena a duração
+         * 
+         * @param valor Duração a ser armazenada
+         */
+        void setValor(int);
+
+        /**
+         * @brief Retorna a duração
+         * 
+         * @return Duração Duração a ser retornada
+         */
+        int getValor() const;
 };
 
 inline int Duracao::getValor() const{
@@ -166,11 +226,23 @@ inline int Duracao::getValor() const{
 // Classe implementada pelo aluno David Fanchic Chatelard, matrícula 180138863
 class Email {
     private:
-        string valor;                      // Atributo para armazenar valor.
-        void validar(string);              // M�todo para validar valor.
+        string valor;
+        void validar(string);
     public:
-        void setValor(string);             // M�todo para atribuir valor.
-        string getValor() const;           // M�todo para recuperar valor.
+
+        /**
+         * @brief Armazena o email
+         * 
+         * @param valor Email a ser armazenado
+         */
+        void setValor(string);
+
+        /**
+         * @brief Retorna o email
+         * 
+         * @return Email Email a ser retornado
+         */
+        string getValor() const;
 };
 
 inline string Email::getValor() const{
@@ -190,11 +262,23 @@ inline string Email::getValor() const{
 // Classe implementada pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 class Endereco {
     private:
-        string valor;                      // Atributo para armazenar valor.
-        void validar(string);              // M�todo para validar valor.
+        string valor;
+        void validar(string);
     public:
-        void setValor(string);             // M�todo para atribuir valor.
-        string getValor() const;           // M�todo para recuperar valor.
+
+        /**
+         * @brief Armazena o endereço
+         * 
+         * @param valor Endereço a ser armazenado
+         */
+        void setValor(string);
+
+        /**
+         * @brief Retorna o endereço
+         * 
+         * @return Endereço Endereço a ser retornado
+         */
+        string getValor() const;
 };
 
 inline string Endereco::getValor() const{
@@ -214,11 +298,23 @@ inline string Endereco::getValor() const{
 // Classe implementada pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 class Horario {
     private:
-        string valor;                      // Atributo para armazenar valor.
-        void validar(string);              // M�todo para validar valor.
+        string valor;
+        void validar(string);
     public:
-        void setValor(string);             // M�todo para atribuir valor.
-        string getValor() const;           // M�todo para recuperar valor.
+
+        /**
+         * @brief Armazena o horário
+         * 
+         * @param valor Horário a ser armazenado
+         */
+        void setValor(string);
+
+        /**
+         * @brief Retorna o horário
+         * 
+         * @return Horário Horário a ser retornado
+         */
+        string getValor() const;
 };
 
 inline string Horario::getValor() const{
@@ -236,11 +332,23 @@ inline string Horario::getValor() const{
 // Classe implementada pelo aluno David Fanchic Chatelard, matrícula 180138863
 class Idioma {
     private:
-        string valor;                      // Atributo para armazenar valor.
-        void validar(string);              // M�todo para validar valor.
+        string valor;
+        void validar(string);
     public:
-        void setValor(string);             // M�todo para atribuir valor.
-        string getValor() const;           // M�todo para recuperar valor.
+
+        /**
+         * @brief Armazena o idioma
+         * 
+         * @param valor Idioma a ser armazenado
+         */
+        void setValor(string);
+
+        /**
+         * @brief Retorna o idioma
+         * 
+         * @return Idioma Idioma a ser retornado
+         */
+        string getValor() const;
 };
 
 inline string Idioma::getValor() const{
@@ -262,11 +370,23 @@ inline string Idioma::getValor() const{
 // Classe implementada pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 class Nome {
     private:
-        string valor;                      // Atributo para armazenar valor.
-        void validar(string);              // M�todo para validar valor.
+        string valor;
+        void validar(string);
     public:
-        void setValor(string);             // M�todo para atribuir valor.
-        string getValor() const;           // M�todo para recuperar valor.
+
+        /**
+         * @brief Armazena o nome
+         * 
+         * @param valor Nome a ser armazenado
+         */
+        void setValor(string);
+
+        /**
+         * @brief Retorna o nome
+         * 
+         * @return Nome Nome a ser retornado
+         */
+        string getValor() const;
 };
 
 inline string Nome::getValor() const{
@@ -284,11 +404,23 @@ inline string Nome::getValor() const{
 // Classe implementada pelo aluno David Fanchic Chatelard, matrícula 180138863
 class Nota {
     private:
-        int valor;                      // Atributo para armazenar valor.
-        void validar(int);              // M�todo para validar valor.
+        int valor;
+        void validar(int);
     public:
-        void setValor(int);             // M�todo para atribuir valor.
-        int getValor() const;           // M�todo para recuperar valor.
+
+        /**
+         * @brief Armazena a nota
+         * 
+         * @param valor Nota a ser armazenada
+         */
+        void setValor(int);
+
+        /**
+         * @brief Retorna a nota
+         * 
+         * @return Nota Nota a ser retornada
+         */
+        int getValor() const;
 };
 
 inline int Nota::getValor() const{
@@ -309,11 +441,23 @@ inline int Nota::getValor() const{
 // Classe implementada pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 180041169
 class Senha {
     private:
-        string valor;                      // Atributo para armazenar valor.
-        void validar(string);              // M�todo para validar valor.
+        string valor;
+        void validar(string);
     public:
-        void setValor(string);             // M�todo para atribuir valor.
-        string getValor() const;           // M�todo para recuperar valor.
+
+        /**
+         * @brief Armazena a senha
+         * 
+         * @param valor Senha a ser armazenada
+         */
+        void setValor(string);
+
+        /**
+         * @brief Retorna a senha
+         * 
+         * @return Senha Senha a ser retornada
+         */
+        string getValor() const;
 };
 
 inline string Senha::getValor() const{
@@ -333,16 +477,27 @@ inline string Senha::getValor() const{
 // Método implementado pelo aluno Alexandre Abrahami Pinto da Cunha, matrícula 1800
 class Titulo {
     private:
-        string valor;                      // Atributo para armazenar valor.
-        void validar(string);              // M�todo para validar valor.
+        string valor;
+        void validar(string);
     public:
-        void setValor(string);             // M�todo para atribuir valor.
-        string getValor() const;           // M�todo para recuperar valor.
+
+        /**
+         * @brief Armazena o título
+         * 
+         * @param valor Título a ser armazenado
+         */
+        void setValor(string);
+
+        /**
+         * @brief Retorna o título
+         * 
+         * @return Título Título a ser retornado
+         */
+        string getValor() const;
 };
 
 inline string Titulo::getValor() const{
     return valor;
 }
 
-
-#endif // DOMINIOS_H_INCLUDED
+#endif

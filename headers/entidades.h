@@ -42,35 +42,35 @@ class Usuario {
             Senha senha;
     public:
             /**
-             * @brief Armazena nome
+             * @brief Armazena nome do usuário
              * 
              * @param nome Nome a ser armazenado
              */
             void setNome(const Nome&);
 
             /**
-             * @brief Retorna o nome
+             * @brief Retorna o nome do usuário
              * 
              * @return Nome Nome a ser retornado
              */
             Nome getNome() const;
 
             /**
-             * @brief Armazena email
+             * @brief Armazena email do usuário
              * 
              * @param email Email a ser armazenado
              */
             void setEmail(const Email&);
 
             /**
-             * @brief Retorna o email
+             * @brief Retorna o email do usuário
              * 
              * @return Email Email a ser retornado
              */
             Email getEmail() const;
 
             /**
-             * @brief Armazena a senha
+             * @brief Armazena a senha do usuário
              * 
              * @param senha Senha a ser armazenada
              */
