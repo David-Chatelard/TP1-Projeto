@@ -23,7 +23,7 @@ class StubServicoContas:public IServicoContas {
     private:
         static const string INVALIDO;
     public:
-        bool cadastrarUsuario(Usuario);
+        bool cadastrar(Usuario);
 };
 
 //--------------------------------------------------------------------------------------------

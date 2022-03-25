@@ -16,7 +16,7 @@ bool StubServicoAutenticacao::autenticar(Email email, Senha senha){
     return true;
 }
 
-bool StubServicoContas::cadastrarUsuario(Usuario usuario){
+bool StubServicoContas::cadastrar(Usuario usuario){
     if(usuario.getEmail().getValor().compare(INVALIDO) == 0)
         return false;
     return true;
