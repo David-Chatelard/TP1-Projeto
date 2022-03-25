@@ -17,7 +17,7 @@ class IApresentacaoAutenticacao {
 
 class IApresentacaoContas {
     public:
-        virtual bool executar(Email) = 0;
+        virtual void executar(Email) = 0;
         virtual void cadastrar() = 0;
         virtual void setCntrServicoContas(IServicoContas*) = 0;
         virtual ~IApresentacaoContas(){}
@@ -25,8 +25,8 @@ class IApresentacaoContas {
 
 class IApresentacaoExcursao {
     public:
-        virtual bool executar() = 0;
-        virtual bool executar(Email) = 0;
+        virtual void executar() = 0;
+        virtual void executar(Email) = 0;
         virtual void setCntrServicoExcursao(IServicoExcursao*) = 0;
         virtual ~IApresentacaoExcursao(){}
 };
