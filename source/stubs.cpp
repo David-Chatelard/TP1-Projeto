@@ -16,11 +16,27 @@ bool StubServicoAutenticacao::autenticar(Email email, Senha senha){
     return true;
 }
 
+//--------------------------------------------------------------------------------------------
+
 bool StubServicoContas::cadastrar(Usuario usuario){
     if(usuario.getEmail().getValor().compare(INVALIDO) == 0)
         return false;
     return true;
 }
+
+bool StubServicoContas::editar(Usuario usuario){
+    if(usuario.getNome().getValor().compare(INVALIDO) == 0) //talvez mudar esse getNome para getEmail
+        return false;
+    return true;
+}
+
+bool StubServicoContas::descadastrar(Email email){
+    if(email.getValor().compare(INVALIDO) == 0)
+        return false;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------
 
 // bool StubServicoExcursao::cadastrarConta(Conta conta){
 //     if(conta.getNumero().getValor().compare(INVALIDO) == 0)
@@ -72,3 +88,78 @@ bool StubServicoContas::cadastrar(Usuario usuario){
 //     return true;
 // }
 
+
+bool StubServicoExcursao::cadastrarExcursao(Excursao excursao){
+    if(excursao.getCodigo().getValor().compare(INVALIDO) == 0)
+        return false;
+    return true;
+}
+
+bool StubServicoExcursao::consultarExcursao(Excursao *excursao){
+    if(excursao->getCodigo().getValor().compare(INVALIDO) == 0)
+        return false;
+
+    //--------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------
+    // Implementar código que atribui valores ao objeto identificado por excursao.
+    //--------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------
+
+    return true;
+}
+
+bool StubServicoExcursao::descadastrarExcursao(Excursao excursao){
+    if(excursao.getCodigo().getValor().compare(INVALIDO) == 0) //talvez tenha que mudar algo aqui
+        return false;
+    return true;
+}
+
+bool StubServicoExcursao::cadastrarSessao(Sessao sessao){
+    if(sessao.getCodigo().getValor().compare(INVALIDO) == 0)
+        return false;
+    return true;
+}
+
+bool StubServicoExcursao::consultarSessao(Sessao *sessao){
+    if(sessao->getCodigo().getValor().compare(INVALIDO) == 0)
+        return false;
+
+    //--------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------
+    // Implementar código que atribui valores ao objeto identificado por excursao.
+    //--------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------
+
+    return true;
+}
+
+bool StubServicoExcursao::descadastrarSessao(Sessao sessao){
+    if(sessao.getCodigo().getValor().compare(INVALIDO) == 0) //talvez tenha que mudar algo aqui
+        return false;
+    return true;
+}
+
+bool StubServicoExcursao::cadastrarAvaliacao(Avaliacao avaliacao){
+    if(avaliacao.getCodigo().getValor().compare(INVALIDO) == 0)
+        return false;
+    return true;
+}
+
+bool StubServicoExcursao::consultarAvaliacao(Avaliacao *avaliacao){
+    if(avaliacao->getCodigo().getValor().compare(INVALIDO) == 0)
+        return false;
+
+    //--------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------
+    // Implementar código que atribui valores ao objeto identificado por excursao.
+    //--------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------
+
+    return true;
+}
+
+bool StubServicoExcursao::descadastrarAvaliacao(Avaliacao avaliacao){
+    if(avaliacao.getCodigo().getValor().compare(INVALIDO) == 0) //talvez tenha que mudar algo aqui
+        return false;
+    return true;
+}

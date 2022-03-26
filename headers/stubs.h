@@ -24,6 +24,8 @@ class StubServicoContas:public IServicoContas {
         static const string INVALIDO;
     public:
         bool cadastrar(Usuario);
+        bool descadastrar(Email);
+        bool editar(Usuario);
 };
 
 //--------------------------------------------------------------------------------------------
@@ -38,6 +40,15 @@ class StubServicoExcursao:public IServicoExcursao {
         // bool descadastrarProdutoInvestimento(Codigo);
         // bool realizarAplicacao(Aplicacao);
         // bool recuperarAplicacao(Aplicacao*);                        // Adaptar assinatura.
+        bool cadastrarExcursao(Excursao);
+        bool consultarExcursao(Excursao*);
+        bool descadastrarExcursao(Excursao);
+        bool cadastrarSessao(Sessao);
+        bool consultarSessao(Sessao*);
+        bool descadastrarSessao(Sessao);
+        bool cadastrarAvaliacao(Avaliacao);
+        bool consultarAvaliacao(Avaliacao*);
+        bool descadastrarAvaliacao(Avaliacao);
 };
 
 #endif // STUBS_H_INCLUDED
