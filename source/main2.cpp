@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "../headers/dominios.h"
+#include "../headers/entidades.h"
 #include "../headers/interfaces.h"
 #include "../headers/controladorasapresentacao.h"
 #include "../headers/stubs.h"

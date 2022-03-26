@@ -1,35 +1,10 @@
 #ifndef INTERFACES_H_INCLUDED
 #define INTERFACES_H_INCLUDED
 
-#include <dominios.h>
-#include <entidades.h>
+#include "dominios.h"
+#include "entidades.h"
 
 using namespace std;
-
-// Declarações das interfaces da camada de apresentação
-
-class IApresentacaoAutenticacao {
-    public:
-        virtual bool autenticar(Email*) = 0;
-        virtual void setCntrServicoAutenticacao(IServicoAutenticacao*) = 0;
-        virtual ~IApresentacaoAutenticacao(){}
-};
-
-class IApresentacaoContas {
-    public:
-        virtual void executar(Email) = 0;
-        virtual void cadastrar() = 0;
-        virtual void setCntrServicoContas(IServicoContas*) = 0;
-        virtual ~IApresentacaoContas(){}
-};
-
-class IApresentacaoExcursao {
-    public:
-        virtual void executar() = 0;
-        virtual void executar(Email) = 0;
-        virtual void setCntrServicoExcursao(IServicoExcursao*) = 0;
-        virtual ~IApresentacaoExcursao(){}
-};
 
 // Declarações das interfaces da camada de servico
 
@@ -61,5 +36,30 @@ class IServicoExcursao {
         virtual ~IServicoExcursao(){}
 };
 
+
+// Declarações das interfaces da camada de apresentação
+
+class IApresentacaoAutenticacao {
+    public:
+        virtual bool autenticar(Email*) = 0;
+        virtual void setCntrServicoAutenticacao(IServicoAutenticacao*) = 0;
+        virtual ~IApresentacaoAutenticacao(){}
+};
+
+class IApresentacaoContas {
+    public:
+        virtual void executar(Email) = 0;
+        virtual void cadastrar() = 0;
+        virtual void setCntrServicoContas(IServicoContas*) = 0;
+        virtual ~IApresentacaoContas(){}
+};
+
+class IApresentacaoExcursao {
+    public:
+        virtual void executar() = 0;
+        virtual void executar(Email) = 0;
+        virtual void setCntrServicoExcursao(IServicoExcursao*) = 0;
+        virtual ~IApresentacaoExcursao(){}
+};
 
 #endif
