@@ -27,7 +27,7 @@ int main() {
     cntrApresentacaoControle = new CntrApresentacaoControle();
     cntrApresentacaoAutenticacao = new CntrApresentacaoAutenticacao();
     cntrApresentacaoContas = new CntrApresentacaoContas();
-    // cntrApresentacaoExcursao = new CntrApresentacaoExcursao();
+    // cntrApresentacaoExcursao = new CntrApresentacaoExcursao(); //TEM QUE IMPLEMENTAR
 
     // Instanciar stubs.
 
@@ -43,14 +43,14 @@ int main() {
 
     cntrApresentacaoControle->setCntrApresentacaoAutenticacao(cntrApresentacaoAutenticacao);
     cntrApresentacaoControle->setCntrApresentacaoContas(cntrApresentacaoContas);
-    // cntrApresentacaoControle->setCntrApresentacaoExcursao(cntrApresentacaoExcursao);
+    // cntrApresentacaoControle->setCntrApresentacaoExcursao(cntrApresentacaoExcursao); //TEM QUE IMPLEMENTAR
 
     cntrApresentacaoAutenticacao->setCntrServicoAutenticacao(stubServicoAutenticacao);
 
     cntrApresentacaoContas->setCntrServicoContas(stubServicoContas);
     // cntrApresentacaoContas->setCntrServicoExcursao(stubServicoExcursao); //não sei se vai usar isso
 
-    // cntrApresentacaoExcursao->setCntrServicoExcursao(stubServicoExcursao);
+    // cntrApresentacaoExcursao->setCntrServicoExcursao(stubServicoExcursao); //TEM QUE IMPLEMENTAR
 
     cntrApresentacaoControle->executar();                                           // Solicitar serviço.
 

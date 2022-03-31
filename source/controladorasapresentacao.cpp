@@ -134,7 +134,7 @@ void CntrApresentacaoContas::executar(Email email){
     // Mensagens a serem apresentadas na tela de sele��o de servi�o..
 
     char texto1[]="Selecione um dos servicos : ";
-    char texto2[]="1 - Consultar dados da conta.";
+    char texto2[]="1 - Consultar dados da conta."; //não sei se precisa
     char texto3[]="2 - Retornar.";
     // ACHO QUE TEM QUE BOTAR MAIS OPCOES PRA EDITAR E DESCADASTRAR A CONTA AQUI
 
@@ -155,7 +155,7 @@ void CntrApresentacaoContas::executar(Email email){
         campo = getch() - 48;                                                                   // Leitura do campo de entrada e conversão de ASCII.
 
         switch(campo){
-            case 1: //consultarDadosPessoais();
+            case 1: //consultarDadosPessoais(); //não sei se precisa
                     break;
             case 2: apresentar = false;
                     break;

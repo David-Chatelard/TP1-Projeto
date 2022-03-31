@@ -63,7 +63,7 @@ class CntrApresentacaoContas:public IApresentacaoContas{
     private:
         IServicoContas *cntrServicoContas;
         // IServicoExcursao *cntrServicoExcursao; //não sei se precisa
-        // void consultarDadosPessoais();
+        // void consultarDadosPessoais(); //não sei se precisa
     public:
         void executar(Email);
         void cadastrar();
