@@ -8,7 +8,7 @@ const string StubServicoContas::INVALIDO = "12345";
 const string StubServicoExcursao::INVALIDO = "12345";
 
 //--------------------------------------------------------------------------------------------
-// Implementações dos métodos de classes stub.
+// Implementações dos métodos da classe StubServicoAutenticacao.
 
 bool StubServicoAutenticacao::autenticar(Email email, Senha senha){
     if(email.getValor().compare(INVALIDO) == 0)
@@ -17,6 +17,7 @@ bool StubServicoAutenticacao::autenticar(Email email, Senha senha){
 }
 
 //--------------------------------------------------------------------------------------------
+// Implementações dos métodos da classe StubServicoContas.
 
 bool StubServicoContas::cadastrar(Usuario usuario){
     if(usuario.getEmail().getValor().compare(INVALIDO) == 0)
@@ -37,6 +38,7 @@ bool StubServicoContas::descadastrar(Email email){
 }
 
 //--------------------------------------------------------------------------------------------
+// Implementações dos métodos da classe StubServicoExcursao.
 
 // bool StubServicoExcursao::cadastrarConta(Conta conta){
 //     if(conta.getNumero().getValor().compare(INVALIDO) == 0)

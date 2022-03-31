@@ -14,7 +14,7 @@
 using namespace std;
 
 //--------------------------------------------------------------------------------------------
-// Declaração das controladoras e definição de métodos set
+// Declaração da classe CntrApresentacaoControle e definição de métodos set
 
 class CntrApresentacaoControle{
     private:
@@ -42,6 +42,7 @@ inline void CntrApresentacaoControle::setCntrApresentacaoExcursao(IApresentacaoE
 }
 
 //--------------------------------------------------------------------------------------------
+// Declaração da classe CntrApresentacaoAutenticacao e definição de métodos set
 
 class CntrApresentacaoAutenticacao:public IApresentacaoAutenticacao{
     private:
@@ -56,28 +57,30 @@ inline void CntrApresentacaoAutenticacao::setCntrServicoAutenticacao(IServicoAut
 }
 
 //--------------------------------------------------------------------------------------------
+// Declaração da classe CntrApresentacaoContas e definição de métodos set
 
 class CntrApresentacaoContas:public IApresentacaoContas{
     private:
         IServicoContas *cntrServicoContas;
-        // IServicoExcursao *cntrServicoExcursao;
-        void consultarDadosPessoais();
+        // IServicoExcursao *cntrServicoExcursao; //não sei se precisa
+        // void consultarDadosPessoais();
     public:
         void executar(Email);
         void cadastrar();
         void setCntrServicoContas(IServicoContas*);
-        // void setCntrServicoExcursao(IServicoExcursao*);
+        // void setCntrServicoExcursao(IServicoExcursao*); //não sei se precisa
 };
 
 inline void CntrApresentacaoContas::setCntrServicoContas(IServicoContas *cntr){
     cntrServicoContas = cntr;
 }
 
-// inline void CntrApresentacaoContas::setCntrServicoExcursao(IServicoExcursao *cntr){
+// inline void CntrApresentacaoContas::setCntrServicoExcursao(IServicoExcursao *cntr){ //não sei se precisa
 //     cntrServicoExcursao = cntr;
 // }
 
 //--------------------------------------------------------------------------------------------
+// Declaração da classe CntrApresentacaoExcursao e definição de métodos set
 
 class CntrApresentacaoExcursao:public IApresentacaoExcursao{
     private:
@@ -97,6 +100,5 @@ class CntrApresentacaoExcursao:public IApresentacaoExcursao{
 inline void CntrApresentacaoExcursao::setCntrServicoExcursao(IServicoExcursao *cntr){
     this->cntr = cntr;
 }
-
 
 #endif // CONTROLADORASAPRESENTACAO_H_INCLUDED

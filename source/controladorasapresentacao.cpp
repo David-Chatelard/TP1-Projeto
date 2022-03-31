@@ -1,7 +1,7 @@
 #include "../headers/controladorasapresentacao.h"
 
 //--------------------------------------------------------------------------------------------
-// Implementação de métodos de classes controladoras
+// Implementação de métodos da classe CntrApresentacaoControle
 
 void CntrApresentacaoControle::executar(){
     
@@ -84,6 +84,7 @@ void CntrApresentacaoControle::executar(){
 }
 
 //--------------------------------------------------------------------------------------------
+// Implementação de métodos da classe CntrApresentacaoAutenticacao
 
 bool CntrApresentacaoAutenticacao::autenticar(Email *email){
 
@@ -126,6 +127,7 @@ bool CntrApresentacaoAutenticacao::autenticar(Email *email){
 }
 
 //--------------------------------------------------------------------------------------------
+// Implementação de métodos da classe CntrApresentacaoContas
 
 void CntrApresentacaoContas::executar(Email email){
 
@@ -153,12 +155,67 @@ void CntrApresentacaoContas::executar(Email email){
         campo = getch() - 48;                                                                   // Leitura do campo de entrada e conversão de ASCII.
 
         switch(campo){
-            case 1: consultarDadosPessoais();
+            case 1: //consultarDadosPessoais();
                     break;
             case 2: apresentar = false;
                     break;
         }
     }
+}
+
+void CntrApresentacaoContas::cadastrar(){
+    // Mensagens a serem apresentadas na tela de cadastramento.
+
+    char texto0[]="Pagina de cadastramento.\n";
+    char texto1[]="Digite o nome  : ";
+    char texto2[]="Digite o email  : ";
+    char texto3[]="Digite a senha: ";
+    char texto4[]="Dado em formato incorreto. Digite algo.";
+
+    // Campos de entrada.
+
+    char campo1[80];
+    char campo2[80];
+    char campo3[80];
+
+    Nome nome;                                                                                // Instancia a classe Nome.
+    Email email;                                                                              // Instancia a classe Email.
+    Senha senha;                                                                              // Instancia a classe Senha.
+    
+    Usuario usuario;                                                                          // Instancia a classe Usuario.
+
+    while(true){
+
+        // Apresenta tela de cadastramento.
+
+        CLR_SCR;                                                                                // Limpa janela.
+
+        cout << texto0;
+        cout << texto1 << " ";                                                                  // Imprime nome do campo.
+        cin >> campo1;                                                                          // Le valor do campo.
+        cout << texto2 << " ";                                                                  // Imprime nome do campo.
+        cin >> campo2;                                                                          // Le valor do campo.
+        cout << texto3 << " ";                                                                  // Imprime nome do campo.
+        cin >> campo3;                                                                          // Le valor do campo.
+
+        try{
+            nome.setValor(string(campo1));                                                      // Atribui valor ao nome.
+            email.setValor(string(campo2));                                                     // Atribui valor ao email.
+            senha.setValor(string(campo3));                                                     // Atribui Valor a senha.
+            break;                                                                              // Abandona laçoo em caso de formatos corretos.
+        }
+        catch(invalid_argument &exp){                                                           // Captura exceção devido a formato incorreto.
+            CLR_SCR;                                                                            // Limpa janela.
+            cout << texto4 << endl;                                                             // Informa formato incorreto.
+            getch();                                                                            // Le caracter digitado.
+        }
+    }
+    usuario.setNome(nome);
+    usuario.setEmail(email);
+    usuario.setSenha(senha);
+
+    // FAZER A VERIFICAÇÃO DO RETORNO DA FUNÇÃO ABAIXO, ELA RETORNA BOOLEAN PARA VERIFICAR SE FOI POSSÍVEL CADASTRAR
+    cntrServicoContas->cadastrar(usuario);                                                      // Solicita serviço de autenticação.
 }
 
 //--------------------------------------------------------------------------------------------

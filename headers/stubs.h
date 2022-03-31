@@ -9,7 +9,7 @@
 using namespace std;
 
 //--------------------------------------------------------------------------------------------
-// Declarações de classes stub.
+// Declarações da classe StubServicoAutenticacao.
 
 class StubServicoAutenticacao:public IServicoAutenticacao {
     private:
@@ -19,6 +19,7 @@ class StubServicoAutenticacao:public IServicoAutenticacao {
 };
 
 //--------------------------------------------------------------------------------------------
+// Declarações da classe StubServicoContas.
 
 class StubServicoContas:public IServicoContas {
     private:
@@ -30,6 +31,7 @@ class StubServicoContas:public IServicoContas {
 };
 
 //--------------------------------------------------------------------------------------------
+// Declarações da classe StubServicoExcursao.
 
 class StubServicoExcursao:public IServicoExcursao {
     private:

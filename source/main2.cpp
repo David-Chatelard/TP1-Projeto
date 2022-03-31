@@ -3,10 +3,16 @@
 #include <iostream>
 
 #include "../headers/dominios.h"
+#include "dominios.cpp"
+
 #include "../headers/entidades.h"
-#include "../headers/interfaces.h"
+#include "entidades.cpp"
+
 #include "../headers/controladorasapresentacao.h"
+#include "controladorasapresentacao.cpp"
+
 #include "../headers/stubs.h"
+#include "stubs.cpp"
 
 using namespace std;
 
@@ -21,7 +27,7 @@ int main() {
     cntrApresentacaoControle = new CntrApresentacaoControle();
     cntrApresentacaoAutenticacao = new CntrApresentacaoAutenticacao();
     cntrApresentacaoContas = new CntrApresentacaoContas();
-    cntrApresentacaoExcursao = new CntrApresentacaoExcursao();
+    // cntrApresentacaoExcursao = new CntrApresentacaoExcursao();
 
     // Instanciar stubs.
 
@@ -37,14 +43,14 @@ int main() {
 
     cntrApresentacaoControle->setCntrApresentacaoAutenticacao(cntrApresentacaoAutenticacao);
     cntrApresentacaoControle->setCntrApresentacaoContas(cntrApresentacaoContas);
-    cntrApresentacaoControle->setCntrApresentacaoExcursao(cntrApresentacaoExcursao);
+    // cntrApresentacaoControle->setCntrApresentacaoExcursao(cntrApresentacaoExcursao);
 
     cntrApresentacaoAutenticacao->setCntrServicoAutenticacao(stubServicoAutenticacao);
 
     cntrApresentacaoContas->setCntrServicoContas(stubServicoContas);
     // cntrApresentacaoContas->setCntrServicoExcursao(stubServicoExcursao); //não sei se vai usar isso
 
-    cntrApresentacaoExcursao->setCntrServicoExcursao(stubServicoExcursao);
+    // cntrApresentacaoExcursao->setCntrServicoExcursao(stubServicoExcursao);
 
     cntrApresentacaoControle->executar();                                           // Solicitar serviço.
 
