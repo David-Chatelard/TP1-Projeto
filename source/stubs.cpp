@@ -27,7 +27,7 @@ bool StubServicoContas::cadastrar(Usuario usuario){
 }
 
 bool StubServicoContas::editar(Usuario usuario){
-    if(usuario.getNome().getValor().compare(INVALIDO_NOME) == 0) //talvez mudar esse getNome para getEmail
+    if(usuario.getNome().getValor().compare(INVALIDO_NOME) == 0)
         return false;
     return true;
 }

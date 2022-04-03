@@ -123,7 +123,7 @@ bool CntrApresentacaoAutenticacao::autenticar(Email *email){
             getch();                                                                            // Le caracter digitado.
         }
     }
-    return (cntr->autenticar(*email, senha));                                                     // Solicita serviço de autenticação.
+    return (cntr->autenticar(*email, senha));                                                   // Solicita serviço de autenticação.
 }
 
 //--------------------------------------------------------------------------------------------
@@ -136,7 +136,7 @@ void CntrApresentacaoContas::executar(Email email){
     char texto1[]="Selecione um dos servicos : ";
     char texto2[]="1 - Editar conta";
     char texto3[]="2 - Descadastrar conta";
-    char texto4[]="3 - Digite algo para retornar para a lista de servicos.";
+    char texto4[]="3 - Digite algo para retornar para a lista de servicos";
     char texto5[]="Digite o novo nome: ";
     char texto6[]="Digite a nova senha: ";
     char texto7[]="Dado em formato incorreto. Digite algo.";
@@ -165,32 +165,32 @@ void CntrApresentacaoContas::executar(Email email){
 
         switch(campo1){
             case 1:                                                                             //Editar conta
-                while(true){
-                    CLR_SCR;
-                    cout << texto5;
-                    cin >> campo2;
-                    cout << texto6;
-                    cin >> campo3;
-                    
-                    try{
-                        nome.setValor(campo2);
-                        senha.setValor(campo3);
-                        break;
-                    }
-                    catch(invalid_argument &exp){
+                    while(true){
                         CLR_SCR;
-                        cout << texto7 << endl;
-                        getch();
+                        cout << texto5;
+                        cin >> campo2;
+                        cout << texto6;
+                        cin >> campo3;
+                        
+                        try{
+                            nome.setValor(campo2);
+                            senha.setValor(campo3);
+                            break;
+                        }
+                        catch(invalid_argument &exp){
+                            CLR_SCR;
+                            cout << texto7 << endl;
+                            getch();
+                        }
                     }
-                }
-                usuario.setNome(nome);
-                usuario.setSenha(senha);
-                cntrServicoContas->editar(usuario); //RETORNA BOOLEAN, da para usar isso caso queira
-                break;
+                    usuario.setNome(nome);
+                    usuario.setSenha(senha);
+                    cntrServicoContas->editar(usuario); //RETORNA BOOLEAN, da para usar isso caso queira
+                    break;
             case 2: cntrServicoContas->descadastrar(email);                                     //Descadastrar conta
-                break;
-            case 3:                                                                             //Voltar para a lista de servicos
-                break;
+                    break;
+            case 3: apresentar = false;                                                                             //Voltar para a lista de servicos
+                    break;
         }
     }
 }
