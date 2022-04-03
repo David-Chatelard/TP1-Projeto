@@ -24,6 +24,7 @@ class StubServicoAutenticacao:public IServicoAutenticacao {
 class StubServicoContas:public IServicoContas {
     private:
         static const string INVALIDO;
+        static const string INVALIDO_NOME;
     public:
         bool cadastrar(Usuario);
         bool descadastrar(Email);

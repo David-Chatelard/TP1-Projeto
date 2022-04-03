@@ -5,6 +5,7 @@
 
 const string StubServicoAutenticacao::INVALIDO = "12345";
 const string StubServicoContas::INVALIDO = "12345";
+const string StubServicoContas::INVALIDO_NOME = "amgongas";
 const string StubServicoExcursao::INVALIDO = "12345";
 
 //--------------------------------------------------------------------------------------------
@@ -26,7 +27,7 @@ bool StubServicoContas::cadastrar(Usuario usuario){
 }
 
 bool StubServicoContas::editar(Usuario usuario){
-    if(usuario.getNome().getValor().compare(INVALIDO) == 0) //talvez mudar esse getNome para getEmail
+    if(usuario.getNome().getValor().compare(INVALIDO_NOME) == 0) //talvez mudar esse getNome para getEmail
         return false;
     return true;
 }

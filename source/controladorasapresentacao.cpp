@@ -90,7 +90,7 @@ bool CntrApresentacaoAutenticacao::autenticar(Email *email){
 
     // Mensagens a serem apresentadas na tela de autenticação.
 
-    char texto1[]="Digite o email  : ";
+    char texto1[]="Digite o email: ";
     char texto2[]="Digite a senha: ";
     char texto3[]="Dado em formato incorreto. Digite algo.";
 
@@ -134,31 +134,63 @@ void CntrApresentacaoContas::executar(Email email){
     // Mensagens a serem apresentadas na tela de sele��o de servi�o..
 
     char texto1[]="Selecione um dos servicos : ";
-    char texto2[]="1 - Consultar dados da conta."; //não sei se precisa
-    char texto3[]="2 - Retornar.";
-    // ACHO QUE TEM QUE BOTAR MAIS OPCOES PRA EDITAR E DESCADASTRAR A CONTA AQUI
+    char texto2[]="1 - Editar conta";
+    char texto3[]="2 - Descadastrar conta";
+    char texto4[]="3 - Digite algo para retornar para a lista de servicos.";
+    char texto5[]="Digite o novo nome: ";
+    char texto6[]="Digite a nova senha: ";
+    char texto7[]="Dado em formato incorreto. Digite algo.";
 
-    int campo;                                                                                  // Campo de entrada.
+    int campo1;                                                                                  // Campo de entrada.
+    char campo2[80];
+    char campo3[80];
 
     bool apresentar = true;                                                                     // Controle de laço.
+
+    Nome nome;
+    Senha senha;
+    Usuario usuario;
 
     while(apresentar){
 
         // Apresenta tela de selação de serviço.
 
         CLR_SCR;                                                                                // Limpa janela.
-
         cout << texto1 << endl;                                                                 // Imprime nome do campo.
         cout << texto2 << endl;                                                                 // Imprime nome do campo.
         cout << texto3 << endl;                                                                 // Imprime nome do campo.
+        cout << texto4 << endl;                                                                 // Imprime nome do campo.
+    
+        campo1 = getch() - 48;                                                                  // Leitura do campo de entrada e conversão de ASCII.
 
-        campo = getch() - 48;                                                                   // Leitura do campo de entrada e conversão de ASCII.
-
-        switch(campo){
-            case 1: //consultarDadosPessoais(); //não sei se precisa
-                    break;
-            case 2: apresentar = false;
-                    break;
+        switch(campo1){
+            case 1:                                                                             //Editar conta
+                while(true){
+                    CLR_SCR;
+                    cout << texto5;
+                    cin >> campo2;
+                    cout << texto6;
+                    cin >> campo3;
+                    
+                    try{
+                        nome.setValor(campo2);
+                        senha.setValor(campo3);
+                        break;
+                    }
+                    catch(invalid_argument &exp){
+                        CLR_SCR;
+                        cout << texto7 << endl;
+                        getch();
+                    }
+                }
+                usuario.setNome(nome);
+                usuario.setSenha(senha);
+                cntrServicoContas->editar(usuario); //RETORNA BOOLEAN, da para usar isso caso queira
+                break;
+            case 2: cntrServicoContas->descadastrar(email);                                     //Descadastrar conta
+                break;
+            case 3:                                                                             //Voltar para a lista de servicos
+                break;
         }
     }
 }
@@ -171,6 +203,7 @@ void CntrApresentacaoContas::cadastrar(){
     char texto2[]="Digite o email  : ";
     char texto3[]="Digite a senha: ";
     char texto4[]="Dado em formato incorreto. Digite algo.";
+    char texto5[]="Email ja cadastrado. Digite algo.";
 
     // Campos de entrada.
 
@@ -202,20 +235,22 @@ void CntrApresentacaoContas::cadastrar(){
             nome.setValor(string(campo1));                                                      // Atribui valor ao nome.
             email.setValor(string(campo2));                                                     // Atribui valor ao email.
             senha.setValor(string(campo3));                                                     // Atribui Valor a senha.
-            break;                                                                              // Abandona laçoo em caso de formatos corretos.
+            usuario.setNome(nome);
+            usuario.setEmail(email);
+            usuario.setSenha(senha);
+            if (cntrServicoContas->cadastrar(usuario)){                                      // Solicita serviço de autenticação.
+                break;
+            }
+            CLR_SCR;
+            cout << texto5 << endl;                                                             // Informa email ja cadastrado.
+            getch();                                                                            // Le caracter digitado.
         }
         catch(invalid_argument &exp){                                                           // Captura exceção devido a formato incorreto.
             CLR_SCR;                                                                            // Limpa janela.
             cout << texto4 << endl;                                                             // Informa formato incorreto.
             getch();                                                                            // Le caracter digitado.
         }
-    }
-    usuario.setNome(nome);
-    usuario.setEmail(email);
-    usuario.setSenha(senha);
-
-    // FAZER A VERIFICAÇÃO DO RETORNO DA FUNÇÃO ABAIXO, ELA RETORNA BOOLEAN PARA VERIFICAR SE FOI POSSÍVEL CADASTRAR
-    cntrServicoContas->cadastrar(usuario);                                                      // Solicita serviço de autenticação.
+    }                                               
 }
 
 //--------------------------------------------------------------------------------------------
