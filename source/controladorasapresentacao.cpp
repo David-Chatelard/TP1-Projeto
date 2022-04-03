@@ -201,7 +201,7 @@ void CntrApresentacaoContas::cadastrar(){
     char texto0[]="Pagina de cadastramento.\n";
     char texto1[]="Digite o nome  : ";
     char texto2[]="Digite o email  : ";
-    char texto3[]="Digite a senha: ";
+    char texto3[]="Digite a senha  : ";
     char texto4[]="Dado em formato incorreto. Digite algo.";
     char texto5[]="Email ja cadastrado. Digite algo.";
 
