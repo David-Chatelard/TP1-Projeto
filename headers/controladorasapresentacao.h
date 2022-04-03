@@ -72,7 +72,7 @@ class CntrApresentacaoContas:public IApresentacaoContas{
 };
 
 inline void CntrApresentacaoContas::setCntrServicoContas(IServicoContas *cntr){
-    cntrServicoContas = cntr;
+    this->cntrServicoContas = cntr;
 }
 
 // inline void CntrApresentacaoContas::setCntrServicoExcursao(IServicoExcursao *cntr){ //não sei se precisa
@@ -82,23 +82,41 @@ inline void CntrApresentacaoContas::setCntrServicoContas(IServicoContas *cntr){
 //--------------------------------------------------------------------------------------------
 // Declaração da classe CntrApresentacaoExcursao e definição de métodos set
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class CntrApresentacaoExcursao:public IApresentacaoExcursao{
     private:
-        IServicoExcursao *cntr;
-        void consultarConta();
-        void cadastrarProdutoInvestimento();
-        void descadastrarProdutoInvestimento();
-        void consultarProdutoInvestimento();
-        void realizarAplicacao();
-        void listarAplicacoes();
+        IServicoExcursao *cntrServicoExcursao;
     public:
         void executar();
         void executar(Email);
+        // void cadastrarSessao(); //acho q n precisa
+        // void cadastrarAvaliacao(); //acho q n precisa
+        // void listarExcursoes();
+        // void listarExcursoes(Email);
         void setCntrServicoExcursao(IServicoExcursao*);
 };
 
 inline void CntrApresentacaoExcursao::setCntrServicoExcursao(IServicoExcursao *cntr){
-    this->cntr = cntr;
+    this->cntrServicoExcursao = cntr;
 }
 
 #endif // CONTROLADORASAPRESENTACAO_H_INCLUDED

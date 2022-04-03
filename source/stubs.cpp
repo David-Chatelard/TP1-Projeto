@@ -93,7 +93,7 @@ bool StubServicoContas::descadastrar(Email email){
 
 
 bool StubServicoExcursao::cadastrarExcursao(Excursao excursao){
-    if(excursao.getCodigo().getValor().compare(INVALIDO) == 0)
+    if(excursao.getTitulo().getValor().compare(INVALIDO) == 0)
         return false;
     return true;
 }

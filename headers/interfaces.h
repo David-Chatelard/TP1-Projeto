@@ -24,6 +24,27 @@ class IServicoContas {
 
 class IServicoExcursao {
     public:
+        
+
+        // TODAS AS FUNCIONALIDADES A SEREM IMPLEMENTADAS
+        // void listarTodasExcursoes(); //DEPOIS ACESSAR OS DADOS DE CADA UMA
+        // void listarMinhasExcursoes(); //Talvez não precise
+        // void cadastrarExcursao();
+        // void descadastrarExcursao();
+        // void editarExcursao();
+        
+        // void listarSessao();
+        // void cadastrarSessao(); // Fazer o mesmo para as sessões
+        // void descadastrarSessao();
+        // void editarSessao();
+
+        // void listarAvaliacao();
+        // void cadastrarAvaliacao();
+        // void descadastrarAvaliacao();
+        // void editarAvaliacao();
+
+
+
         virtual bool cadastrarExcursao(Excursao) = 0;
         virtual bool consultarExcursao(Excursao*) = 0;
         virtual bool descadastrarExcursao(Excursao) = 0;
