@@ -276,7 +276,7 @@ void CntrApresentacaoContas::cadastrar(){
 
 
 
-void CntrApresentacaoExcursao::executar(){  //Email email
+void CntrApresentacaoExcursao::executar(){
 
     // Mensagens a serem apresentadas na tela de sele��o de servi�o..
 
@@ -360,7 +360,7 @@ void CntrApresentacaoExcursao::executar(){  //Email email
                             getch();
                         }
                     }
-                    cntrServicoExcursao->cadastrarExcursao(excursao); //RETORNA BOOLEAN, da para usar isso caso queira                             //Cadastrar excursao
+                    cntrServicoExcursao->cadastrarExcursao(excursao); //RETORNA BOOLEAN, da para usar isso caso queira            //Cadastrar excursao
                     break;
             case 4: apresentar = false;                                                                             //Voltar para a lista de servicos
                     break;
@@ -368,7 +368,6 @@ void CntrApresentacaoExcursao::executar(){  //Email email
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------
 
 void CntrApresentacaoExcursao::executar(Email email){ 
 
@@ -463,7 +462,6 @@ void CntrApresentacaoExcursao::executar(Email email){
     }
 }
 
-//--------------------------------------------------------------------------------------------
 
 // void CntrApresentacaoExcursao::listarExcursoes(){ // A versão que aceita email vai ser pra listar as minhas excursoes e so vai mudar no metodo de pegar as excursoes
 //     // COMANDO DE BUSCAR TODAS AS EXCURSOES
