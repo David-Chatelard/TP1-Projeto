@@ -27,20 +27,17 @@ class IServicoExcursao {
         
 
         // TODAS AS FUNCIONALIDADES A SEREM IMPLEMENTADAS
-        // void listarTodasExcursoes(); //DEPOIS ACESSAR OS DADOS DE CADA UMA
-        // void listarMinhasExcursoes(); //Talvez não precise
-        // void cadastrarExcursao();
-        // void descadastrarExcursao();
-        // void editarExcursao();
+
+        // void listarExcursoes(); //DEPOIS ACESSAR OS DADOS DE CADA UMA
+        // void listarExcursoes(Email);
+        // void editarExcursao(Excursao);
         
-        // void listarSessoes();
-        // void cadastrarSessao(); // Fazer o mesmo para as sessões
-        // void descadastrarSessao();
+        // void listarSessoes(); //não precisa de listarSessoes(Email), pois a partir da listarExcursoes(Email) ele acessa as excursoes que ele é guia e pode ver as sessoes dessas excursoes
+        // void listarSessoes(Email);
         // void editarSessao();
 
         // void listarAvaliacoes();
-        // void cadastrarAvaliacao();
-        // void descadastrarAvaliacao();
+        // void listarAvaliacoes(Email); //para listar as avaliações que ele escreveu, para poder editar e excluir
         // void editarAvaliacao();
 
 
@@ -77,8 +74,18 @@ class IApresentacaoContas {
 
 class IApresentacaoExcursao {
     public:
+        // Funcionalidades a serem implementadas
+        // virtual void listarAvaliacoes(Email, Excursao) = 0;
+
+
+
         virtual void executar() = 0;
         virtual void executar(Email) = 0;
+        virtual void listarExcursoes() = 0;
+        virtual void listarExcursoes(Email) = 0;
+        virtual void listarAvaliacoes(Excursao) = 0;
+        virtual void listarSessoes(Excursao) = 0;
+        virtual void listarSessoes(Email, Excursao) = 0;
         virtual void setCntrServicoExcursao(IServicoExcursao*) = 0;
         virtual ~IApresentacaoExcursao(){}
 };

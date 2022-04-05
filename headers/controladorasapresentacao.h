@@ -106,13 +106,16 @@ class CntrApresentacaoExcursao:public IApresentacaoExcursao{
     private:
         IServicoExcursao *cntrServicoExcursao;
         void detalheExcursao(Excursao);
+        void detalheExcursao(Email, Excursao);
     public:
         void executar();
         void executar(Email);
-        // void cadastrarSessao(); //acho q n precisa
-        // void cadastrarAvaliacao(); //acho q n precisa
-        // void listarExcursoes();
-        // void listarExcursoes(Email);
+        void listarExcursoes();
+        void listarExcursoes(Email);
+        void listarSessoes(Excursao);
+        void listarSessoes(Email, Excursao);
+        void listarAvaliacoes(Excursao);
+        // void listarAvaliacoes(Email, Excursao);
         void setCntrServicoExcursao(IServicoExcursao*);
 };
 
