@@ -308,7 +308,6 @@ void CntrApresentacaoExcursao::executar(){
     }
 }
 
-
 void CntrApresentacaoExcursao::executar(Email email){ 
 
     // Mensagens a serem apresentadas na tela de sele��o de servi�o..
@@ -401,7 +400,6 @@ void CntrApresentacaoExcursao::executar(Email email){
         }
     }
 }
-
 
 void CntrApresentacaoExcursao::listarExcursoes(){
     // COMANDO DE BUSCAR TODAS AS EXCURSOES DA CAMADA DE SERVICO
