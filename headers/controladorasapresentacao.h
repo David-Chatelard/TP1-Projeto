@@ -105,6 +105,7 @@ inline void CntrApresentacaoContas::setCntrServicoContas(IServicoContas *cntr){
 class CntrApresentacaoExcursao:public IApresentacaoExcursao{
     private:
         IServicoExcursao *cntrServicoExcursao;
+        void detalheExcursao(Excursao);
     public:
         void executar();
         void executar(Email);

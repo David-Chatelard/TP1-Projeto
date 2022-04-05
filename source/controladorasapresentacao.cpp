@@ -284,7 +284,7 @@ void CntrApresentacaoExcursao::executar(){
     char texto2[]="1 - Listar todas as excursoes";
     char texto3[]="2 - Listar minhas excursoes";
     char texto4[]="3 - Cadastrar excursao";
-    char texto5[]="4 - Retornar para a lista de servicos";
+    char texto5[]="4 - Retornar para o menu";
     char texto6[]="Digite o titulo: ";
     char texto7[]="Digite a cidade: ";
     char texto8[]="Digite a duracao: ";
@@ -377,7 +377,7 @@ void CntrApresentacaoExcursao::executar(Email email){
     char texto2[]="1 - Listar todas as excursoes";
     char texto3[]="2 - Listar minhas excursoes";
     char texto4[]="3 - Cadastrar excursao";
-    char texto5[]="4 - Retornar para a lista de servicos";
+    char texto5[]="4 - Retornar para o menu";
     char texto6[]="Digite o titulo: ";
     char texto7[]="Digite a cidade: ";
     char texto8[]="Digite a duracao: ";
@@ -466,7 +466,7 @@ void CntrApresentacaoExcursao::executar(Email email){
 // void CntrApresentacaoExcursao::listarExcursoes(){ // A versão que aceita email vai ser pra listar as minhas excursoes e so vai mudar no metodo de pegar as excursoes
 //     // COMANDO DE BUSCAR TODAS AS EXCURSOES
 //     Excursao excursoes[30]; // teste
-//     int pagina;
+//     int pagina=0;
 //     bool apresentar=true;
 //     int campo1;
 
@@ -496,15 +496,15 @@ void CntrApresentacaoExcursao::executar(Email email){
 //         campo1 = getch() - 48;                                                                  // Leitura do campo de entrada e conversão de ASCII.
 
 //         switch (campo1){
-//             case 1: detalheExcursao(0+5*pagina);   // FAZER detalheExcursao                                                                         
+//             case 1: detalheExcursao(excursoes[0+5*pagina]);   // FAZER detalheExcursao                                                                         
 //                     break;
-//             case 2: detalheExcursao(1+5*pagina);                                     
+//             case 2: detalheExcursao(excursoes[1+5*pagina]);                                     
 //                     break;
-//             case 3: detalheExcursao(2+5*pagina);                                                                            
+//             case 3: detalheExcursao(excursoes[2+5*pagina]);                                                                            
 //                     break;
-//             case 4: detalheExcursao(3+5*pagina);                                     
+//             case 4: detalheExcursao(excursoes[3+5*pagina]);                                     
 //                     break;
-//             case 5: detalheExcursao(4+5*pagina);                                                                           
+//             case 5: detalheExcursao(excursoes[4+5*pagina]);                                                                           
 //                     break;
 //             case 6: pagina++;
 //                     break;
@@ -516,11 +516,10 @@ void CntrApresentacaoExcursao::executar(Email email){
 //     }
 // }
 
-// //------------------------------------------------------------------------------------------------------------------------------------------
 
-// void CntrApresentacaoExcursao::listarExcursoes(Email){ // A versão que aceita email vai ser pra listar as minhas excursoes e so vai mudar no metodo de pegar as excursoes
+// void CntrApresentacaoExcursao::listarExcursoes(Email email){ // A versão que aceita email vai ser pra listar as minhas excursoes e so vai mudar no metodo de pegar as excursoes
 //     Excursao excursoes[30]; // teste
-//     int pagina;
+//     int pagina=0;
 //     bool apresentar=true;
 //     int campo1;
 
@@ -538,6 +537,7 @@ void CntrApresentacaoExcursao::executar(Email email){
 
 //         CLR_SCR;                                                                                // Limpa janela.
 //         cout << texto1 << endl;                                                                 // Imprime nome do campo.
+//         cout << excursoes[0+5*pagina].getTitulo().getValor();
 //         cout << texto2 << endl;                                                                 // Imprime nome do campo.
 //         cout << texto3 << endl;                                                                 // Imprime nome do campo.
 //         cout << texto4 << endl;                                                                 // Imprime nome do campo.
@@ -550,15 +550,15 @@ void CntrApresentacaoExcursao::executar(Email email){
 //         campo1 = getch() - 48;                                                                  // Leitura do campo de entrada e conversão de ASCII.
 
 //         switch (campo1){
-//             case 1: detalheExcursao(0+5*pagina);   // FAZER detalheExcursao                                                                         
+//             case 1: detalheExcursao(excursoes[0+5*pagina]);   // FAZER detalheExcursao                                                                         
 //                     break;
-//             case 2: detalheExcursao(1+5*pagina);                                     
+//             case 2: detalheExcursao(excursoes[1+5*pagina]);                                     
 //                     break;
-//             case 3: detalheExcursao(2+5*pagina);                                                                            
+//             case 3: detalheExcursao(excursoes[2+5*pagina]);                                                                            
 //                     break;
-//             case 4: detalheExcursao(3+5*pagina);                                     
+//             case 4: detalheExcursao(excursoes[3+5*pagina]);                                     
 //                     break;
-//             case 5: detalheExcursao(4+5*pagina);                                                                           
+//             case 5: detalheExcursao(excursoes[4+5*pagina]);                                                                           
 //                     break;
 //             case 6: pagina++;
 //                     break;
@@ -566,6 +566,49 @@ void CntrApresentacaoExcursao::executar(Email email){
 //                     break;
 //             case 8: apresentar=false;
 //                     break;
-//         }
-//     }
+//             }
+    // }
 // }
+
+void CntrApresentacaoExcursao::detalheExcursao(Excursao excursao){
+    char texto1[] = "Informacoes sobre a excursao";
+    char texto2[] = "Titulo: ";
+    char texto3[] = "Nota: ";
+    char texto4[] = "Cidade: ";
+    char texto5[] = "Duracao: ";
+    char texto6[] = "Descricao: ";
+    char texto7[] = "Endereco: ";
+    char texto8[] = "1 - Avaliacoes dessa excursao";
+    char texto9[] = "2 - Sessoes dessa excursao";
+    char texto10[] = "3 - Retornar para a lista de excursoes";
+
+    bool apresentar=true;
+
+    int campo1;
+
+    while (apresentar){
+
+        CLR_SCR;
+        cout << texto1 << endl;
+        cout << texto2 << excursao.getTitulo().getValor() << endl;
+        cout << texto3 << excursao.getNota().getValor() << endl;
+        cout << texto4 << excursao.getCidade().getValor() << endl;
+        cout << texto5 << excursao.getDuracao().getValor() << endl;
+        cout << texto6 << excursao.getDescricao().getValor() << endl;
+        cout << texto7 << excursao.getEndereco().getValor() << endl;
+        cout << texto8 << endl;
+        cout << texto9 << endl;
+        cout << texto10 << endl;
+
+        campo1 = getch() - 48;
+
+        switch (campo1) {
+            case 1: cout << "fon1" << endl;//cntrServicoExcursao->listarAvaliacoes(); //IMPLEMENTAR listarAvaliacoes()
+                break;
+            case 2: cout << "fon2" << endl;//cntrServicoExcursao->listarSessoes(); //IMPLEMENTAR listarSessoes()
+                break;
+            case 3: apresentar = false;
+                break;
+        }
+    }
+}

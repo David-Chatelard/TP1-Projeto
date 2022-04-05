@@ -33,12 +33,12 @@ class IServicoExcursao {
         // void descadastrarExcursao();
         // void editarExcursao();
         
-        // void listarSessao();
+        // void listarSessoes();
         // void cadastrarSessao(); // Fazer o mesmo para as sessões
         // void descadastrarSessao();
         // void editarSessao();
 
-        // void listarAvaliacao();
+        // void listarAvaliacoes();
         // void cadastrarAvaliacao();
         // void descadastrarAvaliacao();
         // void editarAvaliacao();
