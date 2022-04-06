@@ -100,13 +100,13 @@ public:
         ComandoRemoverUsuario(Email);
 };
 
-// //---------------------------------------------------------------------------
-// //Classe ComandoAtualizarUsuario.
+//---------------------------------------------------------------------------
+//Classe ComandoAtualizarUsuario.
 
-// class ComandoAtualizarUsuario:public ComandoSQL {
-// public:
-//         ComandoAtualizarUsuario(Usuario);
-// };
+class ComandoAtualizarUsuario:public ComandoSQL {
+public:
+        ComandoAtualizarUsuario(Usuario);
+};
 
 // //---------------------------------------------------------------------------
 // //Classe ComandoCadastrarDisciplina.

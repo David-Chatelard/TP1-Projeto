@@ -151,17 +151,15 @@ ComandoRemoverUsuario::ComandoRemoverUsuario(Email email) {
         comandoSQL += email.getValor();
 }
 
-// //---------------------------------------------------------------------------
-// // Implementações de métodos da classe ComandoEditarAluno.
+//---------------------------------------------------------------------------
+// Implementações de métodos da classe ComandoEditarUsuario.
 
-// ComandoAtualizarAluno::ComandoAtualizarAluno(Aluno aluno) {
-//         comandoSQL = "UPDATE alunos ";
-//         comandoSQL += "SET nome = '" + aluno.getNome().getValor();
-//         comandoSQL += "', senha = '" + aluno.getSenha().getValor();
-//         comandoSQL += "', telefone = '" + aluno.getTelefone().getValor();
-//         comandoSQL += "', matriculaorientador = '" + aluno.getMatriculaOrientador().getValor();
-//         comandoSQL += "' WHERE matricula = " + aluno.getMatricula().getValor();
-// }
+ComandoAtualizarUsuario::ComandoAtualizarUsuario(Usuario usuario) {
+        comandoSQL = "UPDATE usuarios ";
+        comandoSQL += "SET nome = '" + usuario.getNome().getValor();
+        comandoSQL += "', senha = '" + usuario.getSenha().getValor();
+        comandoSQL += "' WHERE email = " + usuario.getEmail().getValor();
+}
 
 // //---------------------------------------------------------------------------
 // // Implementações de métodos da classe ComandoCadastrarDisciplina.
