@@ -702,7 +702,7 @@ void CntrApresentacaoExcursao::detalheExcursao2(Excursao excursao){
     Nota nota;
     Descricao descricao;
 
-    int auxNota;
+    char auxNota[80];
     char auxDescricao[80];
 
     bool apresentar=true;
@@ -740,7 +740,7 @@ void CntrApresentacaoExcursao::detalheExcursao2(Excursao excursao){
                     cin >> auxDescricao;
 
                     try {
-                        nota.setValor(auxNota);
+                        nota.setValor(stoi(auxNota));
                         descricao.setValor(auxDescricao);
                         avaliacao.setNota(nota);
                         avaliacao.setDescricao(descricao);
@@ -812,9 +812,9 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
     Descricao descricaoAvaliacao;
 
     char auxTitulo[80];
-    int auxNota;
+    char auxNota[80];
     char auxCidade[80];
-    int auxDuracao;
+    char auxDuracao[80];
     char auxDescricao[80];
     char auxEndereco[80];
 
@@ -822,7 +822,7 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
     char auxHorario[80];
     char auxIdioma[80];
 
-    int auxNotaAvaliacao;
+    char auxNotaAvaliacao[80];
     char auxDescricaoAvaliacao[80];
 
     int campo1;
@@ -890,7 +890,7 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
                     cin >> auxDescricaoAvaliacao;
 
                     try {
-                        notaAvaliacao.setValor(auxNotaAvaliacao);
+                        notaAvaliacao.setValor(stoi(auxNotaAvaliacao));
                         descricaoAvaliacao.setValor(auxDescricaoAvaliacao);
                         avaliacao.setNota(notaAvaliacao);
                         avaliacao.setDescricao(descricaoAvaliacao);
@@ -926,9 +926,9 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
                     cin >> auxEndereco;
                     try {
                         titulo.setValor(auxTitulo);
-                        nota.setValor(auxNota);
+                        nota.setValor(stoi(auxNota));
                         cidade.setValor(auxCidade);
-                        duracao.setValor(auxDuracao);
+                        duracao.setValor(stoi(auxDuracao));
                         descricao.setValor(auxDescricao);
                         endereco.setValor(auxEndereco);
                         excursao.setTitulo(titulo);
@@ -1025,7 +1025,7 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que a
 
     bool apresentar=true;
     
-    int aux_nota;
+    char aux_nota[80];
     char aux_descricao[80];
 
     Avaliacao avaliacao;
@@ -1110,7 +1110,7 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que a
                             cout << texto10;
                             cin >> aux_descricao;
                             try {
-                                nota.setValor(aux_nota);
+                                nota.setValor(stoi(aux_nota));
                                 descricao.setValor(aux_descricao);
                                 avaliacao.setCodigo(avaliacoes[j + (AVALIACOES_POR_PAGINA*pagina)].getCodigo());
                                 avaliacao.setNota(nota);
