@@ -416,7 +416,7 @@ void CntrApresentacaoExcursao::listarExcursoes(){
     bool apresentar=true;
     int campo1;
 
-    char texto1[]="Lista de excursoes.";
+    char texto1[]="Lista de excursoes";
     char texto2[]=" - Proxima pagina";
     char texto3[]=" - Pagina anterior";
     char texto4[]=" - Retornar a selecao de servicos";
@@ -492,7 +492,7 @@ void CntrApresentacaoExcursao::listarExcursoes2(){
     bool apresentar=true;
     int campo1;
 
-    char texto1[]="Lista de excursoes.";
+    char texto1[]="Lista de excursoes";
     char texto2[]=" - Proxima pagina";
     char texto3[]=" - Pagina anterior";
     char texto4[]=" - Retornar a selecao de servicos";
@@ -568,7 +568,7 @@ void CntrApresentacaoExcursao::listarExcursoes(Email email){
     bool apresentar=true;
     int campo1;
 
-    char texto1[]="Lista de excursoes.";
+    char texto1[]="Lista de excursoes";
     char texto2[]=" - Proxima pagina";
     char texto3[]=" - Pagina anterior";
     char texto4[]=" - Retornar a selecao de servicos";
@@ -964,7 +964,7 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Excursao excursao){ // A versão
     bool apresentar=true;
     int campo1;
 
-    char texto1[]="Lista de avaliacoes.";
+    char texto1[]="Lista de avaliacoes";
     char texto2[]="Avaliacao ";
     char texto3[]=" - Proxima pagina";
     char texto4[]=" - Pagina anterior";
@@ -1032,8 +1032,8 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que a
     Nota nota;
     Descricao descricao;
 
-    char texto1[]="Lista de avaliacoes.";
-    char texto2[]="avaliacao ";
+    char texto1[]="Lista de avaliacoes";
+    char texto2[]="Avaliacao ";
     char texto3[]="1 - Editar avaliacao";
     char texto4[]="2 - Descadastrar avaliacao";
     char texto5[]=" - Proxima pagina";
@@ -1060,7 +1060,7 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que a
             }
             cout << texto2 << (i + 1) + (AVALIACOES_POR_PAGINA*pagina) << endl;
             cout << "Nota: " << avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getNota().getValor() << endl;
-            cout << "Descricao: " << avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getDescricao().getValor() << endl;
+            cout << "Descricao: " << avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getDescricao().getValor() << endl << endl;
         }
 
         cout << texto3 << endl;
@@ -1093,7 +1093,7 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que a
                 }
                 cout << texto2 << (i + 1) + (AVALIACOES_POR_PAGINA*pagina) << endl;
                 cout << "Nota: " << avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getNota().getValor() << endl;
-                cout << "Descricao: " << avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getDescricao().getValor() << endl;
+                cout << "Descricao: " << avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getDescricao().getValor() << endl << endl;
             }
 
             cout << texto8 << endl;
@@ -1102,7 +1102,7 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que a
             // Vai na avaliacao selecionada
             for (int j = 0; j < AVALIACOES_POR_PAGINA; j++){
                 if (avaliacoes[j + (AVALIACOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
-                    if (avaliacao_a_editar == (j+1)){
+                    if (avaliacao_a_editar == ((j + 1) + (AVALIACOES_POR_PAGINA*pagina))){
                         while (true){
                             CLR_SCR;
                             cout << texto9;
@@ -1147,7 +1147,7 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que a
             // Vai na avaliacao selecionada
             for (int j = 0; j < AVALIACOES_POR_PAGINA; j++){
                 if (avaliacoes[j + (AVALIACOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
-                    if (avaliacao_a_excluir == (j+1)){
+                    if (avaliacao_a_excluir == ((j + 1) + (AVALIACOES_POR_PAGINA*pagina))){
                         // cntrServicoExcursao->descadastrarAvaliacao(avaliacoes[j + (AVALIACOES_POR_PAGINA*pagina)]);; TEM QUE IMPLEMENTAR NO SERVIÇO
                     }
                 }
@@ -1174,7 +1174,7 @@ void CntrApresentacaoExcursao::listarSessoes(Excursao excursao){
     bool apresentar=true;
     int campo1;
 
-    char texto1[]="Lista de sessoes.";
+    char texto1[]="Lista de sessoes";
     char texto2[]="Sessao ";
     char texto3[]=" - Proxima pagina";
     char texto4[]=" - Pagina anterior";
@@ -1246,7 +1246,7 @@ void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
     Horario horario;
     Idioma idioma;
 
-    char texto1[]="Lista de sessoes.";
+    char texto1[]="Lista de sessoes";
     char texto2[]="Sessao ";
     char texto3[]="1 - Editar sessao";
     char texto4[]="2 - Descadastrar sessao";
@@ -1319,7 +1319,7 @@ void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
             // Vai na sessao selecionada
             for (int j = 0; j < SESSOES_POR_PAGINA; j++){
                 if (sessoes[j + (SESSOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
-                    if (sessao_a_editar == (j+1)){
+                    if (sessao_a_editar == ((j + 1) + (SESSOES_POR_PAGINA*pagina))){
                         while (true){
                             CLR_SCR;
                             cout << texto9;
@@ -1369,7 +1369,7 @@ void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
             // Vai na sessao selecionada
             for (int j = 0; j < SESSOES_POR_PAGINA; j++){
                 if (sessoes[j + (SESSOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
-                    if (sessao_a_excluir == (j+1)){
+                    if (sessao_a_excluir == ((j + 1) + (SESSOES_POR_PAGINA*pagina))){
                         // cntrServicoExcursao->descadastrarSessao(sessoes[j + (SESSOES_POR_PAGINA*pagina)]);; TEM QUE IMPLEMENTAR NO SERVIÇO
                     }
                 }
