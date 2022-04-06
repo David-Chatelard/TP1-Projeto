@@ -6,6 +6,8 @@
         "string": "cpp",
         "stdexcept": "cpp",
         "iostream": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "system_error": "cpp",
+        "xlocale": "cpp"
     }
 }

@@ -74,16 +74,12 @@ class IApresentacaoContas {
 
 class IApresentacaoExcursao {
     public:
-        // Funcionalidades a serem implementadas
-        // virtual void listarAvaliacoes(Email, Excursao) = 0;
-
-
-
         virtual void executar() = 0;
         virtual void executar(Email) = 0;
         virtual void listarExcursoes() = 0;
         virtual void listarExcursoes(Email) = 0;
         virtual void listarAvaliacoes(Excursao) = 0;
+        virtual void listarAvaliacoes(Email) = 0;
         virtual void listarSessoes(Excursao) = 0;
         virtual void listarSessoes(Email, Excursao) = 0;
         virtual void setCntrServicoExcursao(IServicoExcursao*) = 0;

@@ -105,17 +105,19 @@ inline void CntrApresentacaoContas::setCntrServicoContas(IServicoContas *cntr){
 class CntrApresentacaoExcursao:public IApresentacaoExcursao{
     private:
         IServicoExcursao *cntrServicoExcursao;
-        void detalheExcursao(Excursao);
-        void detalheExcursao(Email, Excursao);
+        void detalheExcursao(Excursao); // para quando não ta logado e quer ver todas as excursoes
+        void detalheExcursao2(Excursao); // para quando ta logado e quer ver todas as excursoes
+        void detalheExcursao(Email, Excursao); // para quando ta logado e quer ver todas as suas excursoes
     public:
         void executar();
         void executar(Email);
-        void listarExcursoes();
-        void listarExcursoes(Email);
+        void listarExcursoes(); // para quando não ta logado e quer ver todas as excursoes
+        void listarExcursoes2(); // para quando ta logado e quer ver todas as excursoes
+        void listarExcursoes(Email); // para quando ta logado e quer ver todas as suas excursoes
         void listarSessoes(Excursao);
         void listarSessoes(Email, Excursao);
         void listarAvaliacoes(Excursao);
-        // void listarAvaliacoes(Email, Excursao);
+        void listarAvaliacoes(Email);
         void setCntrServicoExcursao(IServicoExcursao*);
 };
 

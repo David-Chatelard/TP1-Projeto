@@ -275,7 +275,7 @@ void CntrApresentacaoContas::cadastrar(){
 
 
 
-
+// Função para quando não está logado e quer ver as excursões
 void CntrApresentacaoExcursao::executar(){
 
     // Mensagens a serem apresentadas na tela de sele��o de servi�o..
@@ -300,7 +300,7 @@ void CntrApresentacaoExcursao::executar(){
         campo1 = getch() - 48;                                                                  // Leitura do campo de entrada e conversão de ASCII.
 
         switch(campo1){
-            case 1: listarExcursoes(); //apresentar=false;    MUDAR DPS                                                                    
+            case 1: listarExcursoes();
                     break;
             case 2: apresentar = false;                                                         //Voltar para a lista de servicos
                     break;
@@ -308,6 +308,7 @@ void CntrApresentacaoExcursao::executar(){
     }
 }
 
+// Função para quando está logado e quer ver as excursões, suas excursões, suas avaliações ou cadastrar excursão
 void CntrApresentacaoExcursao::executar(Email email){ 
 
     // Mensagens a serem apresentadas na tela de sele��o de servi�o..
@@ -315,8 +316,9 @@ void CntrApresentacaoExcursao::executar(Email email){
     char texto1[]="Selecione um dos servicos : ";
     char texto2[]="1 - Listar todas as excursoes";
     char texto3[]="2 - Listar minhas excursoes";
-    char texto4[]="3 - Cadastrar excursao";
-    char texto5[]="4 - Retornar para o menu";
+    char texto12[]="3 - Listar minhas avaliacoes";
+    char texto4[]="4 - Cadastrar excursao";
+    char texto5[]="5 - Retornar para o menu";
     char texto6[]="Digite o titulo: ";
     char texto7[]="Digite a cidade: ";
     char texto8[]="Digite a duracao: ";
@@ -327,7 +329,7 @@ void CntrApresentacaoExcursao::executar(Email email){
     int campo1;                                                                                  // Campo de entrada.
     char campo2[80];
     char campo3[80];
-    char campo4[80]; //VER COMO FAZER VALIDACAO
+    char campo4[80];
     char campo5[80];
     char campo6[80];
 
@@ -349,58 +351,63 @@ void CntrApresentacaoExcursao::executar(Email email){
         cout << texto1 << endl;                                                                 // Imprime nome do campo.
         cout << texto2 << endl;                                                                 // Imprime nome do campo.
         cout << texto3 << endl;                                                                 // Imprime nome do campo.
+        cout << texto12 << endl;                                                                // Imprime nome do campo.
         cout << texto4 << endl;                                                                 // Imprime nome do campo.
         cout << texto5 << endl;                                                                 // Imprime nome do campo.
     
         campo1 = getch() - 48;                                                                  // Leitura do campo de entrada e conversão de ASCII.
 
         switch(campo1){
-            case 1: listarExcursoes(); //apresentar=false;
-                    break;
-            case 2: listarExcursoes(email); //apresentar=false;
-                    break;
-            case 3: while(true){                                                                //Cadastrar excursão
-                        CLR_SCR;
-                        cout << texto6;                                                         //Imprime os textos de cadastro da excursão
-                        cin >> campo2;                                                          //Le os inputs da excursão
-                        cout << texto7;
-                        cin >> campo3;
-                        cout << texto8;
-                        cin >> campo4; //VER COMO FAZER VALIDACAO
-                        cout << campo4;
-                        cout << texto9;
-                        cin >> campo5;
-                        cout << texto10;
-                        cin >> campo6;
+            case 1: listarExcursoes2();
+                break;
+            case 2: listarExcursoes(email);
+                break;
+            case 3:     // Listar suas avaliações
+                listarAvaliacoes(email);
+                break;
+            case 4:     // Cadastrar excursão
+                while(true){
+                    CLR_SCR;
+                    cout << texto6;                                                         // Imprime os textos de cadastro da excursão
+                    cin >> campo2;                                                          // Le os inputs da excursão
+                    cout << texto7;
+                    cin >> campo3;
+                    cout << texto8;
+                    cin >> campo4;
+                    cout << campo4;
+                    cout << texto9;
+                    cin >> campo5;
+                    cout << texto10;
+                    cin >> campo6;
 
-                        
-                        try{
-                            titulo.setValor(campo2);
-                            cidade.setValor(campo3);
-                            duracao.setValor(stoi(campo4));
-                            descricao.setValor(campo5);
-                            endereco.setValor(campo6);
-                            excursao.setTitulo(titulo);
-                            excursao.setCidade(cidade);
-                            excursao.setDuracao(duracao);
-                            excursao.setDescricao(descricao);
-                            excursao.setEndereco(endereco);
-                            break;
-                        }
-                        catch(invalid_argument &exp){
-                            CLR_SCR;
-                            cout << texto11 << endl;
-                            getch();
-                        }
+                    try{
+                        titulo.setValor(campo2);
+                        cidade.setValor(campo3);
+                        duracao.setValor(stoi(campo4));
+                        descricao.setValor(campo5);
+                        endereco.setValor(campo6);
+                        excursao.setTitulo(titulo);
+                        excursao.setCidade(cidade);
+                        excursao.setDuracao(duracao);
+                        excursao.setDescricao(descricao);
+                        excursao.setEndereco(endereco);
+                        break;
                     }
-                    cntrServicoExcursao->cadastrarExcursao(excursao); //RETORNA BOOLEAN, da para usar isso caso queira                             //Cadastrar excursao
-                    break;
-            case 4: apresentar = false;                                                                             //Voltar para a lista de servicos
-                    break;
+                    catch(invalid_argument &exp){
+                        CLR_SCR;
+                        cout << texto11 << endl;
+                        getch();
+                    }
+                }
+                cntrServicoExcursao->cadastrarExcursao(excursao); //RETORNA BOOLEAN, da para usar isso caso queira                             //Cadastrar excursao
+                break;
+            case 5: apresentar = false;                                                                             //Voltar para a lista de servicos
+                break;
         }
     }
 }
 
+// Função que lista todas as excursões quando não está logado
 void CntrApresentacaoExcursao::listarExcursoes(){
     // COMANDO DE BUSCAR TODAS AS EXCURSOES DA CAMADA DE SERVICO
     const int EXCURSOES_POR_PAGINA = 5;
@@ -476,6 +483,83 @@ void CntrApresentacaoExcursao::listarExcursoes(){
     }
 }
 
+// Função que lista todas as excursões quando está logado, tem diferença da função de cima, porque a partir dessa quando entrar nos detalhes de uma excursão pode cadastrar uma avaliação
+void CntrApresentacaoExcursao::listarExcursoes2(){
+    // COMANDO DE BUSCAR TODAS AS EXCURSOES DA CAMADA DE SERVICO
+    const int EXCURSOES_POR_PAGINA = 5;
+    Excursao excursoes[30]; // teste
+    int pagina=0, i, j, prox_pag=-1, pag_ant=-1, num_opcoes=0;
+    bool apresentar=true;
+    int campo1;
+
+    char texto1[]="Lista de excursoes.";
+    char texto2[]=" - Proxima pagina";
+    char texto3[]=" - Pagina anterior";
+    char texto4[]=" - Retornar a selecao de servicos";
+    
+    while (apresentar){
+        prox_pag=-1;
+        pag_ant=-1;
+        num_opcoes=0;
+
+        CLR_SCR;                                                                                // Limpa janela.
+        cout << texto1 << endl;                                                                 // Imprime nome do campo.
+
+        // Imprimir os titulos das excursões
+        for (i = 0; i < EXCURSOES_POR_PAGINA; i++){                                             // Imprime as avaliações
+            if (excursoes[i + (EXCURSOES_POR_PAGINA*pagina)].getTitulo().getValor() == "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
+                break;
+            }
+            cout << i+1 << " - ";                                                               // Imprime "Num - "
+            cout << excursoes[i + (EXCURSOES_POR_PAGINA*pagina)].getTitulo().getValor() << endl;
+        }
+
+        // Imprimir "Próxima página", se existirem mais excursões
+        if (excursoes[(i+1) + (EXCURSOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL" ) { //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista
+            num_opcoes++;
+            prox_pag = i+1;
+            cout << prox_pag << texto2 << endl;                                                                 // Imprime nome do campo.
+        }
+
+        // Imprimir "Página anterior", se não estiver na primeira página
+        if (pagina != 0) {
+            num_opcoes++;
+            if (prox_pag == -1){
+                pag_ant = i+1;
+            }
+            else{
+                pag_ant = i+2;                
+            }
+            cout << pag_ant << texto3 << endl;                                                                 // Imprime nome do campo.
+        }
+
+        // Imprimir "Retornar"
+        cout << i+1+num_opcoes << texto4 << endl;                                                                 // Imprime nome do campo.
+    
+        campo1 = getch() - 48;                                                                  // Leitura do campo de entrada e conversão de ASCII.
+
+        // Vai na excursão selecionada
+        for (j = 0; j < EXCURSOES_POR_PAGINA; j++){
+            if (excursoes[j + (EXCURSOES_POR_PAGINA*pagina)].getTitulo().getValor() != "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
+                if (campo1 == (j+1)){
+                    detalheExcursao2(excursoes[j + (EXCURSOES_POR_PAGINA*pagina)]);
+                }
+            }
+        }
+        
+        if (campo1 == prox_pag){
+            pagina++;
+        }
+        else if (campo1 == pag_ant){
+            pagina--;
+        }
+        else if (campo1 == (i+1+num_opcoes)){
+            apresentar = false;
+        }
+    }
+}
+
+// Função que lista as suas excursões e depois permite cadastrar/editar/remover sessões ou  cadastrar avaliações
 void CntrApresentacaoExcursao::listarExcursoes(Email email){
     // COMANDO DE BUSCAR TODAS AS EXCURSOES DESSE EMAIL DA CAMADA DE SERVICO
     const int EXCURSOES_POR_PAGINA = 5;
@@ -551,57 +635,7 @@ void CntrApresentacaoExcursao::listarExcursoes(Email email){
     }
 }
 
-void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
-    char texto1[] = "Informacoes sobre a excursao";
-    char texto2[] = "Titulo: ";
-    char texto3[] = "Nota: ";
-    char texto4[] = "Cidade: ";
-    char texto5[] = "Duracao: ";
-    char texto6[] = "Descricao: ";
-    char texto7[] = "Endereco: ";
-    char texto8[] = "1 - Avaliacoes dessa excursao";
-    char texto9[] = "2 - Sessoes dessa excursao";
-    char texto10[] = "3 - Editar excursao";
-    char texto11[] = "4 - Descadastrar excursao";
-    char texto12[] = "5 - Retornar para a lista de excursoes";
-
-    bool apresentar=true;
-
-    int campo1;
-
-    while (apresentar){
-
-        CLR_SCR;
-        cout << texto1 << endl;
-        cout << texto2 << excursao.getTitulo().getValor() << endl;
-        cout << texto3 << excursao.getNota().getValor() << endl;
-        cout << texto4 << excursao.getCidade().getValor() << endl;
-        cout << texto5 << excursao.getDuracao().getValor() << endl;
-        cout << texto6 << excursao.getDescricao().getValor() << endl;
-        cout << texto7 << excursao.getEndereco().getValor() << endl;
-        cout << texto8 << endl;
-        cout << texto9 << endl;
-        cout << texto10 << endl;
-        cout << texto11 << endl;
-        cout << texto12 << endl;
-
-        campo1 = getch() - 48;
-
-        switch (campo1) {
-            case 1: listarAvaliacoes(excursao);//cout << "fon1" << endl; //IMPLEMENTAR listarAvaliacoes(excursao)
-                break;
-            case 2: cout << "fon2" << endl;//listarSessoes(email, excursao); //IMPLEMENTAR listarSessoes(email, excursao)
-                break;
-            case 3: apresentar = false; //cntrServicoExcursao->editarExcursao(excursao);
-                break;
-            case 4: apresentar = false; //cntrServicoExcursao->descadastrarExcursao(excursao);
-                break;
-            case 5: apresentar = false;
-                break;
-        }
-    }
-}
-
+// Função que mostra os detalhes da excursão quando não está logado e permite ver as sessões e avaliações
 void CntrApresentacaoExcursao::detalheExcursao(Excursao excursao){
     char texto1[] = "Informacoes sobre a excursao";
     char texto2[] = "Titulo: ";
@@ -635,9 +669,9 @@ void CntrApresentacaoExcursao::detalheExcursao(Excursao excursao){
         campo1 = getch() - 48;
 
         switch (campo1) {
-            case 1: listarAvaliacoes(excursao);//cout << "fon1" << endl; //IMPLEMENTAR listarAvaliacoes(excursao)
+            case 1: listarAvaliacoes(excursao);
                 break;
-            case 2: cout << "fon2" << endl;//listarSessoes(excursao); //IMPLEMENTAR listarSessoes(excursao)
+            case 2: listarSessoes(excursao);
                 break;
             case 3: apresentar = false;
                 break;
@@ -645,8 +679,285 @@ void CntrApresentacaoExcursao::detalheExcursao(Excursao excursao){
     }
 }
 
+// Função que mostra os detalhes da excursão quando está logado e permite ver as sessões e avaliações e permite cadastrar avaliações
+void CntrApresentacaoExcursao::detalheExcursao2(Excursao excursao){
+    char texto1[] = "Informacoes sobre a excursao";
+    char texto2[] = "Titulo: ";
+    char texto3[] = "Nota: ";
+    char texto4[] = "Cidade: ";
+    char texto5[] = "Duracao: ";
+    char texto6[] = "Descricao: ";
+    char texto7[] = "Endereco: ";
+    char texto8[] = "1 - Avaliacoes dessa excursao";
+    char texto9[] = "2 - Sessoes dessa excursao";
+    char texto11[] = "3 - Cadastrar avaliacao";
+    char texto10[] = "4 - Retornar para a lista de excursoes";
+    char texto12[] = "Informacoes da avaliacao a ser cadastrada";
+    char texto13[] = "Nota: ";
+    char texto14[] = "Descricao: ";
+    char texto15[] = "Dado em formato incorreto. Digite algo.";
+
+    Avaliacao avaliacao;
+
+    Nota nota;
+    Descricao descricao;
+
+    int auxNota;
+    char auxDescricao[80];
+
+    bool apresentar=true;
+
+    int campo1;
+
+    while (apresentar){
+
+        CLR_SCR;
+        cout << texto1 << endl;
+        cout << texto2 << excursao.getTitulo().getValor() << endl;
+        cout << texto3 << excursao.getNota().getValor() << endl;
+        cout << texto4 << excursao.getCidade().getValor() << endl;
+        cout << texto5 << excursao.getDuracao().getValor() << endl;
+        cout << texto6 << excursao.getDescricao().getValor() << endl;
+        cout << texto7 << excursao.getEndereco().getValor() << endl;
+        cout << texto8 << endl;
+        cout << texto9 << endl;
+        cout << texto10 << endl;
+
+        campo1 = getch() - 48;
+
+        switch (campo1) {
+            case 1: listarAvaliacoes(excursao);
+                break;
+            case 2: listarSessoes(excursao);
+                break;
+            case 3: // cadastrar avaliação
+                while(true) {
+                    CLR_SCR;
+                    cout << texto12 << endl;
+                    cout << texto13;
+                    cin >> auxNota;
+                    cout << texto14;
+                    cin >> auxDescricao;
+
+                    try {
+                        nota.setValor(auxNota);
+                        descricao.setValor(auxDescricao);
+                        avaliacao.setNota(nota);
+                        avaliacao.setDescricao(descricao);
+                        break;
+                    }
+                    catch(invalid_argument &exp) {
+                        CLR_SCR;
+                        cout << texto15 << endl;
+                        getch();
+                    }
+                }
+                cntrServicoExcursao->cadastrarAvaliacao(avaliacao);
+                break;
+            case 4: apresentar = false;
+                break;
+        }
+    }
+}
+
+// Função que mostra os detalhes da sua excursão(podendo editar e descadastrar ela) quando está logado e permite ver as sessões e avaliações e permite cadastrar sessões e avaliações
+void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
+    char texto1[] = "Informacoes sobre a excursao";
+    char texto2[] = "Titulo: ";
+    char texto3[] = "Nota: ";
+    char texto4[] = "Cidade: ";
+    char texto5[] = "Duracao: ";
+    char texto6[] = "Descricao: ";
+    char texto7[] = "Endereco: ";
+    char texto8[] = "1 - Avaliacoes dessa excursao";
+    char texto9[] = "2 - Sessoes dessa excursao";
+    char texto20[] = "3 - Cadastrar sessao";
+    char texto21[] = "4 - Cadastrar avaliacao";
+    char texto10[] = "5 - Editar excursao";
+    char texto11[] = "6 - Descadastrar excursao";
+    char texto12[] = "7 - Retornar para a lista de excursoes";
+    char texto13[] = "Novo Titulo: ";
+    char texto14[] = "Nova Nota: ";
+    char texto15[] = "Nova Cidade: ";
+    char texto16[] = "Nova Duracao: ";
+    char texto17[] = "Nova Descricao: ";
+    char texto18[] = "Novo Endereco: ";
+    char texto19[] = "Dado em formato incorreto. Digite algo.";
+    char texto22[] = "Informacoes da sessao a ser cadastrada";
+    char texto23[] = "Data: ";
+    char texto24[] = "Horario: ";
+    char texto25[] = "Idioma: ";
+    char texto26[] = "Informacoes da avaliacao a ser cadastrada";
+    char texto27[] = "Nota: ";
+    char texto28[] = "Descricao: ";
+
+    bool apresentar=true;
+
+    Titulo titulo;
+    Nota nota;
+    Cidade cidade;
+    Duracao duracao;
+    Descricao descricao;
+    Endereco endereco;
+
+    Sessao sessao;
+
+    Avaliacao avaliacao;
+
+    Data data;
+    Horario horario;
+    Idioma idioma;
+
+    Nota nota;
+    Descricao descricao;
+
+    char auxTitulo[80];
+    int auxNota;
+    char auxCidade[80];
+    int auxDuracao;
+    char auxDescricao[80];
+    char auxEndereco[80];
+
+    char auxData[80];
+    char auxHorario[80];
+    char auxIdioma[80];
+
+    int auxNotaAvaliacao;
+    char auxDescricao[80];
+
+    int campo1;
+
+    while (apresentar){
+
+        CLR_SCR;
+        cout << texto1 << endl;
+        cout << texto2 << excursao.getTitulo().getValor() << endl;
+        cout << texto3 << excursao.getNota().getValor() << endl;
+        cout << texto4 << excursao.getCidade().getValor() << endl;
+        cout << texto5 << excursao.getDuracao().getValor() << endl;
+        cout << texto6 << excursao.getDescricao().getValor() << endl;
+        cout << texto7 << excursao.getEndereco().getValor() << endl;
+        cout << texto8 << endl;
+        cout << texto9 << endl;
+        cout << texto20 << endl;
+        cout << texto21 << endl;
+        cout << texto10 << endl;
+        cout << texto11 << endl;
+        cout << texto12 << endl;
+
+        campo1 = getch() - 48;
+
+        switch (campo1) {
+            case 1: listarAvaliacoes(excursao);
+                break;
+            case 2: listarSessoes(email, excursao);
+                break;
+            case 3: // cadastrar sessão
+                while(true) {
+                    CLR_SCR;
+                    cout << texto22 << endl;
+                    cout << texto23;
+                    cin >> auxData;
+                    cout << texto24;
+                    cin >> auxHorario;
+                    cout << texto25;
+                    cin >> auxIdioma;
+
+                    try {
+                        data.setValor(auxData);
+                        horario.setValor(auxHorario);
+                        idioma.setValor(auxIdioma);
+                        sessao.setData(data);
+                        sessao.setHorario(horario);
+                        sessao.setIdioma(idioma);
+                        break;
+                    }
+                    catch(invalid_argument &exp) {
+                        CLR_SCR;
+                        cout << texto19 << endl;
+                        getch();
+                    }
+                }
+                cntrServicoExcursao->cadastrarSessao(sessao);
+                break;
+            case 4: // cadastrar avaliação
+                while(true) {
+                    CLR_SCR;
+                    cout << texto26 << endl;
+                    cout << texto27;
+                    cin >> auxNotaAvaliacao;
+                    cout << texto28;
+                    cin >> auxDescricao;
+
+                    try {
+                        nota.setValor(auxNotaAvaliacao);
+                        descricao.setValor(auxDescricao);
+                        avaliacao.setNota(nota);
+                        avaliacao.setDescricao(descricao);
+                        break;
+                    }
+                    catch(invalid_argument &exp) {
+                        CLR_SCR;
+                        cout << texto19 << endl;
+                        getch();
+                    }
+                }
+                cntrServicoExcursao->cadastrarAvaliacao(avaliacao);
+                break;
+            case 5: // editar excursão
+                while(true) {
+                    CLR_SCR;
+                    // SE BOTAR UM INPUT COM ESPAÇO DA ERRADO, TEM QUE TENTAR RESOLVER ISSO, ELE SO PEGA A PRIMEIRA PALAVRA E DA ERRADO OS PROXIMOS INPUTS
+                    cout << texto13;
+                    // cin.getline(auxTitulo,80);
+                    cin >> auxTitulo;
+                    cout << texto14;
+                    cin >> auxNota;
+                    cout << texto15;
+                    // getline(cin, auxCidade);
+                    cin >> auxCidade;
+                    cout << texto16;
+                    cin >> auxDuracao;
+                    cout << texto17;
+                    // getline(cin, auxDescricao);
+                    cin >> auxDescricao;
+                    cout << texto18;
+                    // getline(cin, auxEndereco);
+                    cin >> auxEndereco;
+                    try {
+                        titulo.setValor(auxTitulo);
+                        nota.setValor(auxNota);
+                        cidade.setValor(auxCidade);
+                        duracao.setValor(auxDuracao);
+                        descricao.setValor(auxDescricao);
+                        endereco.setValor(auxEndereco);
+                        excursao.setTitulo(titulo);
+                        excursao.setNota(nota);
+                        excursao.setCidade(cidade);
+                        excursao.setDuracao(duracao);
+                        excursao.setDescricao(descricao);
+                        excursao.setEndereco(endereco);
+                        break;
+                    }
+                    catch(invalid_argument &exp){
+                        CLR_SCR;
+                        cout << texto19 << endl;
+                        getch();
+                    }
+                }
+                //cntrServicoExcursao->editarExcursao(excursao);
+                break;
+            case 6: apresentar = false; //cntrServicoExcursao->descadastrarExcursao(excursao);
+                break;
+            case 7: apresentar = false;
+                break;
+        }
+    }
+}
+
+// Função que lista as avaliações de uma excursão
 void CntrApresentacaoExcursao::listarAvaliacoes(Excursao excursao){ // A versão que aceita email vai ser pra listar as minhas avaliacoes e vai mudar no metodo de pegar as avaliacoes e que vai poder editar/excluir as avaliacoes
-    // COMANDO DE BUSCAR TODAS AS AVALIACOES DA CAMADA DE SERVICO
+    // COMANDO DE BUSCAR TODAS AS AVALIACOES DESSA EXCURSAO DA CAMADA DE SERVICO
     const int AVALIACOES_POR_PAGINA = 5;
     Avaliacao avaliacoes[30]; // teste
     int pagina=0, i, num_opcoes=1, prox_pag=0, pag_ant=1;
@@ -702,6 +1013,70 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Excursao excursao){ // A versão
     }
 }
 
+// Função que lista todas as suas avaliações e permite editar/descadastrar uma avaliação
+// TEM QUE IMPLEMENTAR ESSA AQUI DIREITO AINDA, TA SO COPIADA DA DE CIMA
+void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que aceita email vai ser pra listar as minhas avaliacoes e vai mudar no metodo de pegar as avaliacoes e que vai poder editar/excluir as avaliacoes
+    // COMANDO DE BUSCAR TODAS AS AVALIACOES DESSE USUARIO DA CAMADA DE SERVICO
+    const int AVALIACOES_POR_PAGINA = 5;
+    Avaliacao avaliacoes[30]; // teste
+    int pagina=0, i, num_opcoes=1, prox_pag=0, pag_ant=1;
+    bool apresentar=true;
+    int campo1;
+
+    char texto1[]="Lista de avaliacoes.";
+    char texto2[]="Avaliacao ";
+    char texto3[]=" - Proxima pagina";
+    char texto4[]=" - Pagina anterior";
+    char texto5[]=" - Retornar para a lista de servicos";
+    
+    while (apresentar){
+        num_opcoes=1;
+        prox_pag=0;
+        pag_ant=1;
+
+        CLR_SCR;                                                                                // Limpa janela.
+        cout << texto1 << endl;
+
+        // Mostrar as avaliações
+        for (i = 0; i < AVALIACOES_POR_PAGINA; i++){                                        // Imprime as avaliações
+            if (avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getCodigo().getValor() == "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais avaliações
+                break;
+            }
+            cout << texto2 << (i + 1) + (AVALIACOES_POR_PAGINA*pagina) << endl;
+            cout << "Nota: " << avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getNota().getValor() << endl;
+            cout << "Descricao: " << avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getDescricao().getValor() << endl << endl;
+        }
+
+        // Mostra a opção de prox pag
+        if (avaliacoes[(i+1) + (AVALIACOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL" ){  // Se tiver mais avaliações
+            prox_pag++;
+            cout << prox_pag << texto3 << endl;                                                                 // Opção de próxima página
+            num_opcoes++;
+            pag_ant++;
+        }
+        // Mostra a opção de pag anterior
+        if (pagina != 0){
+            cout << pag_ant << texto4 << endl;                                                                 // Opção de página anterior
+            num_opcoes++;
+        }
+        // Mostra a opção de voltar para os outros serviços
+        cout << num_opcoes << texto5 << endl;                                                                 // Imprime nome do campo.
+    
+        campo1 = getch() - 48;                                                                  // Leitura do campo de entrada e conversão de ASCII.
+
+        if (campo1 == prox_pag){
+            pagina++;
+        }
+        else if (campo1 == pag_ant && pagina != 0){
+            pagina--;
+        }
+        else if (campo1 == num_opcoes){
+            apresentar = false;
+        }
+    }
+}
+
+// Função que lista as sessões de uma excursão
 void CntrApresentacaoExcursao::listarSessoes(Excursao excursao){
     // COMANDO DE BUSCAR TODAS AS SESSOES DESSA EXCURSAO DA CAMADA DE SERVICO
     const int SESSOES_POR_PAGINA = 5;
@@ -760,6 +1135,7 @@ void CntrApresentacaoExcursao::listarSessoes(Excursao excursao){
     }
 }
 
+// Função que lista as sessões de uma excursão e permite editar/descadastrar uma sessão
 void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
     // COMANDO DE BUSCAR TODAS AS SESSOES DESSA EXCURSAO DA CAMADA DE SERVICO
     const int SESSOES_POR_PAGINA = 5;
@@ -803,6 +1179,7 @@ void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
         CLR_SCR;                                                                                // Limpa janela.
         cout << texto1 << endl;
 
+        // Mostra as sessoes na tela
         for (i = 0; i < SESSOES_POR_PAGINA; i++){                                        // Imprime as sessões
             if (sessoes[i + (SESSOES_POR_PAGINA*pagina)].getCodigo().getValor() == "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais sessões
                 break;
@@ -816,12 +1193,14 @@ void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
         cout << texto3 << endl;
         cout << texto4 << endl;
 
+        // Mostra a opcao de prox pagina
         if (sessoes[(i+1) + (SESSOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL" ){  // Se tiver mais sessões
             prox_pag = 3;
             cout << prox_pag << texto5 << endl;                                                                 // Opção de próxima página
             num_opcoes++;
             pag_ant++;
         }
+        // Mostra a opcao de pagina anterior
         if (pagina != 0){
             cout << pag_ant << texto6 << endl;                                                                 // Opção de página anterior
             num_opcoes++;
@@ -834,6 +1213,7 @@ void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
             CLR_SCR;                                                                                // Limpa janela.
             cout << texto1 << endl;
 
+            // Mostra as sessoes
             for (i = 0; i < SESSOES_POR_PAGINA; i++){                                        // Imprime as sessões
                 if (sessoes[i + (SESSOES_POR_PAGINA*pagina)].getCodigo().getValor() == "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais sessões
                     break;
@@ -847,7 +1227,7 @@ void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
             cout << texto8 << endl;
             sessao_a_editar = getch() - 48;                                                                  // Leitura do campo de entrada e conversão de ASCII.
 
-            // Vai na excursão selecionada
+            // Vai na sessao selecionada
             for (int j = 0; j < SESSOES_POR_PAGINA; j++){
                 if (sessoes[j + (SESSOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
                     if (sessao_a_editar == (j+1)){
@@ -897,7 +1277,7 @@ void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
             cout << texto13 << endl;
             sessao_a_excluir = getch() - 48;                                                                  // Leitura do campo de entrada e conversão de ASCII.
 
-            // Vai na excursão selecionada
+            // Vai na sessao selecionada
             for (int j = 0; j < SESSOES_POR_PAGINA; j++){
                 if (sessoes[j + (SESSOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
                     if (sessao_a_excluir == (j+1)){
