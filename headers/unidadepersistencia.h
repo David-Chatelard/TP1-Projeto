@@ -2,7 +2,7 @@
 #define UNIDADEPERSISTENCIA_H_INCLUDED
 
 //---------------------------------------------------------------------------
-// Incluir cabe�alhos.
+// Incluir cabeçalhos.
 
 #include "dominios.h"
 #include "entidades.h"
@@ -14,12 +14,12 @@
 #include <string>
 #include <stdio.h>
 
-#include "sqlite3.h"            // Incluir cabe�alho da biblioteca SQLite.
+#include "sqlite3.h"            // Incluir cabeçalho da biblioteca SQLite.
 
 using namespace std;
 
 //---------------------------------------------------------------------------
-// Declara��o da classe EErroPersistencia.
+// Declaração da classe EErroPersistencia.
 
 class EErroPersistencia {
 private:
@@ -30,7 +30,7 @@ public:
 };
 
 //---------------------------------------------------------------------------
-// Declara��o da classe ElementoResultado.
+// Declaração da classe ElementoResultado.
 
 class ElementoResultado {
 private:
@@ -44,7 +44,7 @@ public:
 };
 
 //---------------------------------------------------------------------------
-// Declara��o da classe ComandoSQL.
+// Declaração da classe ComandoSQL.
 
 class ComandoSQL {
 private:
@@ -67,57 +67,57 @@ public:
 };
 
 //---------------------------------------------------------------------------
-// Declara��o da classe ComandoLerSenha.
+// Declaração da classe ComandoLerSenha.
 
 class ComandoLerSenha:public ComandoSQL {
 public:
-        ComandoLerSenha(Matricula);
+        ComandoLerSenha(Email);
         string getResultado();
 };
 
 //---------------------------------------------------------------------------
-//Classe ComandoPesquisarAluno.
+//Classe ComandoPesquisarUsuario.
 
-class ComandoPesquisarAluno:public ComandoSQL {
+class ComandoPesquisarUsuario:public ComandoSQL {
 public:
-        ComandoPesquisarAluno(Matricula);
-        Aluno getResultado();
+        ComandoPesquisarUsuario(Email);
+        Usuario getResultado();
 };
 
+// //---------------------------------------------------------------------------
+// // Declaração da classe ComandoCadastrarUsuario.
+
+// class ComandoCadastrarUsuario:public ComandoSQL {
+// public:
+//         ComandoCadastrarUsuario(Usuario);
+// };
+
+// //---------------------------------------------------------------------------
+// //Classe ComandoAtualizarUsuario.
+
+// class ComandoAtualizarUsuario:public ComandoSQL {
+// public:
+//         ComandoAtualizarUsuario(Usuario);
+// };
+
+// //---------------------------------------------------------------------------
+// // Declaração da classe ComandoRemoverUsuario.
+
+// class ComandoRemoverUsuario:public ComandoSQL {
+// public:
+//         ComandoRemoverUsuario(Email);
+// };
+
+// //---------------------------------------------------------------------------
+// //Classe ComandoCadastrarDisciplina.
+
+// class ComandoCadastrarDisciplina:public ComandoSQL {
+// public:
+//         ComandoCadastrarDisciplina(Disciplina);
+// };
+
 //---------------------------------------------------------------------------
-// Declara��o da classe ComandoCadastrarAluno.
-
-class ComandoCadastrarAluno:public ComandoSQL {
-public:
-        ComandoCadastrarAluno(Aluno);
-};
-
-//---------------------------------------------------------------------------
-//Classe ComandoAtualizarAluno.
-
-class ComandoAtualizarAluno:public ComandoSQL {
-public:
-        ComandoAtualizarAluno(Aluno);
-};
-
-//---------------------------------------------------------------------------
-// Declara��o da classe ComandoRemoverAluno.
-
-class ComandoRemoverAluno:public ComandoSQL {
-public:
-        ComandoRemoverAluno(Matricula);
-};
-
-//---------------------------------------------------------------------------
-//Classe ComandoCadastrarDisciplina.
-
-class ComandoCadastrarDisciplina:public ComandoSQL {
-public:
-        ComandoCadastrarDisciplina(Disciplina);
-};
-
-//---------------------------------------------------------------------------
-// Implementa��es de m�todos.
+// Implementações de métodos.
 
 inline string ElementoResultado::getNomeColuna() const {
         return nomeColuna;
