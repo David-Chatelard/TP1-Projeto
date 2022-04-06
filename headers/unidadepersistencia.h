@@ -84,13 +84,21 @@ public:
         Usuario getResultado();
 };
 
-// //---------------------------------------------------------------------------
-// // Declaração da classe ComandoCadastrarUsuario.
+//---------------------------------------------------------------------------
+// Declaração da classe ComandoCadastrarUsuario.
 
-// class ComandoCadastrarUsuario:public ComandoSQL {
-// public:
-//         ComandoCadastrarUsuario(Usuario);
-// };
+class ComandoCadastrarUsuario:public ComandoSQL {
+public:
+        ComandoCadastrarUsuario(Usuario);
+};
+
+//---------------------------------------------------------------------------
+// Declaração da classe ComandoRemoverUsuario.
+
+class ComandoRemoverUsuario:public ComandoSQL {
+public:
+        ComandoRemoverUsuario(Email);
+};
 
 // //---------------------------------------------------------------------------
 // //Classe ComandoAtualizarUsuario.
@@ -98,14 +106,6 @@ public:
 // class ComandoAtualizarUsuario:public ComandoSQL {
 // public:
 //         ComandoAtualizarUsuario(Usuario);
-// };
-
-// //---------------------------------------------------------------------------
-// // Declaração da classe ComandoRemoverUsuario.
-
-// class ComandoRemoverUsuario:public ComandoSQL {
-// public:
-//         ComandoRemoverUsuario(Email);
 // };
 
 // //---------------------------------------------------------------------------

@@ -133,25 +133,23 @@ Usuario ComandoPesquisarUsuario::getResultado() {
 
 }
 
-// //---------------------------------------------------------------------------
-// // Implementações de métodos da classe ComandoCadastrarAluno.
+//---------------------------------------------------------------------------
+// Implementações de métodos da classe ComandoCadastrarUsuario.
 
-// ComandoCadastrarAluno::ComandoCadastrarAluno(Aluno aluno) {
-//         comandoSQL = "INSERT INTO alunos VALUES (";
-//         comandoSQL += "'" + aluno.getNome().getValor() + "', ";
-//         comandoSQL += "'" + aluno.getMatricula().getValor() + "', ";
-//         comandoSQL += "'" + aluno.getSenha().getValor() + "', ";
-//         comandoSQL += "'" + aluno.getTelefone().getValor() + "', ";
-//         comandoSQL += "'" + aluno.getMatriculaOrientador().getValor() + "')";
-// }
+ComandoCadastrarUsuario::ComandoCadastrarUsuario(Usuario usuario) {
+        comandoSQL = "INSERT INTO usuarios VALUES (";
+        comandoSQL += "'" + usuario.getNome().getValor() + "', ";
+        comandoSQL += "'" + usuario.getEmail().getValor() + "', ";
+        comandoSQL += "'" + usuario.getSenha().getValor() + "')";
+}
 
-// //---------------------------------------------------------------------------
-// // Implementações de métodos da classe ComandoRemoverAluno.
+//---------------------------------------------------------------------------
+// Implementações de métodos da classe ComandoRemoverUsuario.
 
-// ComandoRemoverAluno::ComandoRemoverAluno(Matricula matricula) {
-//         comandoSQL = "DELETE FROM alunos WHERE matricula = ";
-//         comandoSQL += matricula.getValor();
-// }
+ComandoRemoverUsuario::ComandoRemoverUsuario(Email email) {
+        comandoSQL = "DELETE FROM usuarios WHERE email = ";
+        comandoSQL += email.getValor();
+}
 
 // //---------------------------------------------------------------------------
 // // Implementações de métodos da classe ComandoEditarAluno.
