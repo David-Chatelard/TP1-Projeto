@@ -909,21 +909,21 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
                     CLR_SCR;
                     // SE BOTAR UM INPUT COM ESPAÇO DA ERRADO, TEM QUE TENTAR RESOLVER ISSO, ELE SO PEGA A PRIMEIRA PALAVRA E DA ERRADO OS PROXIMOS INPUTS
                     cout << texto13;
-                    // cin.getline(auxTitulo,80);
-                    cin >> auxTitulo;
+                    cin.getline(auxTitulo,79);
+                    // cin >> auxTitulo;
                     cout << texto14;
                     cin >> auxNota;
                     cout << texto15;
-                    // getline(cin, auxCidade);
-                    cin >> auxCidade;
+                    cin.getline(auxCidade,79);
+                    // cin >> auxCidade;
                     cout << texto16;
                     cin >> auxDuracao;
                     cout << texto17;
-                    // getline(cin, auxDescricao);
-                    cin >> auxDescricao;
+                    cin.getline(auxDescricao,79);
+                    // cin >> auxDescricao;
                     cout << texto18;
-                    // getline(cin, auxEndereco);
-                    cin >> auxEndereco;
+                    cin.getline(auxEndereco,79);
+                    // cin >> auxEndereco;
                     try {
                         titulo.setValor(auxTitulo);
                         nota.setValor(stoi(auxNota));
@@ -1021,7 +1021,10 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que a
     Avaliacao avaliacoes[30]; // teste
 
     int pagina=0, i, num_opcoes=1, prox_pag=0, pag_ant=1;
-    int campo1, avaliacao_a_editar, avaliacao_a_excluir;
+    int campo1;
+
+    char avaliacao_a_editar[10];
+    char avaliacao_a_excluir[10];
 
     bool apresentar=true;
     
@@ -1097,12 +1100,12 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que a
             }
 
             cout << texto8 << endl;
-            avaliacao_a_editar = getch() - 48;                                                                  // Leitura do campo de entrada e conversão de ASCII.
+            cin >> avaliacao_a_editar;
 
             // Vai na avaliacao selecionada
             for (int j = 0; j < AVALIACOES_POR_PAGINA; j++){
                 if (avaliacoes[j + (AVALIACOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
-                    if (avaliacao_a_editar == ((j + 1) + (AVALIACOES_POR_PAGINA*pagina))){
+                    if (stoi(avaliacao_a_editar) == ((j + 1) + (AVALIACOES_POR_PAGINA*pagina))){
                         while (true){
                             CLR_SCR;
                             cout << texto9;
@@ -1142,12 +1145,12 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que a
             }
 
             cout << texto13 << endl;
-            avaliacao_a_excluir = getch() - 48;                                                                  // Leitura do campo de entrada e conversão de ASCII.
+            cin >> avaliacao_a_excluir;
 
             // Vai na avaliacao selecionada
             for (int j = 0; j < AVALIACOES_POR_PAGINA; j++){
                 if (avaliacoes[j + (AVALIACOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
-                    if (avaliacao_a_excluir == ((j + 1) + (AVALIACOES_POR_PAGINA*pagina))){
+                    if (stoi(avaliacao_a_excluir) == ((j + 1) + (AVALIACOES_POR_PAGINA*pagina))){
                         // cntrServicoExcursao->descadastrarAvaliacao(avaliacoes[j + (AVALIACOES_POR_PAGINA*pagina)]);; TEM QUE IMPLEMENTAR NO SERVIÇO
                     }
                 }
@@ -1232,7 +1235,10 @@ void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
     Sessao sessoes[30]; // teste
 
     int pagina=0, i, num_opcoes=1, prox_pag=0, pag_ant=1;
-    int campo1, sessao_a_editar, sessao_a_excluir;
+    int campo1;
+
+    char sessao_a_editar[10];
+    char sessao_a_excluir[10];
 
     bool apresentar=true;
     
@@ -1314,12 +1320,12 @@ void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
             }
 
             cout << texto8 << endl;
-            sessao_a_editar = getch() - 48;                                                                  // Leitura do campo de entrada e conversão de ASCII.
+            cin >> sessao_a_editar;
 
             // Vai na sessao selecionada
             for (int j = 0; j < SESSOES_POR_PAGINA; j++){
                 if (sessoes[j + (SESSOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
-                    if (sessao_a_editar == ((j + 1) + (SESSOES_POR_PAGINA*pagina))){
+                    if (stoi(sessao_a_editar) == ((j + 1) + (SESSOES_POR_PAGINA*pagina))){
                         while (true){
                             CLR_SCR;
                             cout << texto9;
@@ -1364,12 +1370,12 @@ void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
             }
 
             cout << texto13 << endl;
-            sessao_a_excluir = getch() - 48;                                                                  // Leitura do campo de entrada e conversão de ASCII.
+            cin >> sessao_a_excluir;
 
             // Vai na sessao selecionada
             for (int j = 0; j < SESSOES_POR_PAGINA; j++){
                 if (sessoes[j + (SESSOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
-                    if (sessao_a_excluir == ((j + 1) + (SESSOES_POR_PAGINA*pagina))){
+                    if (stoi(sessao_a_excluir) == ((j + 1) + (SESSOES_POR_PAGINA*pagina))){
                         // cntrServicoExcursao->descadastrarSessao(sessoes[j + (SESSOES_POR_PAGINA*pagina)]);; TEM QUE IMPLEMENTAR NO SERVIÇO
                     }
                 }
