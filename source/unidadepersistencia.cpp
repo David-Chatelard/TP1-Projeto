@@ -165,11 +165,17 @@ ComandoAtualizarUsuario::ComandoAtualizarUsuario(Usuario usuario) {
         //talvez tenha que trocar por comandoSQL += "' WHERE email = '" + usuario.getEmail().getValor() + "'";
 }
 
-// //---------------------------------------------------------------------------
-// // Implementações de métodos da classe ComandoCadastrarDisciplina.
+//---------------------------------------------------------------------------
+// Implementações de métodos da classe ComandoCadastrarExcursao.
 
-// ComandoCadastrarDisciplina::ComandoCadastrarDisciplina(Disciplina disciplina) {
-//         comandoSQL = "INSERT INTO disciplinas VALUES (";
-//         comandoSQL += "'" + disciplina.getNome().getValor() + "', ";
-//         comandoSQL += "'" + disciplina.getCodigo().getValor() + "')";
-// }
+ComandoCadastrarExcursao::ComandoCadastrarExcursao(Excursao excursao) {
+        comandoSQL = "INSERT INTO excursoes VALUES (";
+        comandoSQL += "'" + excursao.getCodigo().getValor() + "', ";
+        comandoSQL += "'" + excursao.getTitulo().getValor() + "', ";
+        comandoSQL += "'" + to_string(excursao.getNota().getValor()) + "', ";
+        comandoSQL += "'" + excursao.getCidade().getValor() + "', ";
+        comandoSQL += "'" + to_string(excursao.getDuracao().getValor()) + "', ";
+        comandoSQL += "'" + excursao.getDescricao().getValor() + "', ";
+        comandoSQL += "'" + excursao.getEndereco().getValor() + "', ";
+        comandoSQL += "'" + excursao.getEmail().getValor() + "')";
+}

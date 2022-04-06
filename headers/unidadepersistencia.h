@@ -108,13 +108,13 @@ public:
         ComandoAtualizarUsuario(Usuario);
 };
 
-// //---------------------------------------------------------------------------
-// //Classe ComandoCadastrarDisciplina.
+//---------------------------------------------------------------------------
+//Classe ComandoCadastrarExcursao.
 
-// class ComandoCadastrarDisciplina:public ComandoSQL {
-// public:
-//         ComandoCadastrarDisciplina(Disciplina);
-// };
+class ComandoCadastrarExcursao:public ComandoSQL {
+public:
+        ComandoCadastrarExcursao(Excursao);
+};
 
 //---------------------------------------------------------------------------
 // Implementações de métodos.
