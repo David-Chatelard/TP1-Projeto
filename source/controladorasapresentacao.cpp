@@ -808,8 +808,8 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
     Horario horario;
     Idioma idioma;
 
-    Nota nota;
-    Descricao descricao;
+    Nota notaAvaliacao;
+    Descricao descricaoAvaliacao;
 
     char auxTitulo[80];
     int auxNota;
@@ -823,7 +823,7 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
     char auxIdioma[80];
 
     int auxNotaAvaliacao;
-    char auxDescricao[80];
+    char auxDescricaoAvaliacao[80];
 
     int campo1;
 
@@ -887,13 +887,13 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
                     cout << texto27;
                     cin >> auxNotaAvaliacao;
                     cout << texto28;
-                    cin >> auxDescricao;
+                    cin >> auxDescricaoAvaliacao;
 
                     try {
-                        nota.setValor(auxNotaAvaliacao);
-                        descricao.setValor(auxDescricao);
-                        avaliacao.setNota(nota);
-                        avaliacao.setDescricao(descricao);
+                        notaAvaliacao.setValor(auxNotaAvaliacao);
+                        descricaoAvaliacao.setValor(auxDescricaoAvaliacao);
+                        avaliacao.setNota(notaAvaliacao);
+                        avaliacao.setDescricao(descricaoAvaliacao);
                         break;
                     }
                     catch(invalid_argument &exp) {
