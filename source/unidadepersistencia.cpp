@@ -73,6 +73,7 @@ int ComandoSQL::callback(void *NotUsed, int argc, char **valorColuna, char **nom
 ComandoLerSenha::ComandoLerSenha(Email email) {
         comandoSQL = "SELECT senha FROM usuarios WHERE email = ";
         comandoSQL += email.getValor();
+        //talvez tenha que trocar por comandoSQL += "'" + email.getValor() + "'";
 }
 
 string ComandoLerSenha::getResultado() {
@@ -95,6 +96,7 @@ string ComandoLerSenha::getResultado() {
 ComandoPesquisarUsuario::ComandoPesquisarUsuario(Email email) {
         comandoSQL = "SELECT * FROM usuarios WHERE email = ";
         comandoSQL += email.getValor();
+        //talvez tenha que trocar por comandoSQL += "'" + email.getValor() + "'";
 }
 
 Usuario ComandoPesquisarUsuario::getResultado() {
@@ -149,6 +151,7 @@ ComandoCadastrarUsuario::ComandoCadastrarUsuario(Usuario usuario) {
 ComandoRemoverUsuario::ComandoRemoverUsuario(Email email) {
         comandoSQL = "DELETE FROM usuarios WHERE email = ";
         comandoSQL += email.getValor();
+        //talvez tenha que trocar por comandoSQL += "'" + email.getValor() + "'";
 }
 
 //---------------------------------------------------------------------------
@@ -159,6 +162,7 @@ ComandoAtualizarUsuario::ComandoAtualizarUsuario(Usuario usuario) {
         comandoSQL += "SET nome = '" + usuario.getNome().getValor();
         comandoSQL += "', senha = '" + usuario.getSenha().getValor();
         comandoSQL += "' WHERE email = " + usuario.getEmail().getValor();
+        //talvez tenha que trocar por comandoSQL += "' WHERE email = '" + usuario.getEmail().getValor() + "'";
 }
 
 // //---------------------------------------------------------------------------
