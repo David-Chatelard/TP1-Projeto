@@ -294,10 +294,16 @@ ComandoCadastrarExcursao::ComandoCadastrarExcursao(Excursao excursao) {
 //---------------------------------------------------------------------------
 // Implementações de métodos da classe ComandoRemoverExcursao.
 
-ComandoRemoverExcursao::ComandoRemoverExcursao(Excursao excursao) {
+ComandoRemoverExcursao::ComandoRemoverExcursao(Codigo codigo) {
         comandoSQL = "DELETE FROM excursoes WHERE codigo = ";
-        comandoSQL += "'" + excursao.getCodigo().getValor() + "'";
-        // comandoSQL += excursao.getCodigo().getValor();
+        comandoSQL += "'" + codigo.getValor() + "'";
+        // comandoSQL += codigo.getValor();
+}
+
+ComandoRemoverExcursao::ComandoRemoverExcursao(Email emailGuia) {
+        comandoSQL = "DELETE FROM excursoes WHERE emailGuia = ";
+        comandoSQL += "'" + emailGuia.getValor() + "'";
+        // comandoSQL += emailGuia.getValor();
 }
 
 //---------------------------------------------------------------------------
