@@ -146,7 +146,8 @@ public:
 
 class ComandoRemoverExcursao:public ComandoSQL {
 public:
-        ComandoRemoverExcursao(Excursao);
+        ComandoRemoverExcursao(Codigo);
+        ComandoRemoverExcursao(Email);
 };
 
 //---------------------------------------------------------------------------
@@ -214,7 +215,6 @@ public:
         ComandoListarSessoes(Codigo);
         vector<ElementoResultado> getResultado();
 };
-
 
 //---------------------------------------------------------------------------
 //Classe ComandoPesquisarSessao.
