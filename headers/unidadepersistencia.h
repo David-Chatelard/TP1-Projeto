@@ -146,7 +146,7 @@ public:
 
 class ComandoRemoverExcursao:public ComandoSQL {
 public:
-        ComandoRemoverExcursao(Codigo);
+        ComandoRemoverExcursao(Excursao);
         ComandoRemoverExcursao(Email);
 };
 
@@ -194,6 +194,8 @@ public:
 class ComandoRemoverAvaliacao:public ComandoSQL {
 public:
         ComandoRemoverAvaliacao(Avaliacao);
+        ComandoRemoverAvaliacao(Codigo);
+        ComandoRemoverAvaliacao(Email);
 };
 
 //---------------------------------------------------------------------------
@@ -239,6 +241,7 @@ public:
 class ComandoRemoverSessao:public ComandoSQL {
 public:
         ComandoRemoverSessao(Sessao);
+        ComandoRemoverSessao(Codigo);
 };
 
 //---------------------------------------------------------------------------

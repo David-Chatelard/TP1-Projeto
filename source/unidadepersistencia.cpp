@@ -294,12 +294,14 @@ ComandoCadastrarExcursao::ComandoCadastrarExcursao(Excursao excursao) {
 //---------------------------------------------------------------------------
 // Implementações de métodos da classe ComandoRemoverExcursao.
 
-ComandoRemoverExcursao::ComandoRemoverExcursao(Codigo codigo) {
+// Função que remove a excursão que possui o código
+ComandoRemoverExcursao::ComandoRemoverExcursao(Excursao excursao) {
         comandoSQL = "DELETE FROM excursoes WHERE codigo = ";
-        comandoSQL += "'" + codigo.getValor() + "'";
-        // comandoSQL += codigo.getValor();
+        comandoSQL += "'" + excursao.getCodigo().getValor() + "'";
+        // comandoSQL += excursao.getCodigo().getValor();
 }
 
+// Função que remove todas excursões que possuem esse email
 ComandoRemoverExcursao::ComandoRemoverExcursao(Email emailGuia) {
         comandoSQL = "DELETE FROM excursoes WHERE emailGuia = ";
         comandoSQL += "'" + emailGuia.getValor() + "'";
@@ -409,10 +411,25 @@ ComandoCadastrarAvaliacao::ComandoCadastrarAvaliacao(Avaliacao avaliacao) {
 //---------------------------------------------------------------------------
 // Implementações de métodos da classe ComandoRemoverAvaliacao.
 
+// Função que remove a avaliação que possui o código
 ComandoRemoverAvaliacao::ComandoRemoverAvaliacao(Avaliacao avaliacao) {
         comandoSQL = "DELETE FROM avaliacoes WHERE codigo = ";
         comandoSQL += "'" + avaliacao.getCodigo().getValor() + "'";
         // comandoSQL += avaliacao.getCodigo().getValor();
+}
+
+// Função que remove todas avaliações que possuem esse código de excursão
+ComandoRemoverAvaliacao::ComandoRemoverAvaliacao(Codigo codigoExcursao) {
+        comandoSQL = "DELETE FROM avaliacoes WHERE codigoExcursao = ";
+        comandoSQL += "'" + codigoExcursao.getValor() + "'";
+        // comandoSQL += codigoExcursao.getValor();
+}
+
+// Função que remove todas avaliações que possuem esse email
+ComandoRemoverAvaliacao::ComandoRemoverAvaliacao(Email emailAutor) {
+        comandoSQL = "DELETE FROM avaliacoes WHERE emailAutor = ";
+        comandoSQL += "'" + emailAutor.getValor() + "'";
+        // comandoSQL += emailAutor.getValor();
 }
 
 //---------------------------------------------------------------------------
@@ -516,10 +533,18 @@ ComandoCadastrarSessao::ComandoCadastrarSessao(Sessao sessao) {
 //---------------------------------------------------------------------------
 // Implementações de métodos da classe ComandoRemoverSessao.
 
+// Função que remove a sessão que possui o código
 ComandoRemoverSessao::ComandoRemoverSessao(Sessao sessao) {
         comandoSQL = "DELETE FROM sessoes WHERE codigo = ";
         comandoSQL += "'" + sessao.getCodigo().getValor() + "'";
         // comandoSQL += sessao.getCodigo().getValor();
+}
+
+// Função que remove todas sessões que possuem esse código de excursão
+ComandoRemoverSessao::ComandoRemoverSessao(Codigo codigoExcursao) {
+        comandoSQL = "DELETE FROM sessoes WHERE codigoExcursao = ";
+        comandoSQL += "'" + codigoExcursao.getValor() + "'";
+        // comandoSQL += codigoExcursao.getValor();
 }
 
 //---------------------------------------------------------------------------
