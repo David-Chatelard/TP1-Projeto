@@ -120,6 +120,7 @@ public:
 class ComandoListarExcursoes:public ComandoSQL {
 public:
         ComandoListarExcursoes();
+        ComandoListarExcursoes(Email);
         vector<ElementoResultado> getResultado();
 };
 
@@ -129,7 +130,6 @@ public:
 class ComandoPesquisarExcursao:public ComandoSQL {
 public:
         ComandoPesquisarExcursao(Codigo);
-        ComandoPesquisarExcursao(Email);
         Excursao getResultado();
 };
 
@@ -160,6 +160,16 @@ public:
 
 //---------------------------------------------------------------------------
 // AVALIACOES
+//---------------------------------------------------------------------------
+//Classe ComandoListarAvaliacoes.
+
+class ComandoListarAvaliacoes:public ComandoSQL {
+public:
+        ComandoListarAvaliacoes(Codigo);
+        ComandoListarAvaliacoes(Email);
+        vector<ElementoResultado> getResultado();
+};
+
 //---------------------------------------------------------------------------
 //Classe ComandoPesquisarAvaliacao.
 
@@ -196,6 +206,16 @@ public:
 
 //---------------------------------------------------------------------------
 // SESSOES
+//---------------------------------------------------------------------------
+//Classe ComandoListarSessoes.
+
+class ComandoListarSessoes:public ComandoSQL {
+public:
+        ComandoListarSessoes(Codigo);
+        vector<ElementoResultado> getResultado();
+};
+
+
 //---------------------------------------------------------------------------
 //Classe ComandoPesquisarSessao.
 

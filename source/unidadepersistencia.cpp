@@ -179,7 +179,14 @@ ComandoListarExcursoes::ComandoListarExcursoes() {
         comandoSQL = "SELECT * FROM excursoes";
 }
 
-// Função que retorna todas as excursões em vetorResultado e limpa listaResultado
+// Função que bota todas as excursões desse email em listaResultado
+ComandoListarExcursoes::ComandoListarExcursoes(Email emailGuia) {
+        comandoSQL = "SELECT * FROM excursoes WHERE emailGuia = ";
+        comandoSQL += "'" + emailGuia.getValor() + "'";
+        // comandoSQL += email.getValor();
+}
+
+// Função que retorna as excursões, que estão em listaResultado, em vetorResultado e limpa listaResultado
 vector<ElementoResultado> ComandoListarExcursoes::getResultado() {
         vector<ElementoResultado> vetorResultado(listaResultado.size());                // Cria vetor
         copy(listaResultado.begin(), listaResultado.end(), vetorResultado.begin());     // Copia lista para vetor
@@ -195,12 +202,6 @@ ComandoPesquisarExcursao::ComandoPesquisarExcursao(Codigo codigo) {
         comandoSQL = "SELECT * FROM excursoes WHERE codigo = ";
         comandoSQL += "'" + codigo.getValor() + "'";
         // comandoSQL += codigo.getValor();
-}
-
-ComandoPesquisarExcursao::ComandoPesquisarExcursao(Email email) {
-        comandoSQL = "SELECT * FROM excursoes WHERE emailGuia = ";
-        comandoSQL += "'" + email.getValor() + "'";
-        // comandoSQL += email.getValor();
 }
 
 Excursao ComandoPesquisarExcursao::getResultado() {
@@ -318,6 +319,31 @@ ComandoAtualizarExcursao::ComandoAtualizarExcursao(Excursao excursao) {
 //---------------------------------------------------------------------------
 // AVALIACOES
 //---------------------------------------------------------------------------
+// Implementações de métodos da classe ComandoListarAvaliacoes.
+
+// Função que bota todas as avaliações dessa excursão em listaResultado
+ComandoListarAvaliacoes::ComandoListarAvaliacoes(Codigo codigoExcursao) {
+        comandoSQL = "SELECT * FROM avaliacoes WHERE codigoExcursao = ";
+        comandoSQL += "'" + codigoExcursao.getValor() + "'";
+}
+
+// Função que bota todas as avaliações desse email em listaResultado
+ComandoListarAvaliacoes::ComandoListarAvaliacoes(Email emailAutor) {
+        comandoSQL = "SELECT * FROM avaliacoes WHERE emailAutor = ";
+        comandoSQL += "'" + emailAutor.getValor() + "'";
+        // comandoSQL += email.getValor();
+}
+
+// Função que retorna as avaliações, que estão em listaResultado, em vetorResultado e limpa listaResultado
+vector<ElementoResultado> ComandoListarAvaliacoes::getResultado() {
+        vector<ElementoResultado> vetorResultado(listaResultado.size());                // Cria vetor
+        copy(listaResultado.begin(), listaResultado.end(), vetorResultado.begin());     // Copia lista para vetor
+        listaResultado.clear();                                                         // Limpa a lista
+
+        return vetorResultado;
+}
+
+//---------------------------------------------------------------------------
 // Implementações de métodos da classe ComandoPesquisarAvaliacao.
 
 ComandoPesquisarAvaliacao::ComandoPesquisarAvaliacao(Codigo codigo) {
@@ -397,6 +423,25 @@ ComandoAtualizarAvaliacao::ComandoAtualizarAvaliacao(Avaliacao avaliacao) {
 
 //---------------------------------------------------------------------------
 // SESSOES
+//---------------------------------------------------------------------------
+// Implementações de métodos da classe ComandoListarSessoes.
+
+// Função que bota todas as sessões dessa excursão em listaResultado
+ComandoListarSessoes::ComandoListarSessoes(Codigo codigoExcursao) {
+        comandoSQL = "SELECT * FROM sessoes WHERE codigoExcursao = ";
+        comandoSQL += "'" + codigoExcursao.getValor() + "'";
+}
+
+// Função que retorna as sessões, que estão em listaResultado, em vetorResultado e limpa listaResultado
+vector<ElementoResultado> ComandoListarSessoes::getResultado() {
+        vector<ElementoResultado> vetorResultado(listaResultado.size());                // Cria vetor
+        copy(listaResultado.begin(), listaResultado.end(), vetorResultado.begin());     // Copia lista para vetor
+        listaResultado.clear();                                                         // Limpa a lista
+
+        return vetorResultado;
+}
+
+
 //---------------------------------------------------------------------------
 // Implementações de métodos da classe ComandoPesquisarSessao.
 
