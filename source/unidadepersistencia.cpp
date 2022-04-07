@@ -91,6 +91,8 @@ string ComandoLerSenha::getResultado() {
 }
 
 //---------------------------------------------------------------------------
+// USUARIOS
+//---------------------------------------------------------------------------
 // Implementações de métodos da classe ComandoPesquisarUsuario.
 
 ComandoPesquisarUsuario::ComandoPesquisarUsuario(Email email) {
@@ -166,6 +168,13 @@ ComandoAtualizarUsuario::ComandoAtualizarUsuario(Usuario usuario) {
 }
 
 //---------------------------------------------------------------------------
+// EXCURSOES
+//---------------------------------------------------------------------------
+// Implementações de métodos da classe ComandoPesquisarUsuario.
+
+// IMPLEMENTAR AQUI
+
+//---------------------------------------------------------------------------
 // Implementações de métodos da classe ComandoCadastrarExcursao.
 
 ComandoCadastrarExcursao::ComandoCadastrarExcursao(Excursao excursao) {
@@ -177,5 +186,31 @@ ComandoCadastrarExcursao::ComandoCadastrarExcursao(Excursao excursao) {
         comandoSQL += "'" + to_string(excursao.getDuracao().getValor()) + "', ";
         comandoSQL += "'" + excursao.getDescricao().getValor() + "', ";
         comandoSQL += "'" + excursao.getEndereco().getValor() + "', ";
-        comandoSQL += "'" + excursao.getEmail().getValor() + "')";
+        comandoSQL += "'" + excursao.getEmailGuia().getValor() + "')";
 }
+
+//---------------------------------------------------------------------------
+// Implementações de métodos da classe ComandoRemoverExcursao.
+
+ComandoRemoverExcursao::ComandoRemoverExcursao(Excursao excursao) {
+        comandoSQL = "DELETE FROM excursoes WHERE codigo = ";
+        comandoSQL += excursao.getCodigo().getValor();
+        //talvez tenha que trocar por comandoSQL += "'" + excursao.getCodigo().getValor() + "'";
+}
+
+//---------------------------------------------------------------------------
+// Implementações de métodos da classe ComandoEditarExcursao.
+
+ComandoAtualizarExcursao::ComandoAtualizarExcursao(Excursao excursao) {
+        comandoSQL = "UPDATE excursoes ";
+        comandoSQL += "SET titulo = '" + excursao.getTitulo().getValor();
+        comandoSQL += "', nota = '" + to_string(excursao.getNota().getValor());
+        comandoSQL += "', cidade = '" + excursao.getCidade().getValor();
+        comandoSQL += "', duracao = '" + to_string(excursao.getDuracao().getValor());
+        comandoSQL += "', descricao = '" + excursao.getDescricao().getValor();
+        comandoSQL += "', endereco = '" + excursao.getEndereco().getValor();
+        comandoSQL += "' WHERE codigo = " + excursao.getCodigo().getValor();
+        //talvez tenha que trocar por comandoSQL += "' WHERE codigo = " + excursao.getCodigo().getValor() + "'";
+}
+// CRIAR MAIS EXCURSOES COM O MESMO GUIA NO BANCO DE DADOS
+

@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdexcept>
 #include <iostream>
+#include <ctime>
 
 #include "../headers/dominios.h"
 #include "dominios.cpp"
@@ -17,6 +18,7 @@
 using namespace std;
 
 int main() {
+    srand(time(0));
     // Declarar poteiros e instanciar controladoras.
 
     CntrApresentacaoControle *cntrApresentacaoControle;

@@ -303,6 +303,7 @@ class Excursao {
             Duracao duracao;
             Descricao descricao;
             Endereco endereco;
+            Email emailGuia;
     public:
             /**
              * @brief Armazena o código da excursão
@@ -401,6 +402,20 @@ class Excursao {
              * @return Endereco Endereço da excursão
              */
             Endereco getEndereco() const;
+
+            /**
+             * @brief Armazena o Email do guia da excursão
+             * 
+             * @param email Email do guia da excursão a ser armazenado na excursão
+             */
+            void setEmailGuia(const Email&);
+
+            /**
+             * @brief Retorna o Email do guia da excursão
+             * 
+             * @return Email Email do guia da excursão
+             */
+            Email getEmailGuia() const;
 };
 
 inline void Excursao::setCodigo(const Codigo &codigo){
@@ -431,6 +446,10 @@ inline void Excursao::setEndereco(const Endereco &endereco){
     this->endereco = endereco;
 }
 
+inline void Excursao::setEmailGuia(const Email &emailGuia){
+    this->emailGuia = emailGuia;
+}
+
 inline Codigo Excursao::getCodigo() const{
     return codigo;
 }
@@ -459,5 +478,8 @@ inline Endereco Excursao::getEndereco() const{
     return endereco;
 }
 
+inline Email Excursao::getEmailGuia() const{
+    return emailGuia;
+}
 
 #endif // ENTIDADES_H_INCLUDED

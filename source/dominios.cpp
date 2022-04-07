@@ -7,6 +7,7 @@
 #include <string>
 #include <iterator> // ver se precisa, pode ser util
 #include <cctype>
+#include <random>
 
 using namespace std;
 
@@ -71,6 +72,26 @@ void Codigo::validar(string valor){
     // Verificar se a condição do str.compare() está funcionando, pois ela retorna 0, tem que ver se c++ aceita 0 e 1 como booleano
     if (((valor[6]-'0') != digito_verificacao) || (!(aux.compare("000000"))))
         throw invalid_argument("Argumento invalido.");
+}
+
+string Codigo::gerarCodigo(){
+    string valor = "";
+
+    for (int i = 0; i < 6; i++){
+        valor += to_string(rand() % 10);
+    }
+
+    int soma_impar = 3 * ((valor[0]-'0') + (valor[2]-'0') + (valor[4]-'0'));
+    int soma_par = (valor[1]-'0') + (valor[3]-'0') + (valor[5]-'0');
+    int digito_verificacao = (soma_impar + soma_par) % 10;
+
+    if (digito_verificacao != 0) {
+        digito_verificacao = 10 - digito_verificacao;
+    }
+
+    valor += to_string(digito_verificacao);
+
+    return valor;
 }
 
 // Método implementado pelo aluno David Fanchic Chatelard, matrícula 180138863

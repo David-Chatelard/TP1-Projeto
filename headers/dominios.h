@@ -73,7 +73,8 @@ inline string Cidade::getValor() const{
 class Codigo {
     private:
         string valor;           
-        void validar(string);             
+        void validar(string);
+        string gerarCodigo();
     public:
 
         /**

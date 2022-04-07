@@ -76,6 +76,8 @@ public:
 };
 
 //---------------------------------------------------------------------------
+// USUARIOS
+//---------------------------------------------------------------------------
 //Classe ComandoPesquisarUsuario.
 
 class ComandoPesquisarUsuario:public ComandoSQL {
@@ -108,6 +110,18 @@ public:
         ComandoAtualizarUsuario(Usuario);
 };
 
+
+//---------------------------------------------------------------------------
+// EXCURSOES
+//---------------------------------------------------------------------------
+//Classe ComandoPesquisarExcursao.
+
+class ComandoPesquisarExcursao:public ComandoSQL {
+public:
+        ComandoPesquisarExcursao(Excursao);
+        Excursao getResultado();
+};
+
 //---------------------------------------------------------------------------
 //Classe ComandoCadastrarExcursao.
 
@@ -115,6 +129,23 @@ class ComandoCadastrarExcursao:public ComandoSQL {
 public:
         ComandoCadastrarExcursao(Excursao);
 };
+
+//---------------------------------------------------------------------------
+// Declaração da classe ComandoRemoverExcursao.
+
+class ComandoRemoverExcursao:public ComandoSQL {
+public:
+        ComandoRemoverExcursao(Excursao);
+};
+
+//---------------------------------------------------------------------------
+//Classe ComandoAtualizarExcursao.
+
+class ComandoAtualizarExcursao:public ComandoSQL {
+public:
+        ComandoAtualizarExcursao(Excursao);
+};
+
 
 //---------------------------------------------------------------------------
 // Implementações de métodos.
