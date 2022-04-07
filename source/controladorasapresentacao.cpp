@@ -142,8 +142,8 @@ void CntrApresentacaoContas::executar(Email email){
     char texto7[]="Dado em formato incorreto. Digite algo.";
 
     int campo1;                                                                                  // Campo de entrada.
-    char campo2[80];
-    char campo3[80];
+    char auxNome[80];
+    char auxSenha[80];
 
     bool apresentar = true;                                                                     // Controle de laço.
 
@@ -168,13 +168,14 @@ void CntrApresentacaoContas::executar(Email email){
                     while(true){
                         CLR_SCR;
                         cout << texto5;
-                        cin >> campo2;
+                        cin.ignore();
+                        cin.getline(auxNome,79);
                         cout << texto6;
-                        cin >> campo3;
+                        cin >> auxSenha;
                         
                         try{
-                            nome.setValor(campo2);
-                            senha.setValor(campo3);
+                            nome.setValor(auxNome);
+                            senha.setValor(auxSenha);
                             break;
                         }
                         catch(invalid_argument &exp){
@@ -225,7 +226,8 @@ void CntrApresentacaoContas::cadastrar(){
 
         cout << texto0;
         cout << texto1 << " ";                                                                  // Imprime nome do campo.
-        cin >> campo1;                                                                          // Le valor do campo.
+        cin.ignore();
+        cin.getline(campo1,79);                                                                          // Le valor do campo.
         cout << texto2 << " ";                                                                  // Imprime nome do campo.
         cin >> campo2;                                                                          // Le valor do campo.
         cout << texto3 << " ";                                                                  // Imprime nome do campo.
@@ -369,16 +371,19 @@ void CntrApresentacaoExcursao::executar(Email email){
                 while(true){
                     CLR_SCR;
                     cout << texto6;                                                         // Imprime os textos de cadastro da excursão
-                    cin >> campo2;                                                          // Le os inputs da excursão
+                    cin.ignore();
+                    cin.getline(campo2,79);                                                         // Le os inputs da excursão
                     cout << texto7;
-                    cin >> campo3;
+                    cin.ignore();
+                    cin.getline(campo3,79);
                     cout << texto8;
                     cin >> campo4;
-                    cout << campo4;
                     cout << texto9;
-                    cin >> campo5;
+                    cin.ignore();
+                    cin.getline(campo5,79);
                     cout << texto10;
-                    cin >> campo6;
+                    cin.ignore();
+                    cin.getline(campo6,79);
 
                     try{
                         titulo.setValor(campo2);
@@ -737,7 +742,8 @@ void CntrApresentacaoExcursao::detalheExcursao2(Excursao excursao){
                     cout << texto13;
                     cin >> auxNota;
                     cout << texto14;
-                    cin >> auxDescricao;
+                    cin.ignore();
+                    cin.getline(auxDescricao,79);
 
                     try {
                         nota.setValor(stoi(auxNota));
@@ -887,7 +893,8 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
                     cout << texto27;
                     cin >> auxNotaAvaliacao;
                     cout << texto28;
-                    cin >> auxDescricaoAvaliacao;
+                    cin.ignore();
+                    cin.getline(auxDescricaoAvaliacao,79);
 
                     try {
                         notaAvaliacao.setValor(stoi(auxNotaAvaliacao));
@@ -909,19 +916,23 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
                     CLR_SCR;
                     // SE BOTAR UM INPUT COM ESPAÇO DA ERRADO, TEM QUE TENTAR RESOLVER ISSO, ELE SO PEGA A PRIMEIRA PALAVRA E DA ERRADO OS PROXIMOS INPUTS
                     cout << texto13;
+                    cin.ignore();
                     cin.getline(auxTitulo,79);
                     // cin >> auxTitulo;
                     cout << texto14;
                     cin >> auxNota;
                     cout << texto15;
+                    cin.ignore();
                     cin.getline(auxCidade,79);
                     // cin >> auxCidade;
                     cout << texto16;
                     cin >> auxDuracao;
                     cout << texto17;
+                    cin.ignore();
                     cin.getline(auxDescricao,79);
                     // cin >> auxDescricao;
                     cout << texto18;
+                    cin.ignore();
                     cin.getline(auxEndereco,79);
                     // cin >> auxEndereco;
                     try {
@@ -1111,7 +1122,8 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que a
                             cout << texto9;
                             cin >> aux_nota;
                             cout << texto10;
-                            cin >> aux_descricao;
+                            cin.ignore();
+                            cin.getline(aux_descricao,79);
                             try {
                                 nota.setValor(stoi(aux_nota));
                                 descricao.setValor(aux_descricao);
