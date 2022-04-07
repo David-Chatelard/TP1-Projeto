@@ -118,6 +118,8 @@ class Avaliacao {
             Codigo codigo;
             Nota nota;
             Descricao descricao;
+            Email emailAutor;
+            Codigo codigoExcursao;
     public:
             /**
              * @brief Armazena o código da avaliação
@@ -160,6 +162,14 @@ class Avaliacao {
              * @return Descricao Descrição da avaliação
              */
             Descricao getDescricao() const;
+
+            void setEmailAutor(const Email&);
+
+            Email getEmailAutor() const;
+
+            void setCodigoExcursao(const Codigo&);
+
+            Codigo getCodigoExcursao() const;
 };
 
 
@@ -175,6 +185,14 @@ inline void Avaliacao::setDescricao(const Descricao &descricao){
     this->descricao = descricao;
 }
 
+inline void Avaliacao::setEmailAutor(const Email &emailAutor){
+    this->emailAutor = emailAutor;
+}
+
+inline void Avaliacao::setCodigoExcursao(const Codigo &codigoExcursao){
+    this->codigoExcursao = codigoExcursao;
+}
+
 inline Codigo Avaliacao::getCodigo() const{
     return codigo;
 }
@@ -185,6 +203,14 @@ inline Nota Avaliacao::getNota() const{
 
 inline Descricao Avaliacao::getDescricao() const{
     return descricao;
+}
+
+inline Email Avaliacao::getEmailAutor() const{
+    return emailAutor;
+}
+
+inline Codigo Avaliacao::getCodigoExcursao() const{
+    return codigoExcursao;
 }
 
 

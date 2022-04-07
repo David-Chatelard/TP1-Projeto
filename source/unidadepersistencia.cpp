@@ -292,3 +292,78 @@ ComandoAtualizarExcursao::ComandoAtualizarExcursao(Excursao excursao) {
 //---------------------------------------------------------------------------
 // AVALIACOES
 //---------------------------------------------------------------------------
+// Implementações de métodos da classe ComandoPesquisarAvaliacao.
+
+ComandoPesquisarAvaliacao::ComandoPesquisarAvaliacao(Codigo codigo) {
+        comandoSQL = "SELECT * FROM avaliacoes WHERE codigo = ";
+        comandoSQL += "'" + codigo.getValor() + "'";
+        // comandoSQL += codigo.getValor();
+}
+
+Avaliacao ComandoPesquisarAvaliacao::getResultado() {
+        ElementoResultado resultado;
+        Avaliacao avaliacao;
+
+        Codigo codigo;
+        Nota nota;
+        Descricao descricao;
+
+        // Remover codigo;
+        if (listaResultado.empty())
+                throw EErroPersistencia("Lista de resultados vazia.");
+        resultado = listaResultado.back();
+        listaResultado.pop_back();
+        codigo.setValor(resultado.getValorColuna());
+        avaliacao.setCodigo(codigo);
+
+        // Remover nota;
+        if (listaResultado.empty())
+                throw EErroPersistencia("Lista de resultados vazia.");
+        resultado = listaResultado.back();
+        listaResultado.pop_back();
+        nota.setValor(stoi(resultado.getValorColuna()));
+        avaliacao.setNota(nota);
+
+        // Remover descricao;
+        if (listaResultado.empty())
+                throw EErroPersistencia("Lista de resultados vazia.");
+        resultado = listaResultado.back();
+        listaResultado.pop_back();
+        descricao.setValor(resultado.getValorColuna());
+        avaliacao.setDescricao(descricao);
+
+        return avaliacao;
+
+}
+
+//---------------------------------------------------------------------------
+// Implementações de métodos da classe ComandoCadastrarAvaliacao.
+
+ComandoCadastrarAvaliacao::ComandoCadastrarAvaliacao(Avaliacao avaliacao) {
+        comandoSQL = "INSERT INTO avaliacoes VALUES (";
+        comandoSQL += "'" + avaliacao.getCodigo().getValor() + "', ";
+        comandoSQL += "'" + to_string(avaliacao.getNota().getValor()) + "', ";
+        comandoSQL += "'" + avaliacao.getDescricao().getValor() + "', ";
+        comandoSQL += "'" + avaliacao.getEmailAutor().getValor() + "', ";
+        comandoSQL += "'" + avaliacao.getCodigoExcursao().getValor() + "')";
+}
+
+//---------------------------------------------------------------------------
+// Implementações de métodos da classe ComandoRemoverAvaliacao.
+
+ComandoRemoverAvaliacao::ComandoRemoverAvaliacao(Avaliacao avaliacao) {
+        comandoSQL = "DELETE FROM avaliacoes WHERE codigo = ";
+        comandoSQL += "'" + avaliacao.getCodigo().getValor() + "'";
+        // comandoSQL += avaliacao.getCodigo().getValor();
+}
+
+//---------------------------------------------------------------------------
+// Implementações de métodos da classe ComandoEditarAvaliacao.
+
+ComandoAtualizarAvaliacao::ComandoAtualizarAvaliacao(Avaliacao avaliacao) {
+        comandoSQL = "UPDATE avaliacoes ";
+        comandoSQL += "SET nota = '" + to_string(avaliacao.getNota().getValor());
+        comandoSQL += "', descricao = '" + avaliacao.getDescricao().getValor();
+        comandoSQL += "' WHERE codigo = '" + avaliacao.getCodigo().getValor() + "'";
+        // comandoSQL += "' WHERE codigo = " + avaliacao.getCodigo().getValor();
+}

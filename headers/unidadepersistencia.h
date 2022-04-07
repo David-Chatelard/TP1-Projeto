@@ -148,6 +148,43 @@ public:
 
 
 //---------------------------------------------------------------------------
+// AVALIACOES
+//---------------------------------------------------------------------------
+//Classe ComandoPesquisarAvaliacao.
+
+class ComandoPesquisarAvaliacao:public ComandoSQL {
+public:
+        ComandoPesquisarAvaliacao(Codigo);
+        Avaliacao getResultado();
+};
+
+//---------------------------------------------------------------------------
+//Classe ComandoCadastrarAvaliacao.
+
+class ComandoCadastrarAvaliacao:public ComandoSQL {
+public:
+        ComandoCadastrarAvaliacao(Avaliacao);
+};
+
+//---------------------------------------------------------------------------
+// Declaração da classe ComandoRemoverAvaliacao.
+
+class ComandoRemoverAvaliacao:public ComandoSQL {
+public:
+        ComandoRemoverAvaliacao(Avaliacao);
+};
+
+//---------------------------------------------------------------------------
+//Classe ComandoAtualizarAvaliacao.
+
+class ComandoAtualizarAvaliacao:public ComandoSQL {
+public:
+        ComandoAtualizarAvaliacao(Avaliacao);
+};
+
+
+
+//---------------------------------------------------------------------------
 // Implementações de métodos.
 
 inline string ElementoResultado::getNomeColuna() const {
