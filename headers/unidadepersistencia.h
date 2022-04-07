@@ -118,7 +118,7 @@ public:
 
 class ComandoPesquisarExcursao:public ComandoSQL {
 public:
-        ComandoPesquisarExcursao(Excursao);
+        ComandoPesquisarExcursao(Codigo);
         Excursao getResultado();
 };
 

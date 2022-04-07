@@ -72,8 +72,8 @@ int ComandoSQL::callback(void *NotUsed, int argc, char **valorColuna, char **nom
 
 ComandoLerSenha::ComandoLerSenha(Email email) {
         comandoSQL = "SELECT senha FROM usuarios WHERE email = ";
-        comandoSQL += email.getValor();
-        //talvez tenha que trocar por comandoSQL += "'" + email.getValor() + "'";
+        comandoSQL += "'" + email.getValor() + "'";
+        // comandoSQL += email.getValor();
 }
 
 string ComandoLerSenha::getResultado() {
@@ -97,8 +97,8 @@ string ComandoLerSenha::getResultado() {
 
 ComandoPesquisarUsuario::ComandoPesquisarUsuario(Email email) {
         comandoSQL = "SELECT * FROM usuarios WHERE email = ";
-        comandoSQL += email.getValor();
-        //talvez tenha que trocar por comandoSQL += "'" + email.getValor() + "'";
+        comandoSQL += "'" + email.getValor() + "'";
+        // comandoSQL += email.getValor();
 }
 
 Usuario ComandoPesquisarUsuario::getResultado() {
@@ -152,8 +152,8 @@ ComandoCadastrarUsuario::ComandoCadastrarUsuario(Usuario usuario) {
 
 ComandoRemoverUsuario::ComandoRemoverUsuario(Email email) {
         comandoSQL = "DELETE FROM usuarios WHERE email = ";
-        comandoSQL += email.getValor();
-        //talvez tenha que trocar por comandoSQL += "'" + email.getValor() + "'";
+        comandoSQL += "'" + email.getValor() + "'";
+        // comandoSQL += email.getValor();
 }
 
 //---------------------------------------------------------------------------
@@ -163,16 +163,92 @@ ComandoAtualizarUsuario::ComandoAtualizarUsuario(Usuario usuario) {
         comandoSQL = "UPDATE usuarios ";
         comandoSQL += "SET nome = '" + usuario.getNome().getValor();
         comandoSQL += "', senha = '" + usuario.getSenha().getValor();
-        comandoSQL += "' WHERE email = " + usuario.getEmail().getValor();
-        //talvez tenha que trocar por comandoSQL += "' WHERE email = '" + usuario.getEmail().getValor() + "'";
+        comandoSQL += "' WHERE email = '" + usuario.getEmail().getValor() + "'";
+        // comandoSQL += "' WHERE email = " + usuario.getEmail().getValor();
 }
 
 //---------------------------------------------------------------------------
 // EXCURSOES
 //---------------------------------------------------------------------------
-// Implementações de métodos da classe ComandoPesquisarUsuario.
+// Implementações de métodos da classe ComandoPesquisarExcursao.
 
-// IMPLEMENTAR AQUI
+ComandoPesquisarExcursao::ComandoPesquisarExcursao(Codigo codigo) {
+        comandoSQL = "SELECT * FROM excursoes WHERE codigo = ";
+        comandoSQL += "'" + codigo.getValor() + "'";
+        // comandoSQL += codigo.getValor();
+}
+
+Excursao ComandoPesquisarExcursao::getResultado() {
+        ElementoResultado resultado;
+        Excursao excursao;
+
+        Codigo codigo;
+        Titulo titulo;
+        Nota nota;
+        Cidade cidade;
+        Duracao duracao;
+        Descricao descricao;
+        Endereco endereco;
+
+        // Remover codigo;
+        if (listaResultado.empty())
+                throw EErroPersistencia("Lista de resultados vazia.");
+        resultado = listaResultado.back();
+        listaResultado.pop_back();
+        codigo.setValor(resultado.getValorColuna());
+        excursao.setCodigo(codigo);
+
+        // Remover titulo;
+        if (listaResultado.empty())
+                throw EErroPersistencia("Lista de resultados vazia.");
+        resultado = listaResultado.back();
+        listaResultado.pop_back();
+        titulo.setValor(resultado.getValorColuna());
+        excursao.setTitulo(titulo);
+
+        // Remover nota;
+        if (listaResultado.empty())
+                throw EErroPersistencia("Lista de resultados vazia.");
+        resultado = listaResultado.back();
+        listaResultado.pop_back();
+        nota.setValor(stoi(resultado.getValorColuna()));
+        excursao.setNota(nota);
+
+        // Remover cidade;
+        if (listaResultado.empty())
+                throw EErroPersistencia("Lista de resultados vazia.");
+        resultado = listaResultado.back();
+        listaResultado.pop_back();
+        cidade.setValor(resultado.getValorColuna());
+        excursao.setCidade(cidade);
+
+        // Remover duracao;
+        if (listaResultado.empty())
+                throw EErroPersistencia("Lista de resultados vazia.");
+        resultado = listaResultado.back();
+        listaResultado.pop_back();
+        duracao.setValor(stoi(resultado.getValorColuna()));
+        excursao.setDuracao(duracao);
+
+        // Remover descricao;
+        if (listaResultado.empty())
+                throw EErroPersistencia("Lista de resultados vazia.");
+        resultado = listaResultado.back();
+        listaResultado.pop_back();
+        descricao.setValor(resultado.getValorColuna());
+        excursao.setDescricao(descricao);
+
+        // Remover endereco;
+        if (listaResultado.empty())
+                throw EErroPersistencia("Lista de resultados vazia.");
+        resultado = listaResultado.back();
+        listaResultado.pop_back();
+        endereco.setValor(resultado.getValorColuna());
+        excursao.setEndereco(endereco);
+
+        return excursao;
+
+}
 
 //---------------------------------------------------------------------------
 // Implementações de métodos da classe ComandoCadastrarExcursao.
@@ -194,8 +270,8 @@ ComandoCadastrarExcursao::ComandoCadastrarExcursao(Excursao excursao) {
 
 ComandoRemoverExcursao::ComandoRemoverExcursao(Excursao excursao) {
         comandoSQL = "DELETE FROM excursoes WHERE codigo = ";
-        comandoSQL += excursao.getCodigo().getValor();
-        //talvez tenha que trocar por comandoSQL += "'" + excursao.getCodigo().getValor() + "'";
+        comandoSQL += "'" + excursao.getCodigo().getValor() + "'";
+        // comandoSQL += excursao.getCodigo().getValor();
 }
 
 //---------------------------------------------------------------------------
@@ -209,8 +285,10 @@ ComandoAtualizarExcursao::ComandoAtualizarExcursao(Excursao excursao) {
         comandoSQL += "', duracao = '" + to_string(excursao.getDuracao().getValor());
         comandoSQL += "', descricao = '" + excursao.getDescricao().getValor();
         comandoSQL += "', endereco = '" + excursao.getEndereco().getValor();
-        comandoSQL += "' WHERE codigo = " + excursao.getCodigo().getValor();
-        //talvez tenha que trocar por comandoSQL += "' WHERE codigo = " + excursao.getCodigo().getValor() + "'";
+        comandoSQL += "' WHERE codigo = '" + excursao.getCodigo().getValor() + "'";
+        // comandoSQL += "' WHERE codigo = " + excursao.getCodigo().getValor();
 }
-// CRIAR MAIS EXCURSOES COM O MESMO GUIA NO BANCO DE DADOS
 
+//---------------------------------------------------------------------------
+// AVALIACOES
+//---------------------------------------------------------------------------
