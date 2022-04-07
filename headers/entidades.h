@@ -224,6 +224,7 @@ class Sessao {
             Data data;
             Horario horario;
             Idioma idioma;
+            Codigo codigoExcursao;
     public:
             /**
              * @brief Armazena o código da sessão
@@ -280,6 +281,10 @@ class Sessao {
              * @return Idioma Idioma da sessão
              */
             Idioma getIdioma() const;
+
+            void setCodigoExcursao(const Codigo&);
+
+            Codigo getCodigoExcursao() const;
             
 };
 
@@ -299,6 +304,10 @@ inline void Sessao::setIdioma(const Idioma &idioma){
     this->idioma = idioma;
 }
 
+inline void Sessao::setCodigoExcursao(const Codigo &codigoExcursao){
+    this->codigoExcursao = codigoExcursao;
+}
+
 inline Codigo Sessao::getCodigo() const{
     return codigo;
 }
@@ -313,6 +322,10 @@ inline Horario Sessao::getHorario() const{
 
 inline Idioma Sessao::getIdioma() const{
     return idioma;
+}
+
+inline Codigo Sessao::getCodigoExcursao() const{
+    return codigoExcursao;
 }
 
 

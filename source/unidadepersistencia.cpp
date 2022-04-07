@@ -90,6 +90,7 @@ string ComandoLerSenha::getResultado() {
         return senha;
 }
 
+
 //---------------------------------------------------------------------------
 // USUARIOS
 //---------------------------------------------------------------------------
@@ -166,6 +167,7 @@ ComandoAtualizarUsuario::ComandoAtualizarUsuario(Usuario usuario) {
         comandoSQL += "' WHERE email = '" + usuario.getEmail().getValor() + "'";
         // comandoSQL += "' WHERE email = " + usuario.getEmail().getValor();
 }
+
 
 //---------------------------------------------------------------------------
 // EXCURSOES
@@ -289,6 +291,7 @@ ComandoAtualizarExcursao::ComandoAtualizarExcursao(Excursao excursao) {
         // comandoSQL += "' WHERE codigo = " + excursao.getCodigo().getValor();
 }
 
+
 //---------------------------------------------------------------------------
 // AVALIACOES
 //---------------------------------------------------------------------------
@@ -366,4 +369,94 @@ ComandoAtualizarAvaliacao::ComandoAtualizarAvaliacao(Avaliacao avaliacao) {
         comandoSQL += "', descricao = '" + avaliacao.getDescricao().getValor();
         comandoSQL += "' WHERE codigo = '" + avaliacao.getCodigo().getValor() + "'";
         // comandoSQL += "' WHERE codigo = " + avaliacao.getCodigo().getValor();
+}
+
+
+//---------------------------------------------------------------------------
+// SESSOES
+//---------------------------------------------------------------------------
+// Implementações de métodos da classe ComandoPesquisarSessao.
+
+ComandoPesquisarSessao::ComandoPesquisarSessao(Codigo codigo) {
+        comandoSQL = "SELECT * FROM sessoes WHERE codigo = ";
+        comandoSQL += "'" + codigo.getValor() + "'";
+        // comandoSQL += codigo.getValor();
+}
+
+Sessao ComandoPesquisarSessao::getResultado() {
+        ElementoResultado resultado;
+        Sessao sessao;
+
+        Codigo codigo;
+        Data data;
+        Horario horario;
+        Idioma idioma;
+
+        // Remover codigo;
+        if (listaResultado.empty())
+                throw EErroPersistencia("Lista de resultados vazia.");
+        resultado = listaResultado.back();
+        listaResultado.pop_back();
+        codigo.setValor(resultado.getValorColuna());
+        sessao.setCodigo(codigo);
+
+        // Remover data;
+        if (listaResultado.empty())
+                throw EErroPersistencia("Lista de resultados vazia.");
+        resultado = listaResultado.back();
+        listaResultado.pop_back();
+        data.setValor(resultado.getValorColuna());
+        sessao.setData(data);
+
+        // Remover horario;
+        if (listaResultado.empty())
+                throw EErroPersistencia("Lista de resultados vazia.");
+        resultado = listaResultado.back();
+        listaResultado.pop_back();
+        horario.setValor(resultado.getValorColuna());
+        sessao.setHorario(horario);
+
+        // Remover idioma;
+        if (listaResultado.empty())
+                throw EErroPersistencia("Lista de resultados vazia.");
+        resultado = listaResultado.back();
+        listaResultado.pop_back();
+        idioma.setValor(resultado.getValorColuna());
+        sessao.setIdioma(idioma);
+
+        return sessao;
+
+}
+
+//---------------------------------------------------------------------------
+// Implementações de métodos da classe ComandoCadastrarSessao.
+
+ComandoCadastrarSessao::ComandoCadastrarSessao(Sessao sessao) {
+        comandoSQL = "INSERT INTO sessoes VALUES (";
+        comandoSQL += "'" + sessao.getCodigo().getValor() + "', ";
+        comandoSQL += "'" + sessao.getData().getValor() + "', ";
+        comandoSQL += "'" + sessao.getHorario().getValor() + "', ";
+        comandoSQL += "'" + sessao.getIdioma().getValor() + "', ";
+        comandoSQL += "'" + sessao.getCodigoExcursao().getValor() + "')";
+}
+
+//---------------------------------------------------------------------------
+// Implementações de métodos da classe ComandoRemoverSessao.
+
+ComandoRemoverSessao::ComandoRemoverSessao(Sessao sessao) {
+        comandoSQL = "DELETE FROM sessoes WHERE codigo = ";
+        comandoSQL += "'" + sessao.getCodigo().getValor() + "'";
+        // comandoSQL += sessao.getCodigo().getValor();
+}
+
+//---------------------------------------------------------------------------
+// Implementações de métodos da classe ComandoEditarSessao.
+
+ComandoAtualizarSessao::ComandoAtualizarSessao(Sessao sessao) {
+        comandoSQL = "UPDATE sessoes ";
+        comandoSQL += "SET data = '" + sessao.getData().getValor();
+        comandoSQL += "', horario = '" + sessao.getHorario().getValor();
+        comandoSQL += "', idioma = '" + sessao.getIdioma().getValor();
+        comandoSQL += "' WHERE codigo = '" + sessao.getCodigo().getValor() + "'";
+        // comandoSQL += "' WHERE codigo = " + sessao.getCodigo().getValor();
 }

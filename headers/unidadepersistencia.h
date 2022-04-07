@@ -183,6 +183,43 @@ public:
 };
 
 
+//---------------------------------------------------------------------------
+// SESSOES
+//---------------------------------------------------------------------------
+//Classe ComandoPesquisarSessao.
+
+class ComandoPesquisarSessao:public ComandoSQL {
+public:
+        ComandoPesquisarSessao(Codigo);
+        Sessao getResultado();
+};
+
+//---------------------------------------------------------------------------
+//Classe ComandoCadastrarSessao.
+
+class ComandoCadastrarSessao:public ComandoSQL {
+public:
+        ComandoCadastrarSessao(Sessao);
+};
+
+//---------------------------------------------------------------------------
+// Declaração da classe ComandoRemoverSessao.
+
+class ComandoRemoverSessao:public ComandoSQL {
+public:
+        ComandoRemoverSessao(Sessao);
+};
+
+//---------------------------------------------------------------------------
+//Classe ComandoAtualizarSessao.
+
+class ComandoAtualizarSessao:public ComandoSQL {
+public:
+        ComandoAtualizarSessao(Sessao);
+};
+
+
+
 
 //---------------------------------------------------------------------------
 // Implementações de métodos.
