@@ -441,7 +441,6 @@ vector<ElementoResultado> ComandoListarSessoes::getResultado() {
         return vetorResultado;
 }
 
-
 //---------------------------------------------------------------------------
 // Implementações de métodos da classe ComandoPesquisarSessao.
 
