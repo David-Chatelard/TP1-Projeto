@@ -172,12 +172,35 @@ ComandoAtualizarUsuario::ComandoAtualizarUsuario(Usuario usuario) {
 //---------------------------------------------------------------------------
 // EXCURSOES
 //---------------------------------------------------------------------------
+// Implementações de métodos da classe ComandoListarExcursoes.
+
+// Função que bota todas as excursões em listaResultado
+ComandoListarExcursoes::ComandoListarExcursoes() {
+        comandoSQL = "SELECT * FROM excursoes";
+}
+
+// Função que retorna todas as excursões em vetorResultado e limpa listaResultado
+vector<ElementoResultado> ComandoListarExcursoes::getResultado() {
+        vector<ElementoResultado> vetorResultado(listaResultado.size());                // Cria vetor
+        copy(listaResultado.begin(), listaResultado.end(), vetorResultado.begin());     // Copia lista para vetor
+        listaResultado.clear();                                                         // Limpa a lista
+
+        return vetorResultado;
+}
+
+//---------------------------------------------------------------------------
 // Implementações de métodos da classe ComandoPesquisarExcursao.
 
 ComandoPesquisarExcursao::ComandoPesquisarExcursao(Codigo codigo) {
         comandoSQL = "SELECT * FROM excursoes WHERE codigo = ";
         comandoSQL += "'" + codigo.getValor() + "'";
         // comandoSQL += codigo.getValor();
+}
+
+ComandoPesquisarExcursao::ComandoPesquisarExcursao(Email email) {
+        comandoSQL = "SELECT * FROM excursoes WHERE emailGuia = ";
+        comandoSQL += "'" + email.getValor() + "'";
+        // comandoSQL += email.getValor();
 }
 
 Excursao ComandoPesquisarExcursao::getResultado() {

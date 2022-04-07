@@ -8,6 +8,7 @@
 #include "entidades.h"
 
 #include <list>
+#include <vector>
 
 #include <iostream>
 #include <conio.h>
@@ -114,11 +115,21 @@ public:
 //---------------------------------------------------------------------------
 // EXCURSOES
 //---------------------------------------------------------------------------
+//Classe ComandoListarExcursoes.
+
+class ComandoListarExcursoes:public ComandoSQL {
+public:
+        ComandoListarExcursoes();
+        vector<ElementoResultado> getResultado();
+};
+
+//---------------------------------------------------------------------------
 //Classe ComandoPesquisarExcursao.
 
 class ComandoPesquisarExcursao:public ComandoSQL {
 public:
         ComandoPesquisarExcursao(Codigo);
+        ComandoPesquisarExcursao(Email);
         Excursao getResultado();
 };
 
@@ -217,8 +228,6 @@ class ComandoAtualizarSessao:public ComandoSQL {
 public:
         ComandoAtualizarSessao(Sessao);
 };
-
-
 
 
 //---------------------------------------------------------------------------
