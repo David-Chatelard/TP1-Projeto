@@ -15,7 +15,7 @@
 #include <string>
 #include <stdio.h>
 
-#include "sqlite3.h"            // Incluir cabeçalho da biblioteca SQLite.
+#include "../sqlite-amalgamation-3380200/sqlite3.h"            // Incluir cabeçalho da biblioteca SQLite.
 
 using namespace std;
 

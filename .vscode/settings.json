@@ -47,6 +47,7 @@
         "xmemory0": "cpp",
         "xstddef": "cpp",
         "xtr1common": "cpp",
-        "xtree": "cpp"
+        "xtree": "cpp",
+        "sqlite3.c": "cpp"
     }
 }

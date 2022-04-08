@@ -18,6 +18,8 @@
 #include "../headers/stubs.h"
 #include "stubs.cpp"
 
+#include "../sqlite-amalgamation-3380200/sqlite3.h"            // Incluir cabeçalho da biblioteca SQLite.
+
 using namespace std;
 
 int main() {
@@ -29,10 +31,15 @@ int main() {
     IApresentacaoContas *cntrApresentacaoContas;
     IApresentacaoExcursao *cntrApresentacaoExcursao;
 
+    IServicoAutenticacao *cntrServicoAutenticacao;
+
     cntrApresentacaoControle = new CntrApresentacaoControle();
     cntrApresentacaoAutenticacao = new CntrApresentacaoAutenticacao();
     cntrApresentacaoContas = new CntrApresentacaoContas();
-    cntrApresentacaoExcursao = new CntrApresentacaoExcursao(); //TEM QUE IMPLEMENTAR
+    cntrApresentacaoExcursao = new CntrApresentacaoExcursao();
+
+    cntrServicoAutenticacao = new CntrServicoAutenticacao();
+
 
     // Instanciar stubs.
 
@@ -48,9 +55,9 @@ int main() {
 
     cntrApresentacaoControle->setCntrApresentacaoAutenticacao(cntrApresentacaoAutenticacao);
     cntrApresentacaoControle->setCntrApresentacaoContas(cntrApresentacaoContas);
-    cntrApresentacaoControle->setCntrApresentacaoExcursao(cntrApresentacaoExcursao); //TEM QUE IMPLEMENTAR
+    cntrApresentacaoControle->setCntrApresentacaoExcursao(cntrApresentacaoExcursao);
 
-    cntrApresentacaoAutenticacao->setCntrServicoAutenticacao(stubServicoAutenticacao);
+    cntrApresentacaoAutenticacao->setCntrServicoAutenticacao(cntrServicoAutenticacao);
 
     cntrApresentacaoContas->setCntrServicoContas(stubServicoContas);
     // cntrApresentacaoContas->setCntrServicoExcursao(stubServicoExcursao); //não sei se vai usar isso

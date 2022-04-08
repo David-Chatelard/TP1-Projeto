@@ -123,6 +123,7 @@ bool CntrApresentacaoAutenticacao::autenticar(Email *email){
             getch();                                                                            // Le caracter digitado.
         }
     }
+
     return (cntr->autenticar(*email, senha));                                                   // Solicita serviço de autenticação.
 }
 
