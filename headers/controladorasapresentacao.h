@@ -82,26 +82,6 @@ inline void CntrApresentacaoContas::setCntrServicoContas(IServicoContas *cntr){
 //--------------------------------------------------------------------------------------------
 // Declaração da classe CntrApresentacaoExcursao e definição de métodos set
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class CntrApresentacaoExcursao:public IApresentacaoExcursao{
     private:
         IServicoExcursao *cntrServicoExcursao;
