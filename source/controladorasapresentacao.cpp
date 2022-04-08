@@ -256,26 +256,7 @@ void CntrApresentacaoContas::cadastrar(){
 }
 
 //--------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Implementação de métodos da classe CntrApresentacaoExcursao
 
 // Função para quando não está logado e quer ver as excursões
 void CntrApresentacaoExcursao::executar(){
