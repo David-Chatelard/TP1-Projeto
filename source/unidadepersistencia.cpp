@@ -72,7 +72,7 @@ int ComandoSQL::callback(void *NotUsed, int argc, char **valorColuna, char **nom
 
 ComandoLerSenha::ComandoLerSenha(Email email) {
         comandoSQL = "SELECT senha FROM usuarios WHERE email = ";
-        comandoSQL += "'" + email.getValor() + "'";
+        comandoSQL += "'" + email.getValor() + "';";
         // comandoSQL += email.getValor();
 }
 
