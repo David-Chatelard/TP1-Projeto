@@ -12,6 +12,9 @@
 #include "../headers/controladorasapresentacao.h"
 #include "controladorasapresentacao.cpp"
 
+#include "../headers/controladorasservico.h"
+#include "controladorasservico.cpp"
+
 #include "../headers/stubs.h"
 #include "stubs.cpp"
 
