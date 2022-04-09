@@ -28,6 +28,7 @@ bool CntrServicoAutenticacao::autenticar(Email email, Senha senha) {
 //--------------------------------------------------------------------------------------------
 // Implementação de métodos da classe CntrServicoContas
 
+// TEM QUE IMPLEMENTAR A PARTE DE APAGAR TODAS AS EXCURSOES E AVALIACOES
 bool CntrServicoContas::descadastrar(Email email){
     ComandoRemoverUsuario comandoRemoverUsuario(email);
 
@@ -70,3 +71,54 @@ bool CntrServicoContas::cadastrar(Usuario usuario) {
 
 //--------------------------------------------------------------------------------------------
 // Implementação de métodos da classe CntrServicoExcursao
+
+
+vector<Excursao> CntrServicoExcursao::listarExcursoes(Email email){
+    ComandoListarExcursoes comandoListarExcursoes(email);
+
+    try {
+        comandoListarExcursoes.executar();
+    }
+    catch(EErroPersistencia &exp) {
+        cout << endl << exp.what();
+        // return false;
+    }
+    return comandoListarExcursoes.getResultado();
+
+}
+
+vector<Excursao> CntrServicoExcursao::listarExcursoes2(Email email){
+    ComandoListarExcursoes comandoListarExcursoes(email);
+
+    try {
+        comandoListarExcursoes.executar();
+    }
+    catch(EErroPersistencia &exp) {
+        cout << endl << exp.what();
+        // return false;
+    }
+    return comandoListarExcursoes.getResultado();
+
+}
+
+vector<Excursao> CntrServicoExcursao::listarExcursoes(){
+    ComandoListarExcursoes comandoListarExcursoes;
+
+    try {
+        comandoListarExcursoes.executar();
+    }
+    catch(EErroPersistencia &exp) {
+        cout << endl << exp.what();
+        // return false;
+    }
+    return comandoListarExcursoes.getResultado();
+
+}
+
+
+
+
+
+
+
+

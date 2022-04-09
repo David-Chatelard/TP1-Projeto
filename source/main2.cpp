@@ -42,14 +42,14 @@ int main() {
 
     cntrServicoAutenticacao = new CntrServicoAutenticacao();
     cntrServicoContas = new CntrServicoContas();
-    // cntrServicoExcursao = new CntrServicoExcursao();
+    cntrServicoExcursao = new CntrServicoExcursao();
 
 
     // Instanciar stubs.
 
-    IServicoExcursao *stubServicoExcursao;
+    // IServicoExcursao *stubServicoExcursao;
 
-    stubServicoExcursao = new StubServicoExcursao();
+    // stubServicoExcursao = new StubServicoExcursao();
 
     // Interligar controladoras e stubs.
 
@@ -62,7 +62,7 @@ int main() {
     cntrApresentacaoContas->setCntrServicoContas(cntrServicoContas);
     // cntrApresentacaoContas->setCntrServicoExcursao(stubServicoExcursao); //não sei se vai usar isso
 
-    cntrApresentacaoExcursao->setCntrServicoExcursao(stubServicoExcursao); //TEM QUE IMPLEMENTAR
+    cntrApresentacaoExcursao->setCntrServicoExcursao(cntrServicoExcursao); //TEM QUE IMPLEMENTAR
 
     cntrApresentacaoControle->executar();                                           // Solicitar serviço.
 

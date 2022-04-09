@@ -29,9 +29,23 @@ class CntrServicoContas:public IServicoContas{
 
 //--------------------------------------------------------------------------------------------
 // Declaração da classe CntrServicoExcursao
-// class CntrServicoExcursao:public IServicoExcursao{
-//     public:
-
-// };
+class CntrServicoExcursao:public IServicoExcursao{
+    public:
+        vector<Excursao> listarExcursoes(Email email);
+        vector<Excursao> listarExcursoes2(Email email);
+        vector<Excursao> listarExcursoes();
+        // Avaliacao* listarAvaliacoes();
+        // Sessao* listarSessoes();
+        // bool cadastrarExcursao
+        // bool cadastrarAvaliacao
+        // bool cadastrarSessao
+        // bool editarExcursao
+        // bool editarAvaliacao
+        // bool editarSessao
+        // bool descadastrarExcursao
+        // bool descadastrarAvaliacao
+        // bool descadastrarSessao
+        
+};
 
 #endif

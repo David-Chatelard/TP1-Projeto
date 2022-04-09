@@ -399,7 +399,7 @@ void CntrApresentacaoExcursao::executar(Email email){
                         getch();
                     }
                 }
-                cntrServicoExcursao->cadastrarExcursao(excursao); //RETORNA BOOLEAN, da para usar isso caso queira                             //Cadastrar excursao
+                // cntrServicoExcursao->cadastrarExcursao(excursao); //RETORNA BOOLEAN, da para usar isso caso queira                             //Cadastrar excursao
                 break;
             case 5: apresentar = false;                                                                             //Voltar para a lista de servicos
                 break;
@@ -409,10 +409,9 @@ void CntrApresentacaoExcursao::executar(Email email){
 
 // Função que lista todas as excursões quando não está logado
 void CntrApresentacaoExcursao::listarExcursoes(){
-    // COMANDO DE BUSCAR TODAS AS EXCURSOES DA CAMADA DE SERVICO
     const int EXCURSOES_POR_PAGINA = 5;
-    Excursao excursoes[30]; // teste
-    int pagina=0, i, j, prox_pag=-1, pag_ant=-1, num_opcoes=0;
+    vector<Excursao> excursoes = cntrServicoExcursao->listarExcursoes();
+    int pagina=0, i, j, prox_pag=-1, pag_ant=-1, num_opcoes=0, num_excursoes = excursoes.size(), excursoes_mostradas=0, excursoes_mostradas_pag=0;
     bool apresentar=true;
     int campo1;
 
@@ -420,7 +419,7 @@ void CntrApresentacaoExcursao::listarExcursoes(){
     char texto2[]=" - Proxima pagina";
     char texto3[]=" - Pagina anterior";
     char texto4[]=" - Retornar a selecao de servicos";
-    
+
     while (apresentar){
         prox_pag=-1;
         pag_ant=-1;
@@ -429,17 +428,20 @@ void CntrApresentacaoExcursao::listarExcursoes(){
         CLR_SCR;                                                                                // Limpa janela.
         cout << texto1 << endl;                                                                 // Imprime nome do campo.
 
+        excursoes_mostradas_pag = 0;
         // Imprimir os titulos das excursões
         for (i = 0; i < EXCURSOES_POR_PAGINA; i++){                                             // Imprime as avaliações
-            if (excursoes[i + (EXCURSOES_POR_PAGINA*pagina)].getTitulo().getValor() == "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
+            if (excursoes_mostradas >= num_excursoes){     // Caso não exista mais excursões
                 break;
             }
             cout << i+1 << " - ";                                                               // Imprime "Num - "
             cout << excursoes[i + (EXCURSOES_POR_PAGINA*pagina)].getTitulo().getValor() << endl;
+            excursoes_mostradas++;
+            excursoes_mostradas_pag++;
         }
 
         // Imprimir "Próxima página", se existirem mais excursões
-        if (excursoes[(i+1) + (EXCURSOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL" ) { //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista
+        if (excursoes_mostradas < num_excursoes) {  // Caso exista mais excursoes
             num_opcoes++;
             prox_pag = i+1;
             cout << prox_pag << texto2 << endl;                                                                 // Imprime nome do campo.
@@ -463,11 +465,11 @@ void CntrApresentacaoExcursao::listarExcursoes(){
         campo1 = getch() - 48;                                                                  // Leitura do campo de entrada e conversão de ASCII.
 
         // Vai na excursão selecionada
-        for (j = 0; j < EXCURSOES_POR_PAGINA; j++){
-            if (excursoes[j + (EXCURSOES_POR_PAGINA*pagina)].getTitulo().getValor() != "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
-                if (campo1 == (j+1)){
-                    detalheExcursao(excursoes[j + (EXCURSOES_POR_PAGINA*pagina)]);
-                }
+        for (j = 0; j < excursoes_mostradas_pag; j++){
+            if (campo1 == (j+1)){
+                int aux = excursoes_mostradas;
+                excursoes_mostradas -= excursoes_mostradas_pag;
+                detalheExcursao(excursoes[j + (EXCURSOES_POR_PAGINA*pagina)]);
             }
         }
         
@@ -476,6 +478,7 @@ void CntrApresentacaoExcursao::listarExcursoes(){
         }
         else if (campo1 == pag_ant){
             pagina--;
+            excursoes_mostradas -= (EXCURSOES_POR_PAGINA + excursoes_mostradas_pag);
         }
         else if (campo1 == (i+1+num_opcoes)){
             apresentar = false;
@@ -753,7 +756,7 @@ void CntrApresentacaoExcursao::detalheExcursao2(Excursao excursao){
                         getch();
                     }
                 }
-                cntrServicoExcursao->cadastrarAvaliacao(avaliacao);
+                // cntrServicoExcursao->cadastrarAvaliacao(avaliacao);
                 break;
             case 4: apresentar = false;
                 break;
@@ -879,7 +882,7 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
                         getch();
                     }
                 }
-                cntrServicoExcursao->cadastrarSessao(sessao);
+                // cntrServicoExcursao->cadastrarSessao(sessao);
                 break;
             case 4: // cadastrar avaliação
                 while(true) {
@@ -904,7 +907,7 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
                         getch();
                     }
                 }
-                cntrServicoExcursao->cadastrarAvaliacao(avaliacao);
+                // cntrServicoExcursao->cadastrarAvaliacao(avaliacao);
                 break;
             case 5: // editar excursão
                 while(true) {

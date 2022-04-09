@@ -121,7 +121,7 @@ class ComandoListarExcursoes:public ComandoSQL {
 public:
         ComandoListarExcursoes();
         ComandoListarExcursoes(Email);
-        vector<ElementoResultado> getResultado();
+        vector<Excursao> getResultado();
 };
 
 //---------------------------------------------------------------------------

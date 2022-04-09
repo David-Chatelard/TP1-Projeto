@@ -187,11 +187,122 @@ ComandoListarExcursoes::ComandoListarExcursoes(Email emailGuia) {
 }
 
 // Função que retorna as excursões, que estão em listaResultado, em vetorResultado e limpa listaResultado
-vector<ElementoResultado> ComandoListarExcursoes::getResultado() {
-        vector<ElementoResultado> vetorResultado(listaResultado.size());                // Cria vetor
-        copy(listaResultado.begin(), listaResultado.end(), vetorResultado.begin());     // Copia lista para vetor
-        listaResultado.clear();                                                         // Limpa a lista
+vector<Excursao> ComandoListarExcursoes::getResultado() {
+        int i=0, tam_lista;
+        ElementoResultado resultado;
+        Excursao excursao;
 
+        Codigo codigo;
+        Titulo titulo;
+        Nota nota;
+        Cidade cidade;
+        Duracao duracao;
+        Descricao descricao;
+        Endereco endereco;
+        Email emailGuia;
+
+        // vector<Excursao> vetorResultado(listaResultado.size() / 8);                     // Cria vetor
+        vector<Excursao> vetorResultado;                     // Cria vetor
+        tam_lista = listaResultado.size() / 8;
+        
+        for (i = 0; i < tam_lista; i++) {
+                // Remover codigo;
+                if (listaResultado.empty())
+                        throw EErroPersistencia("Lista de resultados vazia.");
+                resultado = listaResultado.back();
+                listaResultado.pop_back();
+                // cout << "Codigo: " << resultado.getValorColuna() << endl;
+                // getch();
+                codigo.setValor(resultado.getValorColuna());
+                excursao.setCodigo(codigo);
+
+                // Remover titulo;
+                if (listaResultado.empty())
+                        throw EErroPersistencia("Lista de resultados vazia.");
+                resultado = listaResultado.back();
+                listaResultado.pop_back();
+                // cout << "Titulo: " << resultado.getValorColuna() << endl;
+                // getch();
+                titulo.setValor(resultado.getValorColuna());
+                excursao.setTitulo(titulo);
+
+                // Remover nota;
+                if (listaResultado.empty())
+                        throw EErroPersistencia("Lista de resultados vazia.");
+                resultado = listaResultado.back();
+                listaResultado.pop_back();
+                // cout << "Nota: " << resultado.getValorColuna() << endl;
+                // getch();
+                nota.setValor(stoi(resultado.getValorColuna()));
+                excursao.setNota(nota);
+
+                // Remover cidade;
+                if (listaResultado.empty())
+                        throw EErroPersistencia("Lista de resultados vazia.");
+                resultado = listaResultado.back();
+                listaResultado.pop_back();
+                // cout << "Cidade: " << resultado.getValorColuna() << endl;
+                // getch();
+                cidade.setValor(resultado.getValorColuna());
+                excursao.setCidade(cidade);
+
+                // Remover duracao;
+                if (listaResultado.empty())
+                        throw EErroPersistencia("Lista de resultados vazia.");
+                resultado = listaResultado.back();
+                listaResultado.pop_back();
+                // cout << "Duracao: " << resultado.getValorColuna() << endl;
+                // getch();
+                duracao.setValor(stoi(resultado.getValorColuna()));
+                excursao.setDuracao(duracao);
+
+                // Remover descricao;
+                if (listaResultado.empty())
+                        throw EErroPersistencia("Lista de resultados vazia.");
+                resultado = listaResultado.back();
+                listaResultado.pop_back();
+                // cout << "Descricao: " << resultado.getValorColuna() << endl;
+                // getch();
+                descricao.setValor(resultado.getValorColuna());
+                excursao.setDescricao(descricao);
+
+                // Remover endereco;
+                if (listaResultado.empty())
+                        throw EErroPersistencia("Lista de resultados vazia.");
+                resultado = listaResultado.back();
+                listaResultado.pop_back();
+                // cout << "Endereco: " << resultado.getValorColuna() << endl;
+                // getch();
+                endereco.setValor(resultado.getValorColuna());
+                excursao.setEndereco(endereco);
+
+                // Remover emailGuia;
+                if (listaResultado.empty())
+                        throw EErroPersistencia("Lista de resultados vazia.");
+                resultado = listaResultado.back();
+                listaResultado.pop_back();
+                // cout << "EmailGuia: " << resultado.getValorColuna() << endl;
+                // getch();
+                emailGuia.setValor(resultado.getValorColuna());
+                excursao.setEmailGuia(emailGuia);
+
+                // vetorResultado[i] = excursao;
+                vetorResultado.push_back(excursao);
+        }
+
+        // for (int j = 0; j < vetorResultado.size(); j++){
+        //         cout << vetorResultado[j].getCodigo().getValor() << endl;
+        //         cout << vetorResultado[j].getTitulo().getValor() << endl;
+        //         cout << vetorResultado[j].getNota().getValor() << endl;
+        //         cout << vetorResultado[j].getCidade().getValor() << endl;
+        //         cout << vetorResultado[j].getDuracao().getValor() << endl;
+        //         cout << vetorResultado[j].getDescricao().getValor() << endl;
+        //         cout << vetorResultado[j].getEndereco().getValor() << endl;
+        //         cout << vetorResultado[j].getEmailGuia().getValor() << endl << endl;
+        //         getch();
+        // }
+        
+        
         return vetorResultado;
 }
 

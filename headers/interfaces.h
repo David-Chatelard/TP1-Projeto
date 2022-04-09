@@ -3,6 +3,7 @@
 
 #include "dominios.h"
 #include "entidades.h"
+#include <vector>
 
 using namespace std;
 
@@ -28,7 +29,7 @@ class IServicoExcursao {
 
         // TODAS AS FUNCIONALIDADES A SEREM IMPLEMENTADAS
 
-        // void listarExcursoes(); //DEPOIS ACESSAR OS DADOS DE CADA UMA
+        virtual vector<Excursao> listarExcursoes() = 0; //DEPOIS ACESSAR OS DADOS DE CADA UMA
         // void listarExcursoes(Email);
         // void editarExcursao(Excursao);
         
@@ -42,16 +43,16 @@ class IServicoExcursao {
 
 
 
-        virtual bool cadastrarExcursao(Excursao) = 0;
-        virtual bool consultarExcursao(Excursao*) = 0;
-        virtual bool descadastrarExcursao(Excursao) = 0;
-        virtual bool cadastrarSessao(Sessao) = 0;
-        virtual bool consultarSessao(Sessao*) = 0;
-        virtual bool descadastrarSessao(Sessao) = 0;
-        virtual bool cadastrarAvaliacao(Avaliacao) = 0;
-        virtual bool consultarAvaliacao(Avaliacao*) = 0;
-        virtual bool descadastrarAvaliacao(Avaliacao) = 0;
-        virtual ~IServicoExcursao(){}
+        // virtual bool cadastrarExcursao(Excursao) = 0;
+        // virtual bool consultarExcursao(Excursao*) = 0;
+        // virtual bool descadastrarExcursao(Excursao) = 0;
+        // virtual bool cadastrarSessao(Sessao) = 0;
+        // virtual bool consultarSessao(Sessao*) = 0;
+        // virtual bool descadastrarSessao(Sessao) = 0;
+        // virtual bool cadastrarAvaliacao(Avaliacao) = 0;
+        // virtual bool consultarAvaliacao(Avaliacao*) = 0;
+        // virtual bool descadastrarAvaliacao(Avaliacao) = 0;
+        // virtual ~IServicoExcursao(){}
 };
 
 

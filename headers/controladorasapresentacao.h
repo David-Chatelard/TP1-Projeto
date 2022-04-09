@@ -4,6 +4,7 @@
 #include <conio.h>
 #include <iostream>
 #include <string.h>
+#include <vector>
 
 #include "dominios.h"
 #include "entidades.h"
