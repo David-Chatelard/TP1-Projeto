@@ -3,40 +3,40 @@
 //--------------------------------------------------------------------------------------------
 // Valores usados como gatilhos de erros.
 
-const string StubServicoAutenticacao::INVALIDO = "12345";
-const string StubServicoContas::INVALIDO = "12345";
-const string StubServicoContas::INVALIDO_NOME = "amgongas";
+// const string StubServicoAutenticacao::INVALIDO = "12345";
+// const string StubServicoContas::INVALIDO = "12345";
+// const string StubServicoContas::INVALIDO_NOME = "amgongas";
 const string StubServicoExcursao::INVALIDO = "12345";
 
 //--------------------------------------------------------------------------------------------
 // Implementações dos métodos da classe StubServicoAutenticacao.
 
-bool StubServicoAutenticacao::autenticar(Email email, Senha senha){
-    if(email.getValor().compare(INVALIDO) == 0)
-        return false;
-    return true;
-}
+// bool StubServicoAutenticacao::autenticar(Email email, Senha senha){
+//     if(email.getValor().compare(INVALIDO) == 0)
+//         return false;
+//     return true;
+// }
 
 //--------------------------------------------------------------------------------------------
 // Implementações dos métodos da classe StubServicoContas.
 
-bool StubServicoContas::cadastrar(Usuario usuario){
-    if(usuario.getEmail().getValor().compare(INVALIDO) == 0)
-        return false;
-    return true;
-}
+// bool StubServicoContas::cadastrar(Usuario usuario){
+//     if(usuario.getEmail().getValor().compare(INVALIDO) == 0)
+//         return false;
+//     return true;
+// }
 
-bool StubServicoContas::editar(Usuario usuario){
-    if(usuario.getNome().getValor().compare(INVALIDO_NOME) == 0)
-        return false;
-    return true;
-}
+// bool StubServicoContas::editar(Usuario usuario){
+//     if(usuario.getNome().getValor().compare(INVALIDO_NOME) == 0)
+//         return false;
+//     return true;
+// }
 
-bool StubServicoContas::descadastrar(Email email){
-    if(email.getValor().compare(INVALIDO) == 0)
-        return false;
-    return true;
-}
+// bool StubServicoContas::descadastrar(Email email){
+//     if(email.getValor().compare(INVALIDO) == 0)
+//         return false;
+//     return true;
+// }
 
 //--------------------------------------------------------------------------------------------
 // Implementações dos métodos da classe StubServicoExcursao.

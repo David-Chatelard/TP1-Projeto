@@ -32,6 +32,8 @@ int main() {
     IApresentacaoExcursao *cntrApresentacaoExcursao;
 
     IServicoAutenticacao *cntrServicoAutenticacao;
+    IServicoContas *cntrServicoContas;
+    IServicoExcursao *cntrServicoExcursao;
 
     cntrApresentacaoControle = new CntrApresentacaoControle();
     cntrApresentacaoAutenticacao = new CntrApresentacaoAutenticacao();
@@ -39,16 +41,14 @@ int main() {
     cntrApresentacaoExcursao = new CntrApresentacaoExcursao();
 
     cntrServicoAutenticacao = new CntrServicoAutenticacao();
+    cntrServicoContas = new CntrServicoContas();
+    // cntrServicoExcursao = new CntrServicoExcursao();
 
 
     // Instanciar stubs.
 
-    IServicoAutenticacao *stubServicoAutenticacao;
-    IServicoContas *stubServicoContas;
     IServicoExcursao *stubServicoExcursao;
 
-    stubServicoAutenticacao = new StubServicoAutenticacao();
-    stubServicoContas = new StubServicoContas();
     stubServicoExcursao = new StubServicoExcursao();
 
     // Interligar controladoras e stubs.
@@ -59,7 +59,7 @@ int main() {
 
     cntrApresentacaoAutenticacao->setCntrServicoAutenticacao(cntrServicoAutenticacao);
 
-    cntrApresentacaoContas->setCntrServicoContas(stubServicoContas);
+    cntrApresentacaoContas->setCntrServicoContas(cntrServicoContas);
     // cntrApresentacaoContas->setCntrServicoExcursao(stubServicoExcursao); //não sei se vai usar isso
 
     cntrApresentacaoExcursao->setCntrServicoExcursao(stubServicoExcursao); //TEM QUE IMPLEMENTAR

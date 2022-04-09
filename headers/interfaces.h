@@ -66,7 +66,7 @@ class IApresentacaoAutenticacao {
 
 class IApresentacaoContas {
     public:
-        virtual void executar(Email) = 0;
+        virtual void executar(Email, bool*) = 0;
         virtual void cadastrar() = 0;
         virtual void setCntrServicoContas(IServicoContas*) = 0;
         virtual ~IApresentacaoContas(){}

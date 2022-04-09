@@ -65,7 +65,7 @@ class CntrApresentacaoContas:public IApresentacaoContas{
         // IServicoExcursao *cntrServicoExcursao; //não sei se precisa
         // void consultarDadosPessoais(); //não sei se precisa
     public:
-        void executar(Email);
+        void executar(Email, bool*);
         void cadastrar();
         void setCntrServicoContas(IServicoContas*);
         // void setCntrServicoExcursao(IServicoExcursao*); //não sei se precisa

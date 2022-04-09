@@ -11,25 +11,25 @@ using namespace std;
 //--------------------------------------------------------------------------------------------
 // Declarações da classe StubServicoAutenticacao.
 
-class StubServicoAutenticacao:public IServicoAutenticacao {
-    private:
-        static const string INVALIDO;
-    public:
-        bool autenticar(Email, Senha);
-};
+// class StubServicoAutenticacao:public IServicoAutenticacao {
+//     private:
+//         static const string INVALIDO;
+//     public:
+//         bool autenticar(Email, Senha);
+// };
 
 //--------------------------------------------------------------------------------------------
 // Declarações da classe StubServicoContas.
 
-class StubServicoContas:public IServicoContas {
-    private:
-        static const string INVALIDO;
-        static const string INVALIDO_NOME;
-    public:
-        bool cadastrar(Usuario);
-        bool descadastrar(Email);
-        bool editar(Usuario);
-};
+// class StubServicoContas:public IServicoContas {
+//     private:
+//         static const string INVALIDO;
+//         static const string INVALIDO_NOME;
+//     public:
+//         bool cadastrar(Usuario);
+//         bool descadastrar(Email);
+//         bool editar(Usuario);
+// };
 
 //--------------------------------------------------------------------------------------------
 // Declarações da classe StubServicoExcursao.

@@ -3,6 +3,12 @@
 //--------------------------------------------------------------------------------------------
 // Implementação de métodos da classe CntrApresentacaoControle
 
+void fixBuffer(){
+    if(cin.peek()=='\n'){
+        cin.ignore();
+    }
+}
+
 void CntrApresentacaoControle::executar(){
     
     // Mensagens a serem apresentadas na tela inicial
@@ -24,9 +30,9 @@ void CntrApresentacaoControle::executar(){
 
     int campo;                                                                                  // Campo de entrada
 
-    bool apresentar = true;                                                                     // Controle de laço
-
-    while(apresentar){
+    bool apresentar1 = true;                                                                     // Controle de laço
+    bool apresentar2 = true;
+    while(apresentar1){
 
         // Apresenta tela inicial.
 
@@ -42,8 +48,8 @@ void CntrApresentacaoControle::executar(){
 
         switch(campo){
             case 1: if(cntrApresentacaoAutenticacao->autenticar(&email)){                       // Solicita autenticação.
-                        bool apresentar = true;                                                 // Controle de laço.
-                        while(apresentar){
+                        bool apresentar2 = true;                                                 // Controle de laço.
+                        while(apresentar2){
 
                             // Apresenta tela de seleção de serviço.
 
@@ -57,11 +63,11 @@ void CntrApresentacaoControle::executar(){
                             campo = getch() - 48;                                               // Leitura do campo de entrada e conversão de ASCII.
 
                             switch(campo){
-                                case 1: cntrApresentacaoContas->executar(email);                // Solicita serviço de contas.
+                                case 1: cntrApresentacaoContas->executar(email, &apresentar2);                // Solicita serviço de contas.
                                         break;
                                 case 2: cntrApresentacaoExcursao->executar(email);              // Solicita serviço de excursão.
                                         break;
-                                case 3: apresentar = false;
+                                case 3: apresentar2 = false;
                                         break;
                             }
                         }
@@ -76,7 +82,7 @@ void CntrApresentacaoControle::executar(){
                     break;
             case 3: cntrApresentacaoExcursao->executar();
                     break;
-            case 4: apresentar = false;
+            case 4: apresentar1 = false;
                     break;
         }
     }
@@ -108,9 +114,12 @@ bool CntrApresentacaoAutenticacao::autenticar(Email *email){
         CLR_SCR;                                                                                // Limpa janela.
 
         cout << texto1 << " ";                                                                  // Imprime nome do campo.
+        fixBuffer();
         cin >> campo1;                                                                          // Le valor do campo.
         cout << texto2 << " ";                                                                  // Imprime nome do campo.
+        fixBuffer();
         cin >> campo2;                                                                          // Le valor do campo.
+        
 
         try{
             email->setValor(string(campo1));                                                    // Atribui valor ao email.
@@ -130,7 +139,7 @@ bool CntrApresentacaoAutenticacao::autenticar(Email *email){
 //--------------------------------------------------------------------------------------------
 // Implementação de métodos da classe CntrApresentacaoContas
 
-void CntrApresentacaoContas::executar(Email email){
+void CntrApresentacaoContas::executar(Email email, bool *autenticado){
 
     // Mensagens a serem apresentadas na tela de sele��o de servi�o..
 
@@ -169,9 +178,10 @@ void CntrApresentacaoContas::executar(Email email){
                     while(true){
                         CLR_SCR;
                         cout << texto5;
-                        cin.ignore();
+                        fixBuffer();
                         cin.getline(auxNome,79);
                         cout << texto6;
+                        fixBuffer();
                         cin >> auxSenha;
                         
                         try{
@@ -187,9 +197,12 @@ void CntrApresentacaoContas::executar(Email email){
                     }
                     usuario.setNome(nome);
                     usuario.setSenha(senha);
+                    usuario.setEmail(email);
                     cntrServicoContas->editar(usuario); //RETORNA BOOLEAN, da para usar isso caso queira
                     break;
             case 2: cntrServicoContas->descadastrar(email);                                     //Descadastrar conta
+                    *autenticado = false;
+                    apresentar = false;
                     break;
             case 3: apresentar = false;                                                                             //Voltar para a lista de servicos
                     break;
@@ -226,8 +239,8 @@ void CntrApresentacaoContas::cadastrar(){
         CLR_SCR;                                                                                // Limpa janela.
 
         cout << texto0;
-        cout << texto1 << " ";                                                                  // Imprime nome do campo.
-        cin.ignore();
+        cout << texto1 << " ";    
+        fixBuffer();                                                              // Imprime nome do campo.
         cin.getline(campo1,79);                                                                          // Le valor do campo.
         cout << texto2 << " ";                                                                  // Imprime nome do campo.
         cin >> campo2;                                                                          // Le valor do campo.
@@ -353,18 +366,18 @@ void CntrApresentacaoExcursao::executar(Email email){
                 while(true){
                     CLR_SCR;
                     cout << texto6;                                                         // Imprime os textos de cadastro da excursão
-                    cin.ignore();
+                    fixBuffer();
                     cin.getline(campo2,79);                                                         // Le os inputs da excursão
                     cout << texto7;
-                    cin.ignore();
+                    fixBuffer();
                     cin.getline(campo3,79);
                     cout << texto8;
                     cin >> campo4;
                     cout << texto9;
-                    cin.ignore();
+                    fixBuffer();
                     cin.getline(campo5,79);
                     cout << texto10;
-                    cin.ignore();
+                    fixBuffer();
                     cin.getline(campo6,79);
 
                     try{
@@ -724,7 +737,7 @@ void CntrApresentacaoExcursao::detalheExcursao2(Excursao excursao){
                     cout << texto13;
                     cin >> auxNota;
                     cout << texto14;
-                    cin.ignore();
+                    fixBuffer();
                     cin.getline(auxDescricao,79);
 
                     try {
@@ -875,7 +888,7 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
                     cout << texto27;
                     cin >> auxNotaAvaliacao;
                     cout << texto28;
-                    cin.ignore();
+                    fixBuffer();
                     cin.getline(auxDescricaoAvaliacao,79);
 
                     try {
@@ -898,23 +911,23 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
                     CLR_SCR;
                     // SE BOTAR UM INPUT COM ESPAÇO DA ERRADO, TEM QUE TENTAR RESOLVER ISSO, ELE SO PEGA A PRIMEIRA PALAVRA E DA ERRADO OS PROXIMOS INPUTS
                     cout << texto13;
-                    cin.ignore();
+                    fixBuffer();
                     cin.getline(auxTitulo,79);
                     // cin >> auxTitulo;
                     cout << texto14;
                     cin >> auxNota;
                     cout << texto15;
-                    cin.ignore();
+                    fixBuffer();
                     cin.getline(auxCidade,79);
                     // cin >> auxCidade;
                     cout << texto16;
                     cin >> auxDuracao;
                     cout << texto17;
-                    cin.ignore();
+                    fixBuffer();
                     cin.getline(auxDescricao,79);
                     // cin >> auxDescricao;
                     cout << texto18;
-                    cin.ignore();
+                    fixBuffer();
                     cin.getline(auxEndereco,79);
                     // cin >> auxEndereco;
                     try {
@@ -1104,7 +1117,7 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que a
                             cout << texto9;
                             cin >> aux_nota;
                             cout << texto10;
-                            cin.ignore();
+                            fixBuffer();
                             cin.getline(aux_descricao,79);
                             try {
                                 nota.setValor(stoi(aux_nota));
