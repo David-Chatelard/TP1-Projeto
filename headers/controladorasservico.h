@@ -34,18 +34,17 @@ class CntrServicoExcursao:public IServicoExcursao{
         vector<Excursao> listarExcursoes(Email email);
         vector<Excursao> listarExcursoes2(Email email);
         vector<Excursao> listarExcursoes();
-        // Avaliacao* listarAvaliacoes();
-        // Sessao* listarSessoes();
-        // bool cadastrarExcursao
-        // bool cadastrarAvaliacao
-        // bool cadastrarSessao
-        // bool editarExcursao
-        // bool editarAvaliacao
-        // bool editarSessao
-        // bool descadastrarExcursao
-        // bool descadastrarAvaliacao
-        // bool descadastrarSessao
-        
+        // Avaliacao* listarAvaliacoes(); //NAO IMPLEMENTADA
+        // Sessao* listarSessoes(); //NAO IMPLEMENTADA
+        // bool cadastrarExcursao(Excursao excursao);
+        // bool cadastrarAvaliacao(Avaliacao avaliacao);
+        // bool cadastrarSessao(Sessao sessao);
+        // bool editarExcursao(Excursao excursao);
+        // bool editarAvaliacao(Avaliacao avaliacao);
+        // bool editarSessao(Sessao sessao);
+        // bool descadastrarExcursao(Excursao excursao);
+        // bool descadastrarAvaliacao(Avaliacao avaliacao);
+        // bool descadastrarSessao(Sessao sessao);
 };
 
 #endif
