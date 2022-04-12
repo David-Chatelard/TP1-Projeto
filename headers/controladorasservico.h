@@ -36,7 +36,7 @@ class CntrServicoExcursao:public IServicoExcursao{
         vector<Excursao> listarExcursoes();
         vector<Avaliacao> listarAvaliacoes(Email);
         vector<Avaliacao> listarAvaliacoes(Codigo);
-        // vector<Sessao> listarSessoes(); //NAO IMPLEMENTADA
+        vector<Sessao> listarSessoes(Codigo);
         // bool cadastrarExcursao(Excursao excursao);
         // bool cadastrarAvaliacao(Avaliacao avaliacao);
         // bool cadastrarSessao(Sessao sessao);

@@ -215,7 +215,7 @@ public:
 class ComandoListarSessoes:public ComandoSQL {
 public:
         ComandoListarSessoes(Codigo);
-        vector<ElementoResultado> getResultado();
+        vector<Sessao> getResultado();
 };
 
 //---------------------------------------------------------------------------

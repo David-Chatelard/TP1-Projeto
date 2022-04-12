@@ -33,7 +33,7 @@ class IServicoExcursao {
         virtual vector<Excursao> listarExcursoes(Email) = 0;
         // virtual vector<Excursao> editarExcursao(Excursao) = 0;
         
-        // void listarSessoes(); //não precisa de listarSessoes(Email), pois a partir da listarExcursoes(Email) ele acessa as excursoes que ele é guia e pode ver as sessoes dessas excursoes
+        virtual vector<Sessao> listarSessoes(Codigo) = 0; //não precisa de listarSessoes(Email), pois a partir da listarExcursoes(Email) ele acessa as excursoes que ele é guia e pode ver as sessoes dessas excursoes
         // void listarSessoes(Email);
         // void editarSessao();
 

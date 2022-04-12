@@ -176,6 +176,22 @@ vector<Avaliacao> CntrServicoExcursao::listarAvaliacoes(Email email){
 
 }
 
+// Lista as sessões dessa excursao
+vector<Sessao> CntrServicoExcursao::listarSessoes(Codigo codigo){
+    vector<Sessao> vazio;
+    ComandoListarSessoes comandoListarSessoes(codigo);
+
+    try {
+        comandoListarSessoes.executar();
+        return comandoListarSessoes.getResultado();
+    }
+    catch(EErroPersistencia &exp) {
+        cout << endl << exp.what();
+    }
+    return vazio;
+
+}
+
 
 
 // //cadastrar

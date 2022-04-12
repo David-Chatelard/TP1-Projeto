@@ -1036,12 +1036,11 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Excursao excursao){ // A versão
 
 // Função que lista todas as suas avaliações e permite editar/descadastrar uma avaliação
 void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que aceita email vai ser pra listar as minhas avaliacoes e vai mudar no metodo de pegar as avaliacoes e que vai poder editar/excluir as avaliacoes
-    // COMANDO DE BUSCAR TODAS AS AVALIACOES DESSE USUARIO DA CAMADA DE SERVICO
     const int AVALIACOES_POR_PAGINA = 5;
+    vector<Avaliacao> avaliacoes = cntrServicoExcursao->listarAvaliacoes(email);
 
-    Avaliacao avaliacoes[30]; // teste
 
-    int pagina=0, i, num_opcoes=1, prox_pag=0, pag_ant=1;
+    int pagina=0, i, num_opcoes=1, prox_pag=0, pag_ant=1, num_avaliacoes = avaliacoes.size(), avaliacoes_mostradas=0, avaliacoes_mostradas_pag=0;
     int campo1;
 
     char avaliacao_a_editar[10];
@@ -1077,27 +1076,31 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que a
         CLR_SCR;                                                                                // Limpa janela.
         cout << texto1 << endl;
 
+        avaliacoes_mostradas_pag = 0;
         // Mostra as avaliacoes na tela
         for (i = 0; i < AVALIACOES_POR_PAGINA; i++){                                        // Imprime as sessões
-            if (avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getCodigo().getValor() == "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais sessões
+            if (avaliacoes_mostradas >= num_avaliacoes){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais avaliações
                 break;
             }
             cout << texto2 << (i + 1) + (AVALIACOES_POR_PAGINA*pagina) << endl;
             cout << "Nota: " << avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getNota().getValor() << endl;
             cout << "Descricao: " << avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getDescricao().getValor() << endl << endl;
+            avaliacoes_mostradas++;
+            avaliacoes_mostradas_pag++;
         }
 
         cout << texto3 << endl;
         cout << texto4 << endl;
 
-        // Mostra a opcao de prox pagina
-        if (avaliacoes[(i+1) + (AVALIACOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL" ){  // Se tiver mais sessões
+        // Imprimir "Próxima página", se existirem mais avaliações
+        if (avaliacoes_mostradas < num_avaliacoes){
             prox_pag = 3;
             cout << prox_pag << texto5 << endl;                                                                 // Opção de próxima página
             num_opcoes++;
             pag_ant++;
         }
-        // Mostra a opcao de pagina anterior
+
+        // Imprimir "Página anterior", se não estiver na primeira página
         if (pagina != 0){
             cout << pag_ant << texto6 << endl;                                                                 // Opção de página anterior
             num_opcoes++;
@@ -1110,14 +1113,18 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que a
             CLR_SCR;                                                                                // Limpa janela.
             cout << texto1 << endl;
 
+            avaliacoes_mostradas -= avaliacoes_mostradas_pag;
+            avaliacoes_mostradas_pag = 0;
             // Mostra as avaliacoes
             for (i = 0; i < AVALIACOES_POR_PAGINA; i++){                                        // Imprime as sessões
-                if (avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getCodigo().getValor() == "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais sessões
+                if (avaliacoes_mostradas >= num_avaliacoes){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais avaliações
                     break;
                 }
                 cout << texto2 << (i + 1) + (AVALIACOES_POR_PAGINA*pagina) << endl;
                 cout << "Nota: " << avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getNota().getValor() << endl;
                 cout << "Descricao: " << avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getDescricao().getValor() << endl << endl;
+                avaliacoes_mostradas++;
+                avaliacoes_mostradas_pag++;
             }
 
             cout << texto8 << endl;
@@ -1125,45 +1132,49 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que a
 
             // Vai na avaliacao selecionada
             for (int j = 0; j < AVALIACOES_POR_PAGINA; j++){
-                if (avaliacoes[j + (AVALIACOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
-                    if (stoi(avaliacao_a_editar) == ((j + 1) + (AVALIACOES_POR_PAGINA*pagina))){
-                        while (true){
-                            CLR_SCR;
-                            cout << texto9;
-                            cin >> aux_nota;
-                            cout << texto10;
-                            fixBuffer();
-                            cin.getline(aux_descricao,79);
-                            try {
-                                nota.setValor(stoi(aux_nota));
-                                descricao.setValor(aux_descricao);
-                                avaliacao.setCodigo(avaliacoes[j + (AVALIACOES_POR_PAGINA*pagina)].getCodigo());
-                                avaliacao.setNota(nota);
-                                avaliacao.setDescricao(descricao);
-                                break;
-                            }
-                            catch(invalid_argument &exp) {
-                                CLR_SCR;
-                                cout << texto12 << endl;
-                                getch();
-                            }
+                if (stoi(avaliacao_a_editar) == ((j + 1) + (AVALIACOES_POR_PAGINA*pagina))){
+                    while (true){
+                        CLR_SCR;
+                        cout << texto9;
+                        cin >> aux_nota;
+                        cout << texto10;
+                        fixBuffer();
+                        cin.getline(aux_descricao,79);
+                        try {
+                            nota.setValor(stoi(aux_nota));
+                            descricao.setValor(aux_descricao);
+                            avaliacao.setCodigo(avaliacoes[j + (AVALIACOES_POR_PAGINA*pagina)].getCodigo());
+                            avaliacao.setNota(nota);
+                            avaliacao.setDescricao(descricao);
+                            break;
                         }
-                        // cntrServicoExcursao->editarAvaliacao(email, avaliacao); TEM QUE IMPLEMENTAR NO SERVIÇO
+                        catch(invalid_argument &exp) {
+                            CLR_SCR;
+                            cout << texto12 << endl;
+                            getch();
+                        }
                     }
+                    // cntrServicoExcursao->editarAvaliacao(email, avaliacao); TEM QUE IMPLEMENTAR NO SERVIÇO
                 }
             }
+            avaliacoes_mostradas -= avaliacoes_mostradas_pag;
         }
         else if (campo1 == 2) { //descadastrar avaliação
             CLR_SCR;                                                                                // Limpa janela.
             cout << texto1 << endl;
 
+            avaliacoes_mostradas -= avaliacoes_mostradas_pag;
+            avaliacoes_mostradas_pag = 0;
+            // Mostra as avaliacoes
             for (i = 0; i < AVALIACOES_POR_PAGINA; i++){                                        // Imprime as sessões
-                if (avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getCodigo().getValor() == "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais sessões
+                if (avaliacoes_mostradas >= num_avaliacoes){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais avaliações
                     break;
                 }
                 cout << texto2 << (i + 1) + (AVALIACOES_POR_PAGINA*pagina) << endl;
                 cout << "Nota: " << avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getNota().getValor() << endl;
-                cout << "Descricao: " << avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getDescricao().getValor() << endl;
+                cout << "Descricao: " << avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getDescricao().getValor() << endl << endl;
+                avaliacoes_mostradas++;
+                avaliacoes_mostradas_pag++;
             }
 
             cout << texto13 << endl;
@@ -1171,18 +1182,18 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que a
 
             // Vai na avaliacao selecionada
             for (int j = 0; j < AVALIACOES_POR_PAGINA; j++){
-                if (avaliacoes[j + (AVALIACOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
-                    if (stoi(avaliacao_a_excluir) == ((j + 1) + (AVALIACOES_POR_PAGINA*pagina))){
-                        // cntrServicoExcursao->descadastrarAvaliacao(avaliacoes[j + (AVALIACOES_POR_PAGINA*pagina)]);; TEM QUE IMPLEMENTAR NO SERVIÇO
-                    }
+                if (stoi(avaliacao_a_excluir) == ((j + 1) + (AVALIACOES_POR_PAGINA*pagina))){
+                    // cntrServicoExcursao->descadastrarAvaliacao(avaliacoes[j + (AVALIACOES_POR_PAGINA*pagina)]);; TEM QUE IMPLEMENTAR NO SERVIÇO
                 }
             }
+            avaliacoes_mostradas -= avaliacoes_mostradas_pag;
         }
         else if (campo1 == prox_pag){
             pagina++;
         }
         else if (campo1 == pag_ant && pagina != 0){
             pagina--;
+            avaliacoes_mostradas -= (AVALIACOES_POR_PAGINA + avaliacoes_mostradas_pag);
         }
         else if (campo1 == num_opcoes){
             apresentar = false;
@@ -1192,10 +1203,9 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que a
 
 // Função que lista as sessões de uma excursão
 void CntrApresentacaoExcursao::listarSessoes(Excursao excursao){
-    // COMANDO DE BUSCAR TODAS AS SESSOES DESSA EXCURSAO DA CAMADA DE SERVICO
     const int SESSOES_POR_PAGINA = 5;
-    Sessao sessoes[30]; // teste
-    int pagina=0, i, num_opcoes=1, prox_pag=0, pag_ant=1;
+    vector<Sessao> sessoes = cntrServicoExcursao->listarSessoes(excursao.getCodigo());
+    int pagina=0, i, num_opcoes=1, prox_pag=0, pag_ant=1, num_sessoes = sessoes.size(), sessoes_mostradas=0, sessoes_mostradas_pag=0;
     bool apresentar=true;
     int campo1;
 
@@ -1213,22 +1223,29 @@ void CntrApresentacaoExcursao::listarSessoes(Excursao excursao){
         CLR_SCR;                                                                                // Limpa janela.
         cout << texto1 << endl;
 
+        sessoes_mostradas_pag = 0;
+        // Mostra as sessoes na tela
         for (i = 0; i < SESSOES_POR_PAGINA; i++){                                        // Imprime as sessões
-            if (sessoes[i + (SESSOES_POR_PAGINA*pagina)].getCodigo().getValor() == "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais sessões
+            if (sessoes_mostradas >= num_sessoes){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais avaliações
                 break;
             }
             cout << texto2 << (i + 1) + (SESSOES_POR_PAGINA*pagina) << endl;
             cout << "Data: " << sessoes[i + (SESSOES_POR_PAGINA*pagina)].getData().getValor() << endl;
             cout << "Horario: " << sessoes[i + (SESSOES_POR_PAGINA*pagina)].getHorario().getValor() << endl;
             cout << "Idioma: " << sessoes[i + (SESSOES_POR_PAGINA*pagina)].getIdioma().getValor() << endl << endl;
+            sessoes_mostradas++;
+            sessoes_mostradas_pag++;
         }
 
-        if (sessoes[(i+1) + (SESSOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL" ){  // Se tiver mais sessões
+        // Imprimir "Próxima página", se existirem mais sessões
+        if (sessoes_mostradas < num_sessoes){
             prox_pag++;
             cout << prox_pag << texto3 << endl;                                                                 // Opção de próxima página
             num_opcoes++;
             pag_ant++;
         }
+
+        // Imprimir "Página anterior", se não estiver na primeira página
         if (pagina != 0){
             cout << pag_ant << texto4 << endl;                                                                 // Opção de página anterior
             num_opcoes++;
@@ -1242,6 +1259,7 @@ void CntrApresentacaoExcursao::listarSessoes(Excursao excursao){
         }
         else if (campo1 == pag_ant && pagina != 0){
             pagina--;
+            sessoes_mostradas -= (SESSOES_POR_PAGINA + sessoes_mostradas_pag);
         }
         else if (campo1 == num_opcoes){
             apresentar = false;
@@ -1251,12 +1269,10 @@ void CntrApresentacaoExcursao::listarSessoes(Excursao excursao){
 
 // Função que lista as sessões de uma excursão e permite editar/descadastrar uma sessão
 void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
-    // COMANDO DE BUSCAR TODAS AS SESSOES DESSA EXCURSAO DA CAMADA DE SERVICO
     const int SESSOES_POR_PAGINA = 5;
+    vector<Sessao> sessoes = cntrServicoExcursao->listarSessoes(excursao.getCodigo());
 
-    Sessao sessoes[30]; // teste
-
-    int pagina=0, i, num_opcoes=1, prox_pag=0, pag_ant=1;
+    int pagina=0, i, num_opcoes=1, prox_pag=0, pag_ant=1, num_sessoes = sessoes.size(), sessoes_mostradas=0, sessoes_mostradas_pag=0;
     int campo1;
 
     char sessao_a_editar[10];
@@ -1296,28 +1312,32 @@ void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
         CLR_SCR;                                                                                // Limpa janela.
         cout << texto1 << endl;
 
+        sessoes_mostradas_pag = 0;
         // Mostra as sessoes na tela
         for (i = 0; i < SESSOES_POR_PAGINA; i++){                                        // Imprime as sessões
-            if (sessoes[i + (SESSOES_POR_PAGINA*pagina)].getCodigo().getValor() == "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais sessões
+            if (sessoes_mostradas >= num_sessoes){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais avaliações
                 break;
             }
             cout << texto2 << (i + 1) + (SESSOES_POR_PAGINA*pagina) << endl;
             cout << "Data: " << sessoes[i + (SESSOES_POR_PAGINA*pagina)].getData().getValor() << endl;
             cout << "Horario: " << sessoes[i + (SESSOES_POR_PAGINA*pagina)].getHorario().getValor() << endl;
             cout << "Idioma: " << sessoes[i + (SESSOES_POR_PAGINA*pagina)].getIdioma().getValor() << endl << endl;
+            sessoes_mostradas++;
+            sessoes_mostradas_pag++;
         }
 
         cout << texto3 << endl;
         cout << texto4 << endl;
 
-        // Mostra a opcao de prox pagina
-        if (sessoes[(i+1) + (SESSOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL" ){  // Se tiver mais sessões
+        // Imprimir "Próxima página", se existirem mais sessões
+        if (sessoes_mostradas < num_sessoes){
             prox_pag = 3;
             cout << prox_pag << texto5 << endl;                                                                 // Opção de próxima página
             num_opcoes++;
             pag_ant++;
         }
-        // Mostra a opcao de pagina anterior
+
+        // Imprimir "Próxima página", se existirem mais sessões
         if (pagina != 0){
             cout << pag_ant << texto6 << endl;                                                                 // Opção de página anterior
             num_opcoes++;
@@ -1330,15 +1350,19 @@ void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
             CLR_SCR;                                                                                // Limpa janela.
             cout << texto1 << endl;
 
+            sessoes_mostradas -= sessoes_mostradas_pag;
+            sessoes_mostradas_pag = 0;
             // Mostra as sessoes
             for (i = 0; i < SESSOES_POR_PAGINA; i++){                                        // Imprime as sessões
-                if (sessoes[i + (SESSOES_POR_PAGINA*pagina)].getCodigo().getValor() == "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais sessões
+                if (sessoes_mostradas >= num_sessoes){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais avaliações
                     break;
                 }
                 cout << texto2 << (i + 1) + (SESSOES_POR_PAGINA*pagina) << endl;
                 cout << "Data: " << sessoes[i + (SESSOES_POR_PAGINA*pagina)].getData().getValor() << endl;
                 cout << "Horario: " << sessoes[i + (SESSOES_POR_PAGINA*pagina)].getHorario().getValor() << endl;
                 cout << "Idioma: " << sessoes[i + (SESSOES_POR_PAGINA*pagina)].getIdioma().getValor() << endl << endl;
+                sessoes_mostradas++;
+                sessoes_mostradas_pag++;
             }
 
             cout << texto8 << endl;
@@ -1346,49 +1370,53 @@ void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
 
             // Vai na sessao selecionada
             for (int j = 0; j < SESSOES_POR_PAGINA; j++){
-                if (sessoes[j + (SESSOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
-                    if (stoi(sessao_a_editar) == ((j + 1) + (SESSOES_POR_PAGINA*pagina))){
-                        while (true){
-                            CLR_SCR;
-                            cout << texto9;
-                            cin >> aux_data;
-                            cout << texto10;
-                            cin >> aux_horario;
-                            cout << texto11;
-                            cin >> aux_idioma;
-                            try {
-                                data.setValor(aux_data);
-                                horario.setValor(aux_horario);
-                                idioma.setValor(aux_idioma);
-                                sessao.setCodigo(sessoes[j + (SESSOES_POR_PAGINA*pagina)].getCodigo());
-                                sessao.setData(data);
-                                sessao.setHorario(horario);
-                                sessao.setIdioma(idioma);
-                                break;
-                            }
-                            catch(invalid_argument &exp) {
-                                CLR_SCR;
-                                cout << texto12 << endl;
-                                getch();
-                            }
+                if (stoi(sessao_a_editar) == ((j + 1) + (SESSOES_POR_PAGINA*pagina))){
+                    while (true){
+                        CLR_SCR;
+                        cout << texto9;
+                        cin >> aux_data;
+                        cout << texto10;
+                        cin >> aux_horario;
+                        cout << texto11;
+                        cin >> aux_idioma;
+                        try {
+                            data.setValor(aux_data);
+                            horario.setValor(aux_horario);
+                            idioma.setValor(aux_idioma);
+                            sessao.setCodigo(sessoes[j + (SESSOES_POR_PAGINA*pagina)].getCodigo());
+                            sessao.setData(data);
+                            sessao.setHorario(horario);
+                            sessao.setIdioma(idioma);
+                            break;
                         }
-                        // cntrServicoExcursao->editarSessao(email, sessao); TEM QUE IMPLEMENTAR NO SERVIÇO
+                        catch(invalid_argument &exp) {
+                            CLR_SCR;
+                            cout << texto12 << endl;
+                            getch();
+                        }
                     }
+                    // cntrServicoExcursao->editarSessao(email, sessao); TEM QUE IMPLEMENTAR NO SERVIÇO
                 }
             }
+            sessoes_mostradas -= sessoes_mostradas_pag;
         }
         else if (campo1 == 2) { //descadastrar sessão
             CLR_SCR;                                                                                // Limpa janela.
             cout << texto1 << endl;
 
+            sessoes_mostradas -= sessoes_mostradas_pag;
+            sessoes_mostradas_pag = 0;
+            // Mostra as sessoes
             for (i = 0; i < SESSOES_POR_PAGINA; i++){                                        // Imprime as sessões
-                if (sessoes[i + (SESSOES_POR_PAGINA*pagina)].getCodigo().getValor() == "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais sessões
+                if (sessoes_mostradas >= num_sessoes){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais avaliações
                     break;
                 }
                 cout << texto2 << (i + 1) + (SESSOES_POR_PAGINA*pagina) << endl;
                 cout << "Data: " << sessoes[i + (SESSOES_POR_PAGINA*pagina)].getData().getValor() << endl;
                 cout << "Horario: " << sessoes[i + (SESSOES_POR_PAGINA*pagina)].getHorario().getValor() << endl;
                 cout << "Idioma: " << sessoes[i + (SESSOES_POR_PAGINA*pagina)].getIdioma().getValor() << endl << endl;
+                sessoes_mostradas++;
+                sessoes_mostradas_pag++;
             }
 
             cout << texto13 << endl;
@@ -1396,18 +1424,18 @@ void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
 
             // Vai na sessao selecionada
             for (int j = 0; j < SESSOES_POR_PAGINA; j++){
-                if (sessoes[j + (SESSOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
-                    if (stoi(sessao_a_excluir) == ((j + 1) + (SESSOES_POR_PAGINA*pagina))){
-                        // cntrServicoExcursao->descadastrarSessao(sessoes[j + (SESSOES_POR_PAGINA*pagina)]);; TEM QUE IMPLEMENTAR NO SERVIÇO
-                    }
+                if (stoi(sessao_a_excluir) == ((j + 1) + (SESSOES_POR_PAGINA*pagina))){
+                    // cntrServicoExcursao->descadastrarSessao(sessoes[j + (SESSOES_POR_PAGINA*pagina)]);; TEM QUE IMPLEMENTAR NO SERVIÇO
                 }
             }
+            sessoes_mostradas -= sessoes_mostradas_pag;
         }
         else if (campo1 == prox_pag){
             pagina++;
         }
         else if (campo1 == pag_ant && pagina != 0){
             pagina--;
+            sessoes_mostradas -= (SESSOES_POR_PAGINA + sessoes_mostradas_pag);
         }
         else if (campo1 == num_opcoes){
             apresentar = false;

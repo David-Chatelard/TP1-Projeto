@@ -641,11 +641,85 @@ ComandoListarSessoes::ComandoListarSessoes(Codigo codigoExcursao) {
 }
 
 // Função que retorna as sessões, que estão em listaResultado, em vetorResultado e limpa listaResultado
-vector<ElementoResultado> ComandoListarSessoes::getResultado() {
-        vector<ElementoResultado> vetorResultado(listaResultado.size());                // Cria vetor
-        copy(listaResultado.begin(), listaResultado.end(), vetorResultado.begin());     // Copia lista para vetor
-        listaResultado.clear();                                                         // Limpa a lista
+vector<Sessao> ComandoListarSessoes::getResultado() {
+        int i=0, tam_lista;
+        ElementoResultado resultado;
+        Sessao sessao;
 
+        Codigo codigo;
+        Data data;
+        Horario horario;
+        Idioma idioma;
+        Codigo codigoExcursao;
+
+        // vector<Sessao> vetorResultado(listaResultado.size() / 5);                     // Cria vetor
+        vector<Sessao> vetorResultado;                     // Cria vetor
+        tam_lista = listaResultado.size() / 5;
+        
+        for (i = 0; i < tam_lista; i++) {
+                // Remover codigo;
+                if (listaResultado.empty())
+                        throw EErroPersistencia("Lista de resultados vazia.");
+                resultado = listaResultado.back();
+                listaResultado.pop_back();
+                // cout << "Codigo: " << resultado.getValorColuna() << endl;
+                // getch();
+                codigo.setValor(resultado.getValorColuna());
+                sessao.setCodigo(codigo);
+
+                // Remover data;
+                if (listaResultado.empty())
+                        throw EErroPersistencia("Lista de resultados vazia.");
+                resultado = listaResultado.back();
+                listaResultado.pop_back();
+                // cout << "data: " << resultado.getValorColuna() << endl;
+                // getch();
+                data.setValor(resultado.getValorColuna());
+                sessao.setData(data);
+
+                // Remover horario;
+                if (listaResultado.empty())
+                        throw EErroPersistencia("Lista de resultados vazia.");
+                resultado = listaResultado.back();
+                listaResultado.pop_back();
+                // cout << "horario: " << resultado.getValorColuna() << endl;
+                // getch();
+                horario.setValor(resultado.getValorColuna());
+                sessao.setHorario(horario);
+
+                // Remover idioma;
+                if (listaResultado.empty())
+                        throw EErroPersistencia("Lista de resultados vazia.");
+                resultado = listaResultado.back();
+                listaResultado.pop_back();
+                // cout << "idioma: " << resultado.getValorColuna() << endl;
+                // getch();
+                idioma.setValor(resultado.getValorColuna());
+                sessao.setIdioma(idioma);
+
+                // Remover codigoExcursao;
+                if (listaResultado.empty())
+                        throw EErroPersistencia("Lista de resultados vazia.");
+                resultado = listaResultado.back();
+                listaResultado.pop_back();
+                // cout << "CodigoExcursao: " << resultado.getValorColuna() << endl;
+                // getch();
+                codigoExcursao.setValor(resultado.getValorColuna());
+                sessao.setCodigoExcursao(codigoExcursao);
+
+                vetorResultado.push_back(sessao);
+        }
+
+        // for (int j = 0; j < vetorResultado.size(); j++){
+        //         cout << vetorResultado[j].getCodigo().getValor() << endl;
+        //         cout << vetorResultado[j].getNota().getValor() << endl;
+        //         cout << vetorResultado[j].getDescricao().getValor() << endl;
+        //         cout << vetorResultado[j].getEmailAutor().getValor() << endl;
+        //         cout << vetorResultado[j].getCodigoExcursao().getValor() << endl << endl;
+        //         getch();
+        // }
+        
+        
         return vetorResultado;
 }
 
