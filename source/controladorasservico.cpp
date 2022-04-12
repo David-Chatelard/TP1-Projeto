@@ -112,22 +112,6 @@ vector<Excursao> CntrServicoExcursao::listarExcursoes(Email email){
 
 }
 
-//acho que pode tirar e usar só a listarExcursoes()
-vector<Excursao> CntrServicoExcursao::listarExcursoes2(Email email){
-    vector<Excursao> vazio;
-    ComandoListarExcursoes comandoListarExcursoes(email);
-
-    try {
-        comandoListarExcursoes.executar();
-        return comandoListarExcursoes.getResultado();
-    }
-    catch(EErroPersistencia &exp) {
-        cout << endl << exp.what();
-    }
-    return vazio;
-
-}
-
 // Lista todas as excursões
 vector<Excursao> CntrServicoExcursao::listarExcursoes(){
     vector<Excursao> vazio;
@@ -207,6 +191,7 @@ vector<Sessao> CntrServicoExcursao::listarSessoes(Codigo codigo){
 //         return false;
 //     }
 // }
+
 // bool CntrServicoExcursao::cadastrarSessao(Sessao sessao) {
 //     ComandoCadastrarSessao ComandoCadastrarSessao(sessao);
     
@@ -219,6 +204,7 @@ vector<Sessao> CntrServicoExcursao::listarSessoes(Codigo codigo){
 //         return false;
 //     }
 // }
+
 // bool CntrServicoExcursao::cadastrarAvaliacao(Avaliacao avaliacao) {
 //     ComandoCadastrarAvaliacao ComandoCadastrarAvaliacao(avaliacao);
     
@@ -246,30 +232,32 @@ vector<Sessao> CntrServicoExcursao::listarSessoes(Codigo codigo){
 //         return false;
 //     }
 // }
-// bool CntrServicoExcursao::editarSessao(Sessao sessao){
-//     ComandoAtualizarSessao comandoAtualizarSessao(sessao);
 
-//     try {
-//         comandoAtualizarSessao.executar();
-//         return true;
-//     }
-//     catch(EErroPersistencia &exp) {
-//         cout << endl << exp.what();
-//         return false;
-//     }
-// }
-// bool CntrServicoExcursao::editarAvaliacao(Avaliacao avaliacao){
-//     ComandoAtualizarAvaliacao comandoAtualizarAvaliacao(avaliacao);
+bool CntrServicoExcursao::editarSessao(Sessao sessao){
+    ComandoAtualizarSessao comandoAtualizarSessao(sessao);
 
-//     try {
-//         comandoAtualizarAvaliacao.executar();
-//         return true;
-//     }
-//     catch(EErroPersistencia &exp) {
-//         cout << endl << exp.what();
-//         return false;
-//     }
-// }
+    try {
+        comandoAtualizarSessao.executar();
+        return true;
+    }
+    catch(EErroPersistencia &exp) {
+        cout << endl << exp.what();
+        return false;
+    }
+}
+
+bool CntrServicoExcursao::editarAvaliacao(Avaliacao avaliacao){
+    ComandoAtualizarAvaliacao comandoAtualizarAvaliacao(avaliacao);
+
+    try {
+        comandoAtualizarAvaliacao.executar();
+        return true;
+    }
+    catch(EErroPersistencia &exp) {
+        cout << endl << exp.what();
+        return false;
+    }
+}
 
 
 // //descadastrar
@@ -289,28 +277,30 @@ vector<Sessao> CntrServicoExcursao::listarSessoes(Codigo codigo){
 //         return false;
 //     }
 // }
-// bool CntrServicoExcursao::descadastrarSessao(Sessao sessao){ //descadastra uma sessao
-//     ComandoRemoverSessao comandoRemoverSessao(sessao);
 
-//     try{
-//         comandoRemoverSessao.executar();
-//         return true;
-//     }
-//     catch(EErroPersistencia &exp) {
-//         cout << endl << exp.what();
-//         return false;
-//     }
-// }
-// bool CntrServicoExcursao::descadastrarAvaliacao(Avaliacao avaliacao){ //descadastra uma avaliacao
-//     ComandoRemoverAvaliacao comandoRemoverAvaliacao(avaliacao);
+bool CntrServicoExcursao::descadastrarSessao(Sessao sessao){ //descadastra uma sessao
+    ComandoRemoverSessao comandoRemoverSessao(sessao);
 
-//     try{
-//         comandoRemoverAvaliacao.executar();
-//         return true;
-//     }
-//     catch(EErroPersistencia &exp) {
-//         cout << endl << exp.what();
-//         return false;
-//     }
-// }
+    try{
+        comandoRemoverSessao.executar();
+        return true;
+    }
+    catch(EErroPersistencia &exp) {
+        cout << endl << exp.what();
+        return false;
+    }
+}
+
+bool CntrServicoExcursao::descadastrarAvaliacao(Avaliacao avaliacao){ //descadastra uma avaliacao
+    ComandoRemoverAvaliacao comandoRemoverAvaliacao(avaliacao);
+
+    try{
+        comandoRemoverAvaliacao.executar();
+        return true;
+    }
+    catch(EErroPersistencia &exp) {
+        cout << endl << exp.what();
+        return false;
+    }
+}
 

@@ -32,20 +32,22 @@ class CntrServicoContas:public IServicoContas{
 class CntrServicoExcursao:public IServicoExcursao{
     public:
         vector<Excursao> listarExcursoes(Email);
-        vector<Excursao> listarExcursoes2(Email); //acho que pode tirar e usar só a listarExcursoes()
         vector<Excursao> listarExcursoes();
+        // bool cadastrarExcursao(Excursao);
+        // bool editarExcursao(Excursao);
+        // bool descadastrarExcursao(Excursao);
+
         vector<Avaliacao> listarAvaliacoes(Email);
         vector<Avaliacao> listarAvaliacoes(Codigo);
+        // bool cadastrarAvaliacao(Avaliacao);
+        bool editarAvaliacao(Avaliacao);
+        bool descadastrarAvaliacao(Avaliacao);
+
         vector<Sessao> listarSessoes(Codigo);
-        // bool cadastrarExcursao(Excursao excursao);
-        // bool cadastrarAvaliacao(Avaliacao avaliacao);
+        bool editarSessao(Sessao);
         // bool cadastrarSessao(Sessao sessao);
-        // bool editarExcursao(Excursao excursao);
-        // bool editarAvaliacao(Avaliacao avaliacao);
-        // bool editarSessao(Sessao sessao);
-        // bool descadastrarExcursao(Excursao excursao);
-        // bool descadastrarAvaliacao(Avaliacao avaliacao);
-        // bool descadastrarSessao(Sessao sessao);
+        bool descadastrarSessao(Sessao);
+        
 };
 
 #endif

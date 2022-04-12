@@ -565,7 +565,7 @@ void CntrApresentacaoExcursao::listarExcursoes2(){
     }
 }
 
-// Função que lista as suas excursões e depois permite cadastrar/editar/remover sessões ou  cadastrar avaliações
+// Função que lista as suas excursões e depois permite cadastrar/editar/remover sessões ou cadastrar avaliações
 void CntrApresentacaoExcursao::listarExcursoes(Email email){
     const int EXCURSOES_POR_PAGINA = 5;
     vector<Excursao> excursoes = cntrServicoExcursao->listarExcursoes(email);
@@ -1069,6 +1069,9 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que a
     char texto13[]="Digite o numero da avaliacao que deseja descadastrar";
     
     while (apresentar){
+        vector<Avaliacao> avaliacoes = cntrServicoExcursao->listarAvaliacoes(email);
+        num_avaliacoes = avaliacoes.size();
+
         num_opcoes=3;
         prox_pag=0;
         pag_ant=3;
@@ -1154,7 +1157,7 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que a
                             getch();
                         }
                     }
-                    // cntrServicoExcursao->editarAvaliacao(email, avaliacao); TEM QUE IMPLEMENTAR NO SERVIÇO
+                    cntrServicoExcursao->editarAvaliacao(avaliacao);
                 }
             }
             avaliacoes_mostradas -= avaliacoes_mostradas_pag;
@@ -1183,7 +1186,7 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Email email){ // A versão que a
             // Vai na avaliacao selecionada
             for (int j = 0; j < AVALIACOES_POR_PAGINA; j++){
                 if (stoi(avaliacao_a_excluir) == ((j + 1) + (AVALIACOES_POR_PAGINA*pagina))){
-                    // cntrServicoExcursao->descadastrarAvaliacao(avaliacoes[j + (AVALIACOES_POR_PAGINA*pagina)]);; TEM QUE IMPLEMENTAR NO SERVIÇO
+                    cntrServicoExcursao->descadastrarAvaliacao(avaliacoes[j + (AVALIACOES_POR_PAGINA*pagina)]);
                 }
             }
             avaliacoes_mostradas -= avaliacoes_mostradas_pag;
@@ -1305,6 +1308,9 @@ void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
     char texto13[]="Digite o numero da sessao que deseja descadastrar";
     
     while (apresentar){
+        vector<Sessao> sessoes = cntrServicoExcursao->listarSessoes(excursao.getCodigo());
+        num_sessoes = sessoes.size();
+
         num_opcoes=3;
         prox_pag=0;
         pag_ant=3;
@@ -1395,7 +1401,7 @@ void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
                             getch();
                         }
                     }
-                    // cntrServicoExcursao->editarSessao(email, sessao); TEM QUE IMPLEMENTAR NO SERVIÇO
+                    cntrServicoExcursao->editarSessao(sessao);
                 }
             }
             sessoes_mostradas -= sessoes_mostradas_pag;
@@ -1408,7 +1414,7 @@ void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
             sessoes_mostradas_pag = 0;
             // Mostra as sessoes
             for (i = 0; i < SESSOES_POR_PAGINA; i++){                                        // Imprime as sessões
-                if (sessoes_mostradas >= num_sessoes){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais avaliações
+                if (sessoes_mostradas >= num_sessoes){   // Caso não exista mais avaliações
                     break;
                 }
                 cout << texto2 << (i + 1) + (SESSOES_POR_PAGINA*pagina) << endl;
@@ -1425,7 +1431,7 @@ void CntrApresentacaoExcursao::listarSessoes(Email email, Excursao excursao){
             // Vai na sessao selecionada
             for (int j = 0; j < SESSOES_POR_PAGINA; j++){
                 if (stoi(sessao_a_excluir) == ((j + 1) + (SESSOES_POR_PAGINA*pagina))){
-                    // cntrServicoExcursao->descadastrarSessao(sessoes[j + (SESSOES_POR_PAGINA*pagina)]);; TEM QUE IMPLEMENTAR NO SERVIÇO
+                    cntrServicoExcursao->descadastrarSessao(sessoes[j + (SESSOES_POR_PAGINA*pagina)]);
                 }
             }
             sessoes_mostradas -= sessoes_mostradas_pag;

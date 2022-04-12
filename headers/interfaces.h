@@ -32,26 +32,25 @@ class IServicoExcursao {
         virtual vector<Excursao> listarExcursoes() = 0;
         virtual vector<Excursao> listarExcursoes(Email) = 0;
         // virtual vector<Excursao> editarExcursao(Excursao) = 0;
-        
-        virtual vector<Sessao> listarSessoes(Codigo) = 0; //não precisa de listarSessoes(Email), pois a partir da listarExcursoes(Email) ele acessa as excursoes que ele é guia e pode ver as sessoes dessas excursoes
-        // void listarSessoes(Email);
-        // void editarSessao();
-
-        virtual vector<Avaliacao>  listarAvaliacoes(Codigo) = 0;
-        virtual vector<Avaliacao>  listarAvaliacoes(Email) = 0; //para listar as avaliações que ele escreveu, para poder editar e excluir
-        // void editarAvaliacao();
-
-
-
-        // virtual bool cadastrarExcursao(Excursao) = 0;
-        // virtual bool consultarExcursao(Excursao*) = 0;
         // virtual bool descadastrarExcursao(Excursao) = 0;
+        // virtual bool cadastrarExcursao(Excursao) = 0;
+        
+        virtual vector<Sessao> listarSessoes(Codigo) = 0;
+        virtual bool editarSessao(Sessao) = 0;
+        virtual bool descadastrarSessao(Sessao) = 0;
         // virtual bool cadastrarSessao(Sessao) = 0;
-        // virtual bool consultarSessao(Sessao*) = 0;
-        // virtual bool descadastrarSessao(Sessao) = 0;
+
+        virtual vector<Avaliacao> listarAvaliacoes(Codigo) = 0;
+        virtual vector<Avaliacao> listarAvaliacoes(Email) = 0; //para listar as avaliações que ele escreveu, para poder editar e excluir
+        virtual bool editarAvaliacao(Avaliacao) = 0;
+        virtual bool descadastrarAvaliacao(Avaliacao) = 0;
         // virtual bool cadastrarAvaliacao(Avaliacao) = 0;
+
+
+
+        // virtual bool consultarExcursao(Excursao*) = 0;
+        // virtual bool consultarSessao(Sessao*) = 0;
         // virtual bool consultarAvaliacao(Avaliacao*) = 0;
-        // virtual bool descadastrarAvaliacao(Avaliacao) = 0;
         // virtual ~IServicoExcursao(){}
 };
 
