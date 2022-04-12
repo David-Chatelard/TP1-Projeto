@@ -488,10 +488,9 @@ void CntrApresentacaoExcursao::listarExcursoes(){
 
 // Função que lista todas as excursões quando está logado, tem diferença da função de cima, porque a partir dessa quando entrar nos detalhes de uma excursão pode cadastrar uma avaliação
 void CntrApresentacaoExcursao::listarExcursoes2(){
-    // COMANDO DE BUSCAR TODAS AS EXCURSOES DA CAMADA DE SERVICO
     const int EXCURSOES_POR_PAGINA = 5;
-    Excursao excursoes[30]; // teste
-    int pagina=0, i, j, prox_pag=-1, pag_ant=-1, num_opcoes=0;
+    vector<Excursao> excursoes = cntrServicoExcursao->listarExcursoes();
+    int pagina=0, i, j, prox_pag=-1, pag_ant=-1, num_opcoes=0, num_excursoes = excursoes.size(), excursoes_mostradas=0, excursoes_mostradas_pag=0;
     bool apresentar=true;
     int campo1;
 
@@ -499,7 +498,7 @@ void CntrApresentacaoExcursao::listarExcursoes2(){
     char texto2[]=" - Proxima pagina";
     char texto3[]=" - Pagina anterior";
     char texto4[]=" - Retornar a selecao de servicos";
-    
+
     while (apresentar){
         prox_pag=-1;
         pag_ant=-1;
@@ -508,17 +507,20 @@ void CntrApresentacaoExcursao::listarExcursoes2(){
         CLR_SCR;                                                                                // Limpa janela.
         cout << texto1 << endl;                                                                 // Imprime nome do campo.
 
+        excursoes_mostradas_pag = 0;
         // Imprimir os titulos das excursões
         for (i = 0; i < EXCURSOES_POR_PAGINA; i++){                                             // Imprime as avaliações
-            if (excursoes[i + (EXCURSOES_POR_PAGINA*pagina)].getTitulo().getValor() == "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
+            if (excursoes_mostradas >= num_excursoes){     // Caso não exista mais excursões
                 break;
             }
             cout << i+1 << " - ";                                                               // Imprime "Num - "
             cout << excursoes[i + (EXCURSOES_POR_PAGINA*pagina)].getTitulo().getValor() << endl;
+            excursoes_mostradas++;
+            excursoes_mostradas_pag++;
         }
 
         // Imprimir "Próxima página", se existirem mais excursões
-        if (excursoes[(i+1) + (EXCURSOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL" ) { //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista
+        if (excursoes_mostradas < num_excursoes) {  // Caso exista mais excursoes
             num_opcoes++;
             prox_pag = i+1;
             cout << prox_pag << texto2 << endl;                                                                 // Imprime nome do campo.
@@ -542,11 +544,11 @@ void CntrApresentacaoExcursao::listarExcursoes2(){
         campo1 = getch() - 48;                                                                  // Leitura do campo de entrada e conversão de ASCII.
 
         // Vai na excursão selecionada
-        for (j = 0; j < EXCURSOES_POR_PAGINA; j++){
-            if (excursoes[j + (EXCURSOES_POR_PAGINA*pagina)].getTitulo().getValor() != "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
-                if (campo1 == (j+1)){
-                    detalheExcursao2(excursoes[j + (EXCURSOES_POR_PAGINA*pagina)]);
-                }
+        for (j = 0; j < excursoes_mostradas_pag; j++){
+            if (campo1 == (j+1)){
+                int aux = excursoes_mostradas;
+                excursoes_mostradas -= excursoes_mostradas_pag;
+                detalheExcursao(excursoes[j + (EXCURSOES_POR_PAGINA*pagina)]);
             }
         }
         
@@ -555,6 +557,7 @@ void CntrApresentacaoExcursao::listarExcursoes2(){
         }
         else if (campo1 == pag_ant){
             pagina--;
+            excursoes_mostradas -= (EXCURSOES_POR_PAGINA + excursoes_mostradas_pag);
         }
         else if (campo1 == (i+1+num_opcoes)){
             apresentar = false;
@@ -564,10 +567,9 @@ void CntrApresentacaoExcursao::listarExcursoes2(){
 
 // Função que lista as suas excursões e depois permite cadastrar/editar/remover sessões ou  cadastrar avaliações
 void CntrApresentacaoExcursao::listarExcursoes(Email email){
-    // COMANDO DE BUSCAR TODAS AS EXCURSOES DESSE EMAIL DA CAMADA DE SERVICO
     const int EXCURSOES_POR_PAGINA = 5;
-    Excursao excursoes[30]; // teste
-    int pagina=0, i, j, prox_pag=-1, pag_ant=-1, num_opcoes=0;
+    vector<Excursao> excursoes = cntrServicoExcursao->listarExcursoes(email);
+    int pagina=0, i, j, prox_pag=-1, pag_ant=-1, num_opcoes=0, num_excursoes = excursoes.size(), excursoes_mostradas=0, excursoes_mostradas_pag=0;
     bool apresentar=true;
     int campo1;
 
@@ -575,7 +577,7 @@ void CntrApresentacaoExcursao::listarExcursoes(Email email){
     char texto2[]=" - Proxima pagina";
     char texto3[]=" - Pagina anterior";
     char texto4[]=" - Retornar a selecao de servicos";
-    
+
     while (apresentar){
         prox_pag=-1;
         pag_ant=-1;
@@ -584,17 +586,20 @@ void CntrApresentacaoExcursao::listarExcursoes(Email email){
         CLR_SCR;                                                                                // Limpa janela.
         cout << texto1 << endl;                                                                 // Imprime nome do campo.
 
+        excursoes_mostradas_pag = 0;
         // Imprimir os titulos das excursões
         for (i = 0; i < EXCURSOES_POR_PAGINA; i++){                                             // Imprime as avaliações
-            if (excursoes[i + (EXCURSOES_POR_PAGINA*pagina)].getTitulo().getValor() == "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
+            if (excursoes_mostradas >= num_excursoes){     // Caso não exista mais excursões
                 break;
             }
             cout << i+1 << " - ";                                                               // Imprime "Num - "
             cout << excursoes[i + (EXCURSOES_POR_PAGINA*pagina)].getTitulo().getValor() << endl;
+            excursoes_mostradas++;
+            excursoes_mostradas_pag++;
         }
 
         // Imprimir "Próxima página", se existirem mais excursões
-        if (excursoes[(i+1) + (EXCURSOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL" ) { //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista
+        if (excursoes_mostradas < num_excursoes) {
             num_opcoes++;
             prox_pag = i+1;
             cout << prox_pag << texto2 << endl;                                                                 // Imprime nome do campo.
@@ -618,11 +623,11 @@ void CntrApresentacaoExcursao::listarExcursoes(Email email){
         campo1 = getch() - 48;                                                                  // Leitura do campo de entrada e conversão de ASCII.
 
         // Vai na excursão selecionada
-        for (j = 0; j < EXCURSOES_POR_PAGINA; j++){
-            if (excursoes[j + (EXCURSOES_POR_PAGINA*pagina)].getTitulo().getValor() != "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais excursões
-                if (campo1 == (j+1)){
-                    detalheExcursao(email, excursoes[j + (EXCURSOES_POR_PAGINA*pagina)]);
-                }
+        for (j = 0; j < excursoes_mostradas_pag; j++){
+            if (campo1 == (j+1)){
+                int aux = excursoes_mostradas;
+                excursoes_mostradas -= excursoes_mostradas_pag;
+                detalheExcursao(email, excursoes[j + (EXCURSOES_POR_PAGINA*pagina)]);
             }
         }
         
@@ -631,6 +636,7 @@ void CntrApresentacaoExcursao::listarExcursoes(Email email){
         }
         else if (campo1 == pag_ant){
             pagina--;
+            excursoes_mostradas -= (EXCURSOES_POR_PAGINA + excursoes_mostradas_pag);
         }
         else if (campo1 == (i+1+num_opcoes)){
             apresentar = false;
@@ -966,10 +972,9 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
 
 // Função que lista as avaliações de uma excursão
 void CntrApresentacaoExcursao::listarAvaliacoes(Excursao excursao){ // A versão que aceita email vai ser pra listar as minhas avaliacoes e vai mudar no metodo de pegar as avaliacoes e que vai poder editar/excluir as avaliacoes
-    // COMANDO DE BUSCAR TODAS AS AVALIACOES DESSA EXCURSAO DA CAMADA DE SERVICO
     const int AVALIACOES_POR_PAGINA = 5;
-    Avaliacao avaliacoes[30]; // teste
-    int pagina=0, i, num_opcoes=1, prox_pag=0, pag_ant=1;
+    vector<Avaliacao> avaliacoes = cntrServicoExcursao->listarAvaliacoes(excursao.getCodigo());
+    int pagina=0, i, num_opcoes=1, prox_pag=0, pag_ant=1, num_avaliacoes = avaliacoes.size(), avaliacoes_mostradas=0, avaliacoes_mostradas_pag=0;
     bool apresentar=true;
     int campo1;
 
@@ -987,21 +992,27 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Excursao excursao){ // A versão
         CLR_SCR;                                                                                // Limpa janela.
         cout << texto1 << endl;
 
+        avaliacoes_mostradas_pag = 0;
         for (i = 0; i < AVALIACOES_POR_PAGINA; i++){                                        // Imprime as avaliações
-            if (avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getCodigo().getValor() == "NULL"){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais avaliações
+            if (avaliacoes_mostradas >= num_avaliacoes){ //tem que mudar para funcionar, mas a ideia é essa, o retorno da função do serviço deve dar uma lista que vai ter "NULL" caso não exista      // Caso não exista mais avaliações
                 break;
             }
             cout << texto2 << (i + 1) + (AVALIACOES_POR_PAGINA*pagina) << endl;
             cout << "Nota: " << avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getNota().getValor() << endl;
             cout << "Descricao: " << avaliacoes[i + (AVALIACOES_POR_PAGINA*pagina)].getDescricao().getValor() << endl << endl;
+            avaliacoes_mostradas++;
+            avaliacoes_mostradas_pag++;
         }
 
-        if (avaliacoes[(i+1) + (AVALIACOES_POR_PAGINA*pagina)].getCodigo().getValor() != "NULL" ){  // Se tiver mais avaliações
+        // Imprimir "Próxima página", se existirem mais avaliações
+        if (avaliacoes_mostradas < num_avaliacoes){
             prox_pag++;
             cout << prox_pag << texto3 << endl;                                                                 // Opção de próxima página
             num_opcoes++;
             pag_ant++;
         }
+
+        // Imprimir "Página anterior", se não estiver na primeira página
         if (pagina != 0){
             cout << pag_ant << texto4 << endl;                                                                 // Opção de página anterior
             num_opcoes++;
@@ -1015,6 +1026,7 @@ void CntrApresentacaoExcursao::listarAvaliacoes(Excursao excursao){ // A versão
         }
         else if (campo1 == pag_ant && pagina != 0){
             pagina--;
+            avaliacoes_mostradas -= (AVALIACOES_POR_PAGINA + avaliacoes_mostradas_pag);
         }
         else if (campo1 == num_opcoes){
             apresentar = false;

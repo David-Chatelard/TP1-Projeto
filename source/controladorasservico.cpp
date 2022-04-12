@@ -95,46 +95,88 @@ bool CntrServicoContas::cadastrar(Usuario usuario) {
 //--------------------------------------------------------------------------------------------
 // Implementação de métodos da classe CntrServicoExcursao
 
-//listar
+// Listar
+// Lista as excursões desse email
 vector<Excursao> CntrServicoExcursao::listarExcursoes(Email email){
+    vector<Excursao> vazio;
     ComandoListarExcursoes comandoListarExcursoes(email);
 
     try {
         comandoListarExcursoes.executar();
+        return comandoListarExcursoes.getResultado();
     }
     catch(EErroPersistencia &exp) {
         cout << endl << exp.what();
-        // return false;
     }
-    return comandoListarExcursoes.getResultado();
+    return vazio;
 
 }
+
+//acho que pode tirar e usar só a listarExcursoes()
 vector<Excursao> CntrServicoExcursao::listarExcursoes2(Email email){
+    vector<Excursao> vazio;
     ComandoListarExcursoes comandoListarExcursoes(email);
 
     try {
         comandoListarExcursoes.executar();
+        return comandoListarExcursoes.getResultado();
     }
     catch(EErroPersistencia &exp) {
         cout << endl << exp.what();
-        // return false;
     }
-    return comandoListarExcursoes.getResultado();
+    return vazio;
 
 }
+
+// Lista todas as excursões
 vector<Excursao> CntrServicoExcursao::listarExcursoes(){
+    vector<Excursao> vazio;
     ComandoListarExcursoes comandoListarExcursoes;
 
     try {
         comandoListarExcursoes.executar();
+        return comandoListarExcursoes.getResultado();
     }
     catch(EErroPersistencia &exp) {
         cout << endl << exp.what();
-        // return false;
     }
-    return comandoListarExcursoes.getResultado();
+    return vazio;
 
 }
+
+// Lista as avaliações dessa excursao
+vector<Avaliacao> CntrServicoExcursao::listarAvaliacoes(Codigo codigo){
+    vector<Avaliacao> vazio;
+    ComandoListarAvaliacoes comandoListarAvaliacoes(codigo);
+
+    try {
+        comandoListarAvaliacoes.executar();
+        return comandoListarAvaliacoes.getResultado();
+    }
+    catch(EErroPersistencia &exp) {
+        cout << endl << exp.what();
+    }
+    return vazio;
+
+}
+
+// Lista as avaliações desse email
+vector<Avaliacao> CntrServicoExcursao::listarAvaliacoes(Email email){
+    vector<Avaliacao> vazio;
+    ComandoListarAvaliacoes comandoListarAvaliacoes(email);
+
+    try {
+        comandoListarAvaliacoes.executar();
+        return comandoListarAvaliacoes.getResultado();
+    }
+    catch(EErroPersistencia &exp) {
+        cout << endl << exp.what();
+    }
+    return vazio;
+
+}
+
+
 
 // //cadastrar
 // bool CntrServicoExcursao::cadastrarExcursao(Excursao excursao) {

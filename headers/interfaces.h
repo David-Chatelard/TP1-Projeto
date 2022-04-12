@@ -29,16 +29,16 @@ class IServicoExcursao {
 
         // TODAS AS FUNCIONALIDADES A SEREM IMPLEMENTADAS
 
-        virtual vector<Excursao> listarExcursoes() = 0; //DEPOIS ACESSAR OS DADOS DE CADA UMA
-        // void listarExcursoes(Email);
-        // void editarExcursao(Excursao);
+        virtual vector<Excursao> listarExcursoes() = 0;
+        virtual vector<Excursao> listarExcursoes(Email) = 0;
+        // virtual vector<Excursao> editarExcursao(Excursao) = 0;
         
         // void listarSessoes(); //não precisa de listarSessoes(Email), pois a partir da listarExcursoes(Email) ele acessa as excursoes que ele é guia e pode ver as sessoes dessas excursoes
         // void listarSessoes(Email);
         // void editarSessao();
 
-        // void listarAvaliacoes();
-        // void listarAvaliacoes(Email); //para listar as avaliações que ele escreveu, para poder editar e excluir
+        virtual vector<Avaliacao>  listarAvaliacoes(Codigo) = 0;
+        virtual vector<Avaliacao>  listarAvaliacoes(Email) = 0; //para listar as avaliações que ele escreveu, para poder editar e excluir
         // void editarAvaliacao();
 
 

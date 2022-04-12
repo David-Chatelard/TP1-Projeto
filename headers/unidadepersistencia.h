@@ -168,7 +168,7 @@ class ComandoListarAvaliacoes:public ComandoSQL {
 public:
         ComandoListarAvaliacoes(Codigo);
         ComandoListarAvaliacoes(Email);
-        vector<ElementoResultado> getResultado();
+        vector<Avaliacao> getResultado();
 };
 
 //---------------------------------------------------------------------------

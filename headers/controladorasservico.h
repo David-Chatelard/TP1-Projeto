@@ -31,11 +31,12 @@ class CntrServicoContas:public IServicoContas{
 // Declaração da classe CntrServicoExcursao
 class CntrServicoExcursao:public IServicoExcursao{
     public:
-        vector<Excursao> listarExcursoes(Email email);
-        vector<Excursao> listarExcursoes2(Email email);
+        vector<Excursao> listarExcursoes(Email);
+        vector<Excursao> listarExcursoes2(Email); //acho que pode tirar e usar só a listarExcursoes()
         vector<Excursao> listarExcursoes();
-        // Avaliacao* listarAvaliacoes(); //NAO IMPLEMENTADA
-        // Sessao* listarSessoes(); //NAO IMPLEMENTADA
+        vector<Avaliacao> listarAvaliacoes(Email);
+        vector<Avaliacao> listarAvaliacoes(Codigo);
+        // vector<Sessao> listarSessoes(); //NAO IMPLEMENTADA
         // bool cadastrarExcursao(Excursao excursao);
         // bool cadastrarAvaliacao(Avaliacao avaliacao);
         // bool cadastrarSessao(Sessao sessao);

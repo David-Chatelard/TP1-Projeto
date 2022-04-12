@@ -454,11 +454,85 @@ ComandoListarAvaliacoes::ComandoListarAvaliacoes(Email emailAutor) {
 }
 
 // Função que retorna as avaliações, que estão em listaResultado, em vetorResultado e limpa listaResultado
-vector<ElementoResultado> ComandoListarAvaliacoes::getResultado() {
-        vector<ElementoResultado> vetorResultado(listaResultado.size());                // Cria vetor
-        copy(listaResultado.begin(), listaResultado.end(), vetorResultado.begin());     // Copia lista para vetor
-        listaResultado.clear();                                                         // Limpa a lista
+vector<Avaliacao> ComandoListarAvaliacoes::getResultado() {
+        int i=0, tam_lista;
+        ElementoResultado resultado;
+        Avaliacao avaliacao;
 
+        Codigo codigo;
+        Nota nota;
+        Descricao descricao;
+        Email emailAutor;
+        Codigo codigoExcursao;
+
+        // vector<Avaliacao> vetorResultado(listaResultado.size() / 5);                     // Cria vetor
+        vector<Avaliacao> vetorResultado;                     // Cria vetor
+        tam_lista = listaResultado.size() / 5;
+        
+        for (i = 0; i < tam_lista; i++) {
+                // Remover codigo;
+                if (listaResultado.empty())
+                        throw EErroPersistencia("Lista de resultados vazia.");
+                resultado = listaResultado.back();
+                listaResultado.pop_back();
+                // cout << "Codigo: " << resultado.getValorColuna() << endl;
+                // getch();
+                codigo.setValor(resultado.getValorColuna());
+                avaliacao.setCodigo(codigo);
+
+                // Remover nota;
+                if (listaResultado.empty())
+                        throw EErroPersistencia("Lista de resultados vazia.");
+                resultado = listaResultado.back();
+                listaResultado.pop_back();
+                // cout << "Nota: " << resultado.getValorColuna() << endl;
+                // getch();
+                nota.setValor(stoi(resultado.getValorColuna()));
+                avaliacao.setNota(nota);
+
+                // Remover descricao;
+                if (listaResultado.empty())
+                        throw EErroPersistencia("Lista de resultados vazia.");
+                resultado = listaResultado.back();
+                listaResultado.pop_back();
+                // cout << "Descricao: " << resultado.getValorColuna() << endl;
+                // getch();
+                descricao.setValor(resultado.getValorColuna());
+                avaliacao.setDescricao(descricao);
+
+                // Remover emailAutor;
+                if (listaResultado.empty())
+                        throw EErroPersistencia("Lista de resultados vazia.");
+                resultado = listaResultado.back();
+                listaResultado.pop_back();
+                // cout << "EmailAutor: " << resultado.getValorColuna() << endl;
+                // getch();
+                emailAutor.setValor(resultado.getValorColuna());
+                avaliacao.setEmailAutor(emailAutor);
+
+                // Remover codigoExcursao;
+                if (listaResultado.empty())
+                        throw EErroPersistencia("Lista de resultados vazia.");
+                resultado = listaResultado.back();
+                listaResultado.pop_back();
+                // cout << "CodigoExcursao: " << resultado.getValorColuna() << endl;
+                // getch();
+                codigoExcursao.setValor(resultado.getValorColuna());
+                avaliacao.setCodigoExcursao(codigoExcursao);
+
+                vetorResultado.push_back(avaliacao);
+        }
+
+        // for (int j = 0; j < vetorResultado.size(); j++){
+        //         cout << vetorResultado[j].getCodigo().getValor() << endl;
+        //         cout << vetorResultado[j].getNota().getValor() << endl;
+        //         cout << vetorResultado[j].getDescricao().getValor() << endl;
+        //         cout << vetorResultado[j].getEmailAutor().getValor() << endl;
+        //         cout << vetorResultado[j].getCodigoExcursao().getValor() << endl << endl;
+        //         getch();
+        // }
+        
+        
         return vetorResultado;
 }
 
