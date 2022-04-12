@@ -28,34 +28,27 @@ bool CntrServicoAutenticacao::autenticar(Email email, Senha senha) {
 //--------------------------------------------------------------------------------------------
 // Implementação de métodos da classe CntrServicoContas
 
-// TEM QUE TESTAR A PARTE DE APAGAR TODAS AS EXCURSOES E AVALIACOES, SO DESCOMENTAR
 bool CntrServicoContas::descadastrar(Email email){
-    // ComandoRemoverAvaliacao comandoRemoverAvaliacao(email); //remove todas as avaliacoes desse autor
+    ComandoRemoverAvaliacao comandoRemoverAvaliacaoAutor(email); //remove todas as avaliacoes desse autor
 
-    // ComandoListarExcursoes comandoListarExcursoes(email); //usado para remover as ava
-    // vector<Excursao> excursoes;
-    // ComandoRemoverExcursao comandoRemoverExcursao(email);
+    ComandoListarExcursoes comandoListarExcursoes(email); //usado para remover as avalicaoes e sessoes das excursoes desse guia
+    vector<Excursao> excursoes;
+    ComandoRemoverExcursao comandoRemoverExcursaoGuia(email); //remove todas as excursoes desse guia
 
     ComandoRemoverUsuario comandoRemoverUsuario(email); //remove o usuario
 
-//    try{
-//        comandoRemoverAvaliacao.executar(); //remove todas as avaliacoes desse autor
-//        comandoListarExcursoes.executar(); //lista as excursoes para deletar os filhos
-//        excursoes = comandoListarExcursoes.getResultado();
-//        for(int i=0;i<=excursoes.size();i++){
-//            Codigo codigo = excursoes[i].getCodigo();
-//            ComandoRemoverSessao auxSessao(codigo); //Remove todas as avaliacoes de cada excursao do autor
-//            ComandoRemoverAvaliacao auxAvaliacao(codigo); //Remove todas as sessoes de cada excursao do autor
-//            auxSessao.executar();
-//            auxAvaliacao.executar();
-//        }
-//        comandoRemoverExcursao.executar(); //remove todas as excursoes do autor
-//     }
-//     catch(EErroPersistencia &exp) {
-//         cout << endl << exp.what();
-//         false;
-//     }
-    try{
+   try{
+        comandoRemoverAvaliacaoAutor.executar(); //remove todas as avaliacoes desse autor
+        comandoListarExcursoes.executar(); //lista as excursoes para deletar os filhos
+        excursoes = comandoListarExcursoes.getResultado();
+        for(int i=0; i<excursoes.size(); i++){
+            Codigo codigo = excursoes[i].getCodigo();
+            ComandoRemoverSessao comandoRemoverSessaoGuia(codigo); //Remove todas as sessoes de cada excursao do guia
+            ComandoRemoverAvaliacao comandoRemoverAvaliacaoGuia(codigo); //Remove todas as avaliacoes de cada excursao do guia
+            comandoRemoverSessaoGuia.executar();
+            comandoRemoverAvaliacaoGuia.executar();
+        }
+        comandoRemoverExcursaoGuia.executar(); //remove todas as excursoes do autor
         comandoRemoverUsuario.executar(); // remove o usuario
         return true;
     }
@@ -178,7 +171,7 @@ vector<Sessao> CntrServicoExcursao::listarSessoes(Codigo codigo){
 
 
 
-// //cadastrar
+// Cadastrar
 // bool CntrServicoExcursao::cadastrarExcursao(Excursao excursao) {
 //     ComandoCadastrarExcursao ComandoCadastrarExcursao(excursao);
     
@@ -219,19 +212,19 @@ vector<Sessao> CntrServicoExcursao::listarSessoes(Codigo codigo){
 // }
 
 
-// //editar
-// bool CntrServicoExcursao::editarExcursao(Excursao excursao){
-//     ComandoAtualizarExcursao comandoAtualizarExcursao(excursao);
+// Editar
+bool CntrServicoExcursao::editarExcursao(Excursao excursao){
+    ComandoAtualizarExcursao comandoAtualizarExcursao(excursao);
 
-//     try {
-//         comandoAtualizarExcursao.executar();
-//         return true;
-//     }
-//     catch(EErroPersistencia &exp) {
-//         cout << endl << exp.what();
-//         return false;
-//     }
-// }
+    try {
+        comandoAtualizarExcursao.executar();
+        return true;
+    }
+    catch(EErroPersistencia &exp) {
+        cout << endl << exp.what();
+        return false;
+    }
+}
 
 bool CntrServicoExcursao::editarSessao(Sessao sessao){
     ComandoAtualizarSessao comandoAtualizarSessao(sessao);
@@ -260,23 +253,23 @@ bool CntrServicoExcursao::editarAvaliacao(Avaliacao avaliacao){
 }
 
 
-// //descadastrar
-// bool CntrServicoExcursao::descadastrarExcursao(Excursao excursao){ //descadastra uma excursao
-//     ComandoRemoverAvaliacao comandoRemoverAvaliacao(excursao.getCodigo()); //remove todas as avaliacoes linkadas com essa excursao
-//     ComandoRemoverSessao comandoRemoverSessao(excursao.getCodigo()); //remove todas as sessoes linkadas com essa excursao
-//     ComandoRemoverExcursao comandoRemoverExcursao(excursao);
+// Descadastrar
+bool CntrServicoExcursao::descadastrarExcursao(Excursao excursao){ //descadastra uma excursao
+    ComandoRemoverAvaliacao comandoRemoverAvaliacao(excursao.getCodigo()); //remove todas as avaliacoes linkadas com essa excursao
+    ComandoRemoverSessao comandoRemoverSessao(excursao.getCodigo()); //remove todas as sessoes linkadas com essa excursao
+    ComandoRemoverExcursao comandoRemoverExcursao(excursao);
 
-//     try{
-//         comandoRemoverAvaliacao.executar();
-//         comandoRemoverSessao.executar();
-//         comandoRemoverExcursao.executar();
-//         return true;
-//     }
-//     catch(EErroPersistencia &exp) {
-//         cout << endl << exp.what();
-//         return false;
-//     }
-// }
+    try{
+        comandoRemoverAvaliacao.executar();
+        comandoRemoverSessao.executar();
+        comandoRemoverExcursao.executar();
+        return true;
+    }
+    catch(EErroPersistencia &exp) {
+        cout << endl << exp.what();
+        return false;
+    }
+}
 
 bool CntrServicoExcursao::descadastrarSessao(Sessao sessao){ //descadastra uma sessao
     ComandoRemoverSessao comandoRemoverSessao(sessao);

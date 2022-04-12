@@ -579,6 +579,9 @@ void CntrApresentacaoExcursao::listarExcursoes(Email email){
     char texto4[]=" - Retornar a selecao de servicos";
 
     while (apresentar){
+        vector<Excursao> excursoes = cntrServicoExcursao->listarExcursoes(email);
+        num_excursoes = excursoes.size();
+
         prox_pag=-1;
         pag_ant=-1;
         num_opcoes=0;
@@ -918,7 +921,6 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
             case 5: // editar excursão
                 while(true) {
                     CLR_SCR;
-                    // SE BOTAR UM INPUT COM ESPAÇO DA ERRADO, TEM QUE TENTAR RESOLVER ISSO, ELE SO PEGA A PRIMEIRA PALAVRA E DA ERRADO OS PROXIMOS INPUTS
                     cout << texto13;
                     fixBuffer();
                     cin.getline(auxTitulo,79);
@@ -960,9 +962,10 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
                         getch();
                     }
                 }
-                //cntrServicoExcursao->editarExcursao(excursao);
+                cntrServicoExcursao->editarExcursao(excursao);
                 break;
-            case 6: apresentar = false; //cntrServicoExcursao->descadastrarExcursao(excursao);
+            case 6: apresentar = false; 
+                cntrServicoExcursao->descadastrarExcursao(excursao);
                 break;
             case 7: apresentar = false;
                 break;

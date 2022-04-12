@@ -34,8 +34,8 @@ class CntrServicoExcursao:public IServicoExcursao{
         vector<Excursao> listarExcursoes(Email);
         vector<Excursao> listarExcursoes();
         // bool cadastrarExcursao(Excursao);
-        // bool editarExcursao(Excursao);
-        // bool descadastrarExcursao(Excursao);
+        bool editarExcursao(Excursao);
+        bool descadastrarExcursao(Excursao);
 
         vector<Avaliacao> listarAvaliacoes(Email);
         vector<Avaliacao> listarAvaliacoes(Codigo);
