@@ -440,6 +440,12 @@ ComandoAtualizarExcursao::ComandoAtualizarExcursao(Excursao excursao) {
 //---------------------------------------------------------------------------
 // Implementações de métodos da classe ComandoListarAvaliacoes.
 
+
+// Função que bota todas as avaliações em listaResultado
+ComandoListarAvaliacoes::ComandoListarAvaliacoes() {
+        comandoSQL = "SELECT * FROM avaliacoes";
+}
+
 // Função que bota todas as avaliações dessa excursão em listaResultado
 ComandoListarAvaliacoes::ComandoListarAvaliacoes(Codigo codigoExcursao) {
         comandoSQL = "SELECT * FROM avaliacoes WHERE codigoExcursao = ";
@@ -633,6 +639,11 @@ ComandoAtualizarAvaliacao::ComandoAtualizarAvaliacao(Avaliacao avaliacao) {
 // SESSOES
 //---------------------------------------------------------------------------
 // Implementações de métodos da classe ComandoListarSessoes.
+
+// Função que bota todas as sessoes em listaResultado
+ComandoListarSessoes::ComandoListarSessoes() {
+        comandoSQL = "SELECT * FROM sessoes";
+}
 
 // Função que bota todas as sessões dessa excursão em listaResultado
 ComandoListarSessoes::ComandoListarSessoes(Codigo codigoExcursao) {

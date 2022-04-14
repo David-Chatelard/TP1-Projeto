@@ -355,7 +355,7 @@ void CntrApresentacaoExcursao::executar(Email email){
         campo1 = getch() - 48;                                                                  // Leitura do campo de entrada e conversão de ASCII.
 
         switch(campo1){
-            case 1: listarExcursoes2();
+            case 1: listarExcursoes2(email);
                 break;
             case 2: listarExcursoes(email);
                 break;
@@ -399,7 +399,7 @@ void CntrApresentacaoExcursao::executar(Email email){
                         getch();
                     }
                 }
-                // cntrServicoExcursao->cadastrarExcursao(excursao); //RETORNA BOOLEAN, da para usar isso caso queira                             //Cadastrar excursao
+                cntrServicoExcursao->cadastrarExcursao(excursao, email); //RETORNA BOOLEAN, da para usar isso caso queira                             //Cadastrar excursao
                 break;
             case 5: apresentar = false;                                                                             //Voltar para a lista de servicos
                 break;
@@ -487,7 +487,7 @@ void CntrApresentacaoExcursao::listarExcursoes(){
 }
 
 // Função que lista todas as excursões quando está logado, tem diferença da função de cima, porque a partir dessa quando entrar nos detalhes de uma excursão pode cadastrar uma avaliação
-void CntrApresentacaoExcursao::listarExcursoes2(){
+void CntrApresentacaoExcursao::listarExcursoes2(Email email){
     const int EXCURSOES_POR_PAGINA = 5;
     vector<Excursao> excursoes = cntrServicoExcursao->listarExcursoes();
     int pagina=0, i, j, prox_pag=-1, pag_ant=-1, num_opcoes=0, num_excursoes = excursoes.size(), excursoes_mostradas=0, excursoes_mostradas_pag=0;
@@ -548,7 +548,7 @@ void CntrApresentacaoExcursao::listarExcursoes2(){
             if (campo1 == (j+1)){
                 int aux = excursoes_mostradas;
                 excursoes_mostradas -= excursoes_mostradas_pag;
-                detalheExcursao(excursoes[j + (EXCURSOES_POR_PAGINA*pagina)]);
+                detalheExcursao2(excursoes[j + (EXCURSOES_POR_PAGINA*pagina)], email);
             }
         }
         
@@ -565,7 +565,7 @@ void CntrApresentacaoExcursao::listarExcursoes2(){
     }
 }
 
-// Função que lista as suas excursões e depois permite cadastrar/editar/remover sessões ou cadastrar avaliações
+// Função que lista as suas excursões e depois permite cadastrar/editar/remover sessões
 void CntrApresentacaoExcursao::listarExcursoes(Email email){
     const int EXCURSOES_POR_PAGINA = 5;
     vector<Excursao> excursoes = cntrServicoExcursao->listarExcursoes(email);
@@ -692,7 +692,7 @@ void CntrApresentacaoExcursao::detalheExcursao(Excursao excursao){
 }
 
 // Função que mostra os detalhes da excursão quando está logado e permite ver as sessões e avaliações e permite cadastrar avaliações
-void CntrApresentacaoExcursao::detalheExcursao2(Excursao excursao){
+void CntrApresentacaoExcursao::detalheExcursao2(Excursao excursao, Email email){
     char texto1[] = "Informacoes sobre a excursao";
     char texto2[] = "Titulo: ";
     char texto3[] = "Nota: ";
@@ -765,7 +765,7 @@ void CntrApresentacaoExcursao::detalheExcursao2(Excursao excursao){
                         getch();
                     }
                 }
-                // cntrServicoExcursao->cadastrarAvaliacao(avaliacao);
+                cntrServicoExcursao->cadastrarAvaliacao(avaliacao, excursao, email);
                 break;
             case 4: apresentar = false;
                 break;
@@ -773,7 +773,7 @@ void CntrApresentacaoExcursao::detalheExcursao2(Excursao excursao){
     }
 }
 
-// Função que mostra os detalhes da sua excursão(podendo editar e descadastrar ela) quando está logado e permite ver as sessões e avaliações e permite cadastrar sessões e avaliações
+// Função que mostra os detalhes da sua excursão(podendo editar e descadastrar ela) quando está logado e permite ver as sessões e avaliações e permite cadastrar sessões
 void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
     char texto1[] = "Informacoes sobre a excursao";
     char texto2[] = "Titulo: ";
@@ -785,10 +785,9 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
     char texto8[] = "1 - Avaliacoes dessa excursao";
     char texto9[] = "2 - Sessoes dessa excursao";
     char texto20[] = "3 - Cadastrar sessao";
-    char texto21[] = "4 - Cadastrar avaliacao";
-    char texto10[] = "5 - Editar excursao";
-    char texto11[] = "6 - Descadastrar excursao";
-    char texto12[] = "7 - Retornar para a lista de excursoes";
+    char texto10[] = "4 - Editar excursao";
+    char texto11[] = "5 - Descadastrar excursao";
+    char texto12[] = "6 - Retornar para a lista de excursoes";
     char texto13[] = "Novo Titulo: ";
     char texto14[] = "Nova Nota: ";
     char texto15[] = "Nova Cidade: ";
@@ -853,7 +852,6 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
         cout << texto8 << endl;
         cout << texto9 << endl;
         cout << texto20 << endl;
-        cout << texto21 << endl;
         cout << texto10 << endl;
         cout << texto11 << endl;
         cout << texto12 << endl;
@@ -891,34 +889,9 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
                         getch();
                     }
                 }
-                // cntrServicoExcursao->cadastrarSessao(sessao);
+                cntrServicoExcursao->cadastrarSessao(sessao, excursao);
                 break;
-            case 4: // cadastrar avaliação
-                while(true) {
-                    CLR_SCR;
-                    cout << texto26 << endl;
-                    cout << texto27;
-                    cin >> auxNotaAvaliacao;
-                    cout << texto28;
-                    fixBuffer();
-                    cin.getline(auxDescricaoAvaliacao,79);
-
-                    try {
-                        notaAvaliacao.setValor(stoi(auxNotaAvaliacao));
-                        descricaoAvaliacao.setValor(auxDescricaoAvaliacao);
-                        avaliacao.setNota(notaAvaliacao);
-                        avaliacao.setDescricao(descricaoAvaliacao);
-                        break;
-                    }
-                    catch(invalid_argument &exp) {
-                        CLR_SCR;
-                        cout << texto19 << endl;
-                        getch();
-                    }
-                }
-                // cntrServicoExcursao->cadastrarAvaliacao(avaliacao);
-                break;
-            case 5: // editar excursão
+            case 4: // editar excursão
                 while(true) {
                     CLR_SCR;
                     cout << texto13;
@@ -964,10 +937,10 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
                 }
                 cntrServicoExcursao->editarExcursao(excursao);
                 break;
-            case 6: apresentar = false; 
+            case 5: apresentar = false; 
                 cntrServicoExcursao->descadastrarExcursao(excursao);
                 break;
-            case 7: apresentar = false;
+            case 6: apresentar = false;
                 break;
         }
     }

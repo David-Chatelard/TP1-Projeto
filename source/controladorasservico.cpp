@@ -170,45 +170,154 @@ vector<Sessao> CntrServicoExcursao::listarSessoes(Codigo codigo){
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Cadastrar
-// bool CntrServicoExcursao::cadastrarExcursao(Excursao excursao) {
-//     ComandoCadastrarExcursao ComandoCadastrarExcursao(excursao);
+bool CntrServicoExcursao::cadastrarExcursao(Excursao excursao, Email email) {
+    ComandoListarExcursoes comandoListarExcursoes; //usado para ver se o codigo gerado ja esta em uso
+    vector<Excursao> excursoes;
     
-//     try {
-//         ComandoCadastrarExcursao.executar();
-//         return true;
-//     }
-//     catch(EErroPersistencia &exp) {
-//         cout << endl << exp.what();
-//         return false;
-//     }
-// }
+    try{
+        comandoListarExcursoes.executar(); //lista as excursoes para comparar o codigo
+        excursoes = comandoListarExcursoes.getResultado();
+        while (true)
+        {
+            bool passou = true;
+            string aux = excursao.getCodigo().gerarCodigo();
+            for (int i = 0; i < excursoes.size(); i++)
+            {
+                if (aux == excursoes[i].getCodigo().getValor())
+                {
+                    passou = false;
+                    break;
+                }
+            }
+            if (passou)
+            {
+                excursao.getCodigo().setValor(aux);
+                break;
+            }            
+        }
+        excursao.setEmailGuia(email);
+        ComandoCadastrarExcursao comandoCadastrarExcursao(excursao);
+        comandoCadastrarExcursao.executar();
+        return true;
+    }
+    catch(EErroPersistencia &exp) {
+        cout << endl << exp.what();
+        return false;
+    }    
+}
 
-// bool CntrServicoExcursao::cadastrarSessao(Sessao sessao) {
-//     ComandoCadastrarSessao ComandoCadastrarSessao(sessao);
-    
-//     try {
-//         ComandoCadastrarSessao.executar();
-//         return true;
-//     }
-//     catch(EErroPersistencia &exp) {
-//         cout << endl << exp.what();
-//         return false;
-//     }
-// }
+bool CntrServicoExcursao::cadastrarSessao(Sessao sessao, Excursao excursao) {
+    ComandoListarSessoes comandoListarSessoes;
+    vector<Sessao> sessoes;
 
-// bool CntrServicoExcursao::cadastrarAvaliacao(Avaliacao avaliacao) {
-//     ComandoCadastrarAvaliacao ComandoCadastrarAvaliacao(avaliacao);
-    
-//     try {
-//         ComandoCadastrarAvaliacao.executar();
-//         return true;
-//     }
-//     catch(EErroPersistencia &exp) {
-//         cout << endl << exp.what();
-//         return false;
-//     }
-// }
+    try{
+        comandoListarSessoes.executar(); //lista as excursoes para comparar o codigo
+        sessoes = comandoListarSessoes.getResultado();
+        while (true)
+        {
+            bool passou = true;
+            string aux = sessao.getCodigo().gerarCodigo();
+            for (int i = 0; i < sessoes.size(); i++)
+            {
+                if (aux == sessoes[i].getCodigo().getValor())
+                {
+                    passou = false;
+                    break;
+                }
+            }
+            if (passou)
+            {
+                sessao.getCodigo().setValor(aux);
+                break;
+            }            
+        }
+        sessao.setCodigoExcursao(excursao.getCodigo());
+        ComandoCadastrarSessao comandoCadastrarSessao(sessao);
+        comandoCadastrarSessao.executar();
+        return true;
+    }
+    catch(EErroPersistencia &exp) {
+        cout << endl << exp.what();
+        return false;
+    }    
+}
+
+bool CntrServicoExcursao::cadastrarAvaliacao(Avaliacao avaliacao, Excursao excursao, Email email) {
+    ComandoListarAvaliacoes comandoListarAvaliacoes;
+    vector<Avaliacao> avaliacoes;
+
+    try{
+        comandoListarAvaliacoes.executar(); //lista as excursoes para comparar o codigo
+        avaliacoes = comandoListarAvaliacoes.getResultado();
+        while (true)
+        {
+            bool passou = true;
+            string aux = avaliacao.getCodigo().gerarCodigo();
+            for (int i = 0; i < avaliacoes.size(); i++)
+            {
+                if (aux == avaliacoes[i].getCodigo().getValor())
+                {
+                    passou = false;
+                    break;
+                }
+            }
+            if (passou)
+            {
+                avaliacao.getCodigo().setValor(aux);
+                break;
+            }            
+        }
+        avaliacao.setCodigoExcursao(excursao.getCodigo());
+        avaliacao.setEmailAutor(email);
+        ComandoCadastrarAvaliacao comandoCadastrarAvaliacao(avaliacao);
+        comandoCadastrarAvaliacao.executar();
+        return true;
+    }
+    catch(EErroPersistencia &exp) {
+        cout << endl << exp.what();
+        return false;
+    }    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Editar

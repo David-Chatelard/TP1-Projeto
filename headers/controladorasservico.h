@@ -33,19 +33,19 @@ class CntrServicoExcursao:public IServicoExcursao{
     public:
         vector<Excursao> listarExcursoes(Email);
         vector<Excursao> listarExcursoes();
-        // bool cadastrarExcursao(Excursao);
+        bool cadastrarExcursao(Excursao, Email);
         bool editarExcursao(Excursao);
         bool descadastrarExcursao(Excursao);
 
         vector<Avaliacao> listarAvaliacoes(Email);
         vector<Avaliacao> listarAvaliacoes(Codigo);
-        // bool cadastrarAvaliacao(Avaliacao);
+        bool cadastrarAvaliacao(Avaliacao, Excursao, Email);
         bool editarAvaliacao(Avaliacao);
         bool descadastrarAvaliacao(Avaliacao);
 
         vector<Sessao> listarSessoes(Codigo);
         bool editarSessao(Sessao);
-        // bool cadastrarSessao(Sessao sessao);
+        bool cadastrarSessao(Sessao sessao, Excursao excursao);
         bool descadastrarSessao(Sessao);
         
 };

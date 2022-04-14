@@ -166,6 +166,7 @@ public:
 
 class ComandoListarAvaliacoes:public ComandoSQL {
 public:
+        ComandoListarAvaliacoes();
         ComandoListarAvaliacoes(Codigo);
         ComandoListarAvaliacoes(Email);
         vector<Avaliacao> getResultado();
@@ -214,6 +215,7 @@ public:
 
 class ComandoListarSessoes:public ComandoSQL {
 public:
+        ComandoListarSessoes();
         ComandoListarSessoes(Codigo);
         vector<Sessao> getResultado();
 };

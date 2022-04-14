@@ -33,18 +33,18 @@ class IServicoExcursao {
         virtual vector<Excursao> listarExcursoes(Email) = 0;
         virtual bool editarExcursao(Excursao) = 0;
         virtual bool descadastrarExcursao(Excursao) = 0;
-        // virtual bool cadastrarExcursao(Excursao) = 0;
+        virtual bool cadastrarExcursao(Excursao, Email) = 0;
         
         virtual vector<Sessao> listarSessoes(Codigo) = 0;
         virtual bool editarSessao(Sessao) = 0;
         virtual bool descadastrarSessao(Sessao) = 0;
-        // virtual bool cadastrarSessao(Sessao) = 0;
+        virtual bool cadastrarSessao(Sessao, Excursao) = 0;
 
         virtual vector<Avaliacao> listarAvaliacoes(Codigo) = 0;
         virtual vector<Avaliacao> listarAvaliacoes(Email) = 0; //para listar as avaliações que ele escreveu, para poder editar e excluir
         virtual bool editarAvaliacao(Avaliacao) = 0;
         virtual bool descadastrarAvaliacao(Avaliacao) = 0;
-        // virtual bool cadastrarAvaliacao(Avaliacao) = 0;
+        virtual bool cadastrarAvaliacao(Avaliacao, Excursao, Email) = 0;
 
 
 
@@ -77,6 +77,7 @@ class IApresentacaoExcursao {
         virtual void executar() = 0;
         virtual void executar(Email) = 0;
         virtual void listarExcursoes() = 0;
+        virtual void listarExcursoes2(Email) = 0;
         virtual void listarExcursoes(Email) = 0;
         virtual void listarAvaliacoes(Excursao) = 0;
         virtual void listarAvaliacoes(Email) = 0;

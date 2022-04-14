@@ -74,7 +74,7 @@ class Codigo {
     private:
         string valor;           
         void validar(string);
-        string gerarCodigo();
+        
     public:
 
         /**
@@ -83,6 +83,13 @@ class Codigo {
          * @param valor Código a ser armazenado
          */
         void setValor(string);
+
+        /**
+         * @brief Gera um código válido
+         * 
+         * @return Código Código gerado
+         */
+        string gerarCodigo();
 
         /**
          * @brief Retorna a código
