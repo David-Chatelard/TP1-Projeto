@@ -36,6 +36,7 @@ class CntrServicoExcursao:public IServicoExcursao{
         bool cadastrarExcursao(Excursao, Email);
         bool editarExcursao(Excursao);
         bool descadastrarExcursao(Excursao);
+        void atualizarNotaExcursao(Excursao);
 
         vector<Avaliacao> listarAvaliacoes(Email);
         vector<Avaliacao> listarAvaliacoes(Codigo);

@@ -420,6 +420,11 @@ void CntrApresentacaoExcursao::listarExcursoes(){
     char texto3[]=" - Pagina anterior";
     char texto4[]=" - Retornar a selecao de servicos";
 
+    for (int k = 0; k < excursoes.size(); k++) {
+        cntrServicoExcursao->atualizarNotaExcursao(excursoes[k]);
+    }
+    excursoes = cntrServicoExcursao->listarExcursoes();
+
     while (apresentar){
         prox_pag=-1;
         pag_ant=-1;
@@ -499,6 +504,11 @@ void CntrApresentacaoExcursao::listarExcursoes2(Email email){
     char texto3[]=" - Pagina anterior";
     char texto4[]=" - Retornar a selecao de servicos";
 
+    for (int k = 0; k < excursoes.size(); k++) {
+        cntrServicoExcursao->atualizarNotaExcursao(excursoes[k]);
+    }
+    excursoes = cntrServicoExcursao->listarExcursoes();
+
     while (apresentar){
         prox_pag=-1;
         pag_ant=-1;
@@ -577,6 +587,11 @@ void CntrApresentacaoExcursao::listarExcursoes(Email email){
     char texto2[]=" - Proxima pagina";
     char texto3[]=" - Pagina anterior";
     char texto4[]=" - Retornar a selecao de servicos";
+
+    for (int k = 0; k < excursoes.size(); k++) {
+        cntrServicoExcursao->atualizarNotaExcursao(excursoes[k]);
+    }
+    excursoes = cntrServicoExcursao->listarExcursoes();
 
     while (apresentar){
         vector<Excursao> excursoes = cntrServicoExcursao->listarExcursoes(email);

@@ -34,6 +34,7 @@ class IServicoExcursao {
         virtual bool editarExcursao(Excursao) = 0;
         virtual bool descadastrarExcursao(Excursao) = 0;
         virtual bool cadastrarExcursao(Excursao, Email) = 0;
+        virtual void atualizarNotaExcursao(Excursao) = 0;
         
         virtual vector<Sessao> listarSessoes(Codigo) = 0;
         virtual bool editarSessao(Sessao) = 0;

@@ -171,20 +171,6 @@ vector<Sessao> CntrServicoExcursao::listarSessoes(Codigo codigo){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Cadastrar
 bool CntrServicoExcursao::cadastrarExcursao(Excursao excursao, Email email) {
     ComandoListarExcursoes comandoListarExcursoes; //usado para ver se o codigo gerado ja esta em uso
@@ -305,30 +291,6 @@ bool CntrServicoExcursao::cadastrarAvaliacao(Avaliacao avaliacao, Excursao excur
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Editar
 bool CntrServicoExcursao::editarExcursao(Excursao excursao){
     ComandoAtualizarExcursao comandoAtualizarExcursao(excursao);
@@ -414,3 +376,30 @@ bool CntrServicoExcursao::descadastrarAvaliacao(Avaliacao avaliacao){ //descadas
     }
 }
 
+// Atualizar a nota da excursao para ser a media das notas das avaliacoes dessa excursao
+
+void CntrServicoExcursao::atualizarNotaExcursao(Excursao excursao) {
+    ComandoListarAvaliacoes comandoListarAvaliacoes(excursao.getCodigo());
+    vector<Avaliacao> avaliacoes;
+    int num_notas=0, soma_notas=0;
+
+    Nota nota;
+
+    try{
+        comandoListarAvaliacoes.executar();
+        avaliacoes = comandoListarAvaliacoes.getResultado();
+        for (int i = 0; i < avaliacoes.size(); i++) {
+            soma_notas += avaliacoes[i].getNota().getValor();
+            num_notas++;
+        }
+        if (avaliacoes.size() > 0){
+            nota.setValor(soma_notas/num_notas);
+            excursao.setNota(nota);
+            ComandoAtualizarExcursao comandoAtualizarExcursao(excursao);
+            comandoAtualizarExcursao.executar();
+        }
+    }
+    catch(EErroPersistencia &exp) {
+        cout << endl << exp.what();
+    }
+}
