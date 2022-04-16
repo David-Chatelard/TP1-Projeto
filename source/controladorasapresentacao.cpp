@@ -805,7 +805,6 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
     char texto11[] = "5 - Descadastrar excursao";
     char texto12[] = "6 - Retornar para a lista de excursoes";
     char texto13[] = "Novo Titulo: ";
-    char texto14[] = "Nova Nota: ";
     char texto15[] = "Nova Cidade: ";
     char texto16[] = "Nova Duracao: ";
     char texto17[] = "Nova Descricao: ";
@@ -914,8 +913,6 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
                     fixBuffer();
                     cin.getline(auxTitulo,79);
                     // cin >> auxTitulo;
-                    cout << texto14;
-                    cin >> auxNota;
                     cout << texto15;
                     fixBuffer();
                     cin.getline(auxCidade,79);
@@ -932,13 +929,11 @@ void CntrApresentacaoExcursao::detalheExcursao(Email email, Excursao excursao){
                     // cin >> auxEndereco;
                     try {
                         titulo.setValor(auxTitulo);
-                        nota.setValor(stoi(auxNota));
                         cidade.setValor(auxCidade);
                         duracao.setValor(stoi(auxDuracao));
                         descricao.setValor(auxDescricao);
                         endereco.setValor(auxEndereco);
                         excursao.setTitulo(titulo);
-                        excursao.setNota(nota);
                         excursao.setCidade(cidade);
                         excursao.setDuracao(duracao);
                         excursao.setDescricao(descricao);
