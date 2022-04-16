@@ -189,6 +189,8 @@ vector<Sessao> CntrServicoExcursao::listarSessoes(Codigo codigo){
 bool CntrServicoExcursao::cadastrarExcursao(Excursao excursao, Email email) {
     ComandoListarExcursoes comandoListarExcursoes; //usado para ver se o codigo gerado ja esta em uso
     vector<Excursao> excursoes;
+    Codigo codigo_aux;
+    Nota nota;
     
     try{
         comandoListarExcursoes.executar(); //lista as excursoes para comparar o codigo
@@ -196,7 +198,7 @@ bool CntrServicoExcursao::cadastrarExcursao(Excursao excursao, Email email) {
         while (true)
         {
             bool passou = true;
-            string aux = excursao.getCodigo().gerarCodigo();
+            string aux = codigo_aux.gerarCodigo();
             for (int i = 0; i < excursoes.size(); i++)
             {
                 if (aux == excursoes[i].getCodigo().getValor())
@@ -207,10 +209,13 @@ bool CntrServicoExcursao::cadastrarExcursao(Excursao excursao, Email email) {
             }
             if (passou)
             {
-                excursao.getCodigo().setValor(aux);
+                codigo_aux.setValor(aux);
+                excursao.setCodigo(codigo_aux);
                 break;
             }            
         }
+        nota.setValor(0);
+        excursao.setNota(nota);
         excursao.setEmailGuia(email);
         ComandoCadastrarExcursao comandoCadastrarExcursao(excursao);
         comandoCadastrarExcursao.executar();
@@ -225,6 +230,7 @@ bool CntrServicoExcursao::cadastrarExcursao(Excursao excursao, Email email) {
 bool CntrServicoExcursao::cadastrarSessao(Sessao sessao, Excursao excursao) {
     ComandoListarSessoes comandoListarSessoes;
     vector<Sessao> sessoes;
+    Codigo codigo_aux;
 
     try{
         comandoListarSessoes.executar(); //lista as excursoes para comparar o codigo
@@ -232,7 +238,7 @@ bool CntrServicoExcursao::cadastrarSessao(Sessao sessao, Excursao excursao) {
         while (true)
         {
             bool passou = true;
-            string aux = sessao.getCodigo().gerarCodigo();
+            string aux = codigo_aux.gerarCodigo();
             for (int i = 0; i < sessoes.size(); i++)
             {
                 if (aux == sessoes[i].getCodigo().getValor())
@@ -243,7 +249,8 @@ bool CntrServicoExcursao::cadastrarSessao(Sessao sessao, Excursao excursao) {
             }
             if (passou)
             {
-                sessao.getCodigo().setValor(aux);
+                codigo_aux.setValor(aux);
+                sessao.setCodigo(codigo_aux);
                 break;
             }            
         }
@@ -261,6 +268,7 @@ bool CntrServicoExcursao::cadastrarSessao(Sessao sessao, Excursao excursao) {
 bool CntrServicoExcursao::cadastrarAvaliacao(Avaliacao avaliacao, Excursao excursao, Email email) {
     ComandoListarAvaliacoes comandoListarAvaliacoes;
     vector<Avaliacao> avaliacoes;
+    Codigo codigo_aux;
 
     try{
         comandoListarAvaliacoes.executar(); //lista as excursoes para comparar o codigo
@@ -268,7 +276,7 @@ bool CntrServicoExcursao::cadastrarAvaliacao(Avaliacao avaliacao, Excursao excur
         while (true)
         {
             bool passou = true;
-            string aux = avaliacao.getCodigo().gerarCodigo();
+            string aux = codigo_aux.gerarCodigo();
             for (int i = 0; i < avaliacoes.size(); i++)
             {
                 if (aux == avaliacoes[i].getCodigo().getValor())
@@ -279,10 +287,11 @@ bool CntrServicoExcursao::cadastrarAvaliacao(Avaliacao avaliacao, Excursao excur
             }
             if (passou)
             {
-                avaliacao.getCodigo().setValor(aux);
+                codigo_aux.setValor(aux);
+                avaliacao.setCodigo(codigo_aux);
                 break;
             }            
-        }
+        }        
         avaliacao.setCodigoExcursao(excursao.getCodigo());
         avaliacao.setEmailAutor(email);
         ComandoCadastrarAvaliacao comandoCadastrarAvaliacao(avaliacao);

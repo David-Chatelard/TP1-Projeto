@@ -733,6 +733,7 @@ void CntrApresentacaoExcursao::detalheExcursao2(Excursao excursao, Email email){
         cout << texto7 << excursao.getEndereco().getValor() << endl;
         cout << texto8 << endl;
         cout << texto9 << endl;
+        cout << texto11 << endl;
         cout << texto10 << endl;
 
         campo1 = getch() - 48;
