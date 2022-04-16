@@ -60,9 +60,8 @@ int main() {
     cntrApresentacaoAutenticacao->setCntrServicoAutenticacao(cntrServicoAutenticacao);
 
     cntrApresentacaoContas->setCntrServicoContas(cntrServicoContas);
-    // cntrApresentacaoContas->setCntrServicoExcursao(stubServicoExcursao); //não sei se vai usar isso
 
-    cntrApresentacaoExcursao->setCntrServicoExcursao(cntrServicoExcursao); //TEM QUE IMPLEMENTAR
+    cntrApresentacaoExcursao->setCntrServicoExcursao(cntrServicoExcursao);
 
     cntrApresentacaoControle->executar();                                           // Solicitar serviço.
 
